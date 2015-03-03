@@ -193,15 +193,16 @@ regenerate-latex-templates: presentation-latex report-latex abstract-latex
 
 presentation-latex:
 	( \
-	    echo '% Document title'; \
-	    echo '% Document author'; \
-	    echo '% Date of publication'; \
+	    echo '% Presentation title'; \
+	    echo '% Presentation author'; \
+	    echo '% Date of presentation'; \
 	    echo ''; \
 	    echo '%% smart'; \
 	    echo '%% to=beamer'; \
 	    echo '%% slide-level 3'; \
 	    echo '%% template=templates/presentation.tex'; \
 	    echo '%% toc'; \
+	    echo '%% variable institute=Institute,~Dept.,~University'; \
 	    echo ''; \
 	    echo '# First Section'; \
 	    echo ''; \

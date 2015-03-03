@@ -1,6 +1,6 @@
-% Document title
-% Document author
-% Date of publication
+% Presentation title
+% Presentation author
+% Date of presentation
 
 %% smart
 %% to=beamer
@@ -10,6 +10,7 @@
 %% variable sectiontoc=1
 %% biblatex
 %% variable biblio-files=parsed-references.bib
+%% variable institute=Institute,~Dept.,~University
 
 # Introduction
 
