@@ -95,7 +95,8 @@ Further TODOs
 -------------
 
 - use yaml instead of custom headers
-- ondemand should do markdown -> tex and tex -> pdf separately, so that only tex -> pdf works
+- ondemand should do markdown -> tex and tex -> pdf separately, at the moment
+  pdflatex is run two times
 - letter template
 - poster template
 - support for Rmd/knitr: Rmd -> md
