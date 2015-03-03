@@ -3,7 +3,7 @@
 Latest version and bugreports on Github: <https://github.com/mh21/kuleuven-templates/>
 
 This repository contains markdown templates for presentations according to the KU Leuven Corporate Design.
-You can find an example at [presentation-example.pdf](presentation-example.pdf).
+You can find an example at [presentation-example.pdf](https://github.com/mh21/kuleuven-templates/blob/master/presentation-example.pdf?raw=true).
 Next to the actual templates, a build system based on pandoc/texlive/make is provided.
 
 Pull requests welcome!
