@@ -1,0 +1,66 @@
+\documentclass[pagesize,english,DIV=calc,footinclude=false
+]{scrartcl}
+
+\usepackage[utf8]{inputenc}
+\usepackage[T1]{fontenc}
+\usepackage[fleqn]{amsmath}
+\usepackage[nohyperlinks]{acronym}
+\usepackage{babel,lmodern,graphicx,mathptmx,xspace,wasysym,microtype,booktabs,tabularx,relsize,textcomp,longtable,lipsum}
+\usepackage[olditem,oldenum]{paralist}
+\usepackage[babel=true]{csquotes}
+\usepackage[thinqspace]{SIunits}
+\usepackage[normal,font=small]{caption}
+\usepackage[multiple,flushmargin]{footmisc}
+\usepackage{todonotes}
+
+\usepackage{url}
+\urlstyle{same}
+
+\usepackage{hyperref}
+\hypersetup{
+  pdftitle=Document title,
+  pdfkeywords={},
+  pdfauthor=Document author,
+  plainpages=false,
+  linktoc=all,
+  colorlinks=true,
+  anchorcolor=black,
+  menucolor=black,
+  linkcolor=black,
+  citecolor=black,
+  urlcolor=black,
+  filecolor=black,
+}
+
+\graphicspath{{figures/}}
+\DeclareGraphicsExtensions{.pdf,.jpeg,.png}         % Fix sort order in case the same file exists with multiple extensions
+\frenchspacing
+
+\input{templates/definitions.tex}
+
+\usepackage[normalem]{ulem}
+\pdfstringdefDisableCommands{\renewcommand{\sout}{}}
+
+
+
+
+\setcounter{secnumdepth}{0}
+
+\title{Document title}
+\author{Document author}
+\date{Date of publication}
+
+
+\begin{document}
+
+\maketitle
+
+
+
+\section{First Section}\label{first-section}
+
+\subsection{First subsection}\label{first-subsection}
+
+
+
+\end{document}

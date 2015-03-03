@@ -1,0 +1,18 @@
+<#define fig|![#1-png](#1-png)>
+<#define hfig|![#1-png](#1-png)>
+<#define vfig|![#1-png](#1-png)>
+<#define slidefig|![#1-png](#1-png)>
+
+<#define notoc|>
+<#define nosupertitle|>
+<#define right|→>
+<#define approx|±>
+<#define sound|>
+<#define pause|>
+
+<#define ipestart|>
+<#define ipeend|>
+
+<#define colfirst|>
+<#define colnext|>
+<#define colend|>

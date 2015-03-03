@@ -1,0 +1,116 @@
+<!-- ExpORL Markdown/LaTeX macro's -->
+<!--    Developed by Tom Francart and Michael Hofmann -->
+<!--    Each macro takes a number of arguments described below. Optional arguments are given between [] -->
+
+<!-- #fig include graphical file -->
+<!--    1- filename, extension not required. Should be in current folder or graphicspath, which usually includes ./figures -->
+<!--    [2-] maximum figure height, in fraction of page height -->
+<!--    [3-] maximum figure width, in fraction of text width (e.g., page width of column width) -->
+<#define fig|\includegraphics[width=#3\textwidth,height=<#ifeq #2|>0.73<#else>#2<#endif>\paperheight,keepaspectratio]{#1}
+>
+
+<!-- #rawfig include graphical file -->
+<!--    1- filename, extension not required -->
+<!--    [2-] parameters to \includegraphics -->
+<!--    [3-] display order D: if specified, an animation will be generated and this figure will be the Dth one to be shown -->
+<!--    [4-] if 1, show this figure on the handouts -->
+<#define rawfig|<!---\includegraphics<#ifneq #3|><#3<#ifneq #4|>|handout:#4<#endif>><#endif>[#2,keepaspectratio]{#1}--->
+>
+
+<!-- #vfig include graphical file, scale to page width -->
+<!--    1- filename, extension not required -->
+<!--    [2-] display order D: if specified, an animation will be generated and this figure will be the Dth one to be shown -->
+<!--    [3-] if 1, show this figure on the handouts -->
+<#define hfig|<!---\includegraphics<#ifneq #2|><#2<#ifneq #3|>|handout:#3<#endif>><#endif>[width=\textwidth]{#1}--->>
+
+<!-- #hfig include graphical file, scale to page height -->
+<!--    1- filename, extension not required -->
+<!--    [2-] display order D: if specified, an animation will be generated and this figure will be the Dth one to be shown -->
+<!--    [3-] if 1, show this figure on the handouts -->
+<#define vfig|<!---\includegraphics<#ifneq #2|><#2<#ifneq #3|>|handout:#3<#endif>><#endif>[height=0.72\paperheight]{#1}--->>
+
+<!-- #slidefig generate slide containing only given figure -->
+<!--    1- filename, extension not required -->
+<#define slidefig|
+##
+<!---\usebackgroundtemplate{\parbox[c][\paperheight][c]{\paperwidth}{\centering\includegraphics[height=\paperheight,width=\paperwidth,keepaspectratio]{#1}}}
+\begin{frame}[plain]\end{frame}
+\setbeamertemplate{background canvas}[kul]--->
+>
+
+<!-- #colfirst, #colnext, #colend create columns -->
+<!--    1- Column width (fraction) -->
+<#define colfirst|
+<!--=\begin{columns}[T,onlytextwidth]\begin{column}{<#ifeq #1|>0.49<#else>#1<#endif>\linewidth}\vskip-4pt=-->
+>
+<#define colnext|
+<!--=\end{column}\begin{column}{<#ifeq #1|>0.49<#else>#1<#endif>\linewidth}\vskip-4pt=-->
+>
+<#define colend|
+<!--=\end{column}\end{columns}=-->
+>
+
+<!-- #notoc don't show table of contents -->
+<#define notoc|
+##
+\AtBeginSection[]{}
+>
+
+<#define nosupertitle|
+##
+\renewcommand{\insertsupertitle}{}
+>
+<#define sectiontitle|
+##
+\renewcommand{\insertsupertitle}{\insertsectionhead}
+>
+<#define subsectiontitle|
+##
+\renewcommand{\insertsupertitle}{\insertsectionhead\ifx\insertsubsectionhead\empty\else{} -- \insertsubsectionhead\fi}
+>
+
+<#define largefooter|
+##
+<!---\setbeamertemplate{background canvas}[kul]\setbeamertemplate{footline}[large]--->
+>
+<#define smallfooter|
+##
+<!---\setbeamertemplate{background canvas}[plain]\setbeamertemplate{footline}[small]--->
+>
+
+<#define right|$\rightarrow$>
+<#define approx|$\pm$>
+<#define sound|\movie[inlinesound,encoding=Signed,samplingrate=44100]{#1}{#2}>
+
+<#define pause|<!---\pause--->>
+
+<#define ipestart|<!--=\begin{inparaenum}[(1)]=-->>
+<#define ipeend|<!--=\end{inparaenum}=-->>
+
+<#define todo|\todo{#1} >
+<#define todoinline|\todo[inline]{#1} >
+
+
+
+<#define tikzpage|
+\begin{tikzpicture}[remember picture,overlay,every node/.style={anchor=center}]
+#1
+
+<#ifdef showgrid>
+\foreach \d in {0.1,0.2,0.3,0.4,0.5,0.6,0.7,0.8,0.9} 
+{
+     \draw[dashed,gray] (page cs:\d,0) -- (page cs:\d,1);
+     \draw[dashed,gray] (page cs:0,\d) -- (page cs:1,\d);
+     \node[anchor=south,red,font=\tiny] at (page cs:\d,0) {\d};
+     \node[anchor=west,red,font=\tiny] at (page cs:0,\d) {\d};
+}
+%\node[anchor=north] at (\x,0) {\x};
+%\foreach \y in {0,1,2,3,4}
+%\node[anchor=east] at (0,\y) {\y};
+<#endif>
+\end{tikzpicture}
+
+>
+
+<#define position| <#tikzpage \node[#4] at (page cs:#1,#2) {#3};>  >
+

@@ -1,0 +1,4 @@
+ {
+      "cmd": ["c:\\cygwin64\\bin\\bash.exe", "-c", "PATH=/usr/bin:\"\\$PATH\" make pdflatex-$file_base_name"],
+      "selector": "source.markdown"
+}

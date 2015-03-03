@@ -1,0 +1,131 @@
+\documentclass[pagesize,english,DIV=calc,footinclude=false
+$if(classoptions)$
+    ,$classoptions$
+$endif$
+]{scrartcl}
+
+\usepackage[utf8]{inputenc}
+\usepackage[T1]{fontenc}
+\usepackage[fleqn]{amsmath}
+\usepackage[nohyperlinks]{acronym}
+\usepackage{babel,lmodern,graphicx,mathptmx,xspace,wasysym,microtype,booktabs,tabularx,relsize,textcomp,longtable,lipsum}
+\usepackage[olditem,oldenum]{paralist}
+\usepackage[babel=true]{csquotes}
+\usepackage[thinqspace]{SIunits}
+\usepackage[normal,font=small]{caption}
+\usepackage[multiple,flushmargin]{footmisc}
+\usepackage{todonotes}
+
+\usepackage{url}
+\urlstyle{same}
+
+\usepackage{hyperref}
+\hypersetup{
+  pdftitle=$title$,
+  pdfkeywords={},
+  pdfauthor=$author$,
+  plainpages=false,
+  linktoc=all,
+  colorlinks=true,
+  anchorcolor=black,
+  menucolor=black,
+  linkcolor=black,
+  citecolor=black,
+  urlcolor=black,
+  filecolor=black,
+}
+
+\graphicspath{{figures/}}
+\DeclareGraphicsExtensions{.pdf,.jpeg,.png}         % Fix sort order in case the same file exists with multiple extensions
+\frenchspacing
+
+\input{templates/definitions.tex}
+
+\usepackage[normalem]{ulem}
+\pdfstringdefDisableCommands{\renewcommand{\sout}{}}
+
+$if(biblatex)$
+\usepackage[style=authoryear-comp,natbib=true,backend=bibtex]{biblatex}
+\ExecuteBibliographyOptions{
+    bibencoding=ascii,
+    texencoding=utf8,
+    backref=false,
+    dashed=false,                                    % no dash instead of recurring author and editor names
+    maxnames=2,
+    maxbibnames=99,
+    uniquename=init,firstinits=true,terseinits=true, % only care about initials
+    useprefix=true,                                  % sort van Wieringen correctly
+    sortcites=false,                                 % do not sort multiple citations
+    doi=false,
+    url=false,
+$if(biboptions)$
+    ,$biboptions$
+$endif$
+}
+\AtEveryBibitem{\clearfield{month}}
+\DeclareFieldFormat{eprint:pubmed}{\iffootnote{}{\mkbibacro{PMID}\addcolon\space
+  \ifhyperref
+    {\href{http://www.ncbi.nlm.nih.gov/pubmed/#1}{\nolinkurl{#1}}}
+    {\nolinkurl{#1}}}}
+\DeclareFieldFormat{isbn}{\iffootnote{}{\mkbibacro{ISBN}\addcolon\space
+  \ifhyperref{\href{http://amzn.com/#1}{\nolinkurl{#1}}}{\nolinkurl{#1}}}}
+\DeclareFieldFormat{issn}{}
+\setlength\bibhang{2em}
+$endif$
+
+$if(biblio-files)$
+\addbibresource{$biblio-files$}
+$endif$
+
+
+$if(numbersections)$
+\setcounter{secnumdepth}{5}
+$else$
+\setcounter{secnumdepth}{0}
+$endif$
+
+$if(title)$
+\title{$title$}
+$endif$
+$if(author)$
+\author{$for(author)$$author$$sep$ \and $endfor$}
+$endif$
+$if(date)$
+\date{$date$}
+$endif$
+
+$for(header-includes)$
+$header-includes$
+$endfor$
+
+\begin{document}
+
+$if(title)$
+\maketitle
+$endif$
+
+$for(include-before)$
+$include-before$
+$endfor$
+
+$if(toc)$
+{
+\hypersetup{linkcolor=black}
+$if(toc-depth)$
+\setcounter{tocdepth}{$toc-depth$}
+$endif$
+\tableofcontents
+}
+$endif$
+
+$body$
+
+$if(biblatex)$
+\printbibliography$if(biblio-title)$[title=$biblio-title$]$endif$
+$endif$
+
+$for(include-after)$
+$include-after$
+$endfor$
+
+\end{document}

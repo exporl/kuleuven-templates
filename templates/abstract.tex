@@ -1,0 +1,84 @@
+\documentclass[pagesize,english,12pt,a4paper
+$if(classoptions)$
+    ,$classoptions$
+$endif$
+]{article}
+
+\usepackage[utf8]{inputenc}
+\usepackage[T1]{fontenc}
+\usepackage[fleqn]{amsmath}
+\usepackage[nohyperlinks]{acronym}
+\usepackage{babel,lmodern,graphicx,mathptmx,xspace,wasysym,microtype,booktabs,tabularx,relsize,textcomp,longtable,lipsum,parskip}
+\usepackage[olditem,oldenum]{paralist}
+\usepackage[babel=true]{csquotes}
+\usepackage[thinqspace]{SIunits}
+
+%% no page numbers!
+\pagestyle{empty}
+
+%adjusted geometry settings
+\usepackage[left=35mm, right=35mm, top=27.5mm, bottom=20mm, noheadfoot]{geometry}
+
+\usepackage{url}
+\urlstyle{same}
+
+\usepackage{setspace}
+\onehalfspacing
+
+\usepackage{hyperref}
+\hypersetup{
+  pdftitle=$title$,
+  pdfkeywords={},
+  pdfauthor=$author$,
+  plainpages=false,
+  linktoc=all,
+  colorlinks=true,
+  anchorcolor=black,
+  menucolor=black,
+  linkcolor=black,
+  citecolor=black,
+  urlcolor=black,
+  filecolor=black,
+}
+
+\graphicspath{{figures/}}
+\DeclareGraphicsExtensions{.pdf,.jpeg,.png}         % Fix sort order in case the same file exists with multiple extensions
+\frenchspacing
+
+\input{templates/definitions.tex}
+
+\usepackage[normalem]{ulem}
+\pdfstringdefDisableCommands{\renewcommand{\sout}{}}
+
+$for(header-includes)$
+$header-includes$
+$endfor$
+
+\begin{document}
+
+\begin{center}
+    $if(title)$
+    {\textbf{\LARGE{$title$}}}
+    $endif$
+
+    \bigskip
+
+    $if(author)$
+    $for(author)$$author$$sep$, $endfor$
+    $endif$
+
+    {\small{$date$}}
+\end{center}
+
+$for(include-before)$
+$include-before$
+$endfor$
+
+$body$
+
+$for(include-after)$
+$include-after$
+$endfor$
+
+\end{document}
+

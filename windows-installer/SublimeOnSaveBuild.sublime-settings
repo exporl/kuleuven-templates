@@ -1,0 +1,4 @@
+{
+  "filename_filter": "\\.(markdown)$",
+  "build_on_save": 1
+}

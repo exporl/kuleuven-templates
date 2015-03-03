@@ -1,0 +1,197 @@
+% (C) 2012 Michael Hofmann, licensed under CC-BY-SA
+\begin{tikzpicture}
+    [el/.style={circle,draw,fill=white,minimum size=2.7em,font=\small,inner sep=0pt},
+     refel/.style={el,fill=black!20},
+     greenel/.style={el,fill=green!50},
+     redel/.style={el,fill=red!50},
+     blueel/.style={el,fill=blue!50},
+     ]
+    % small font as these are all capital letters, use textrm/textsf for serif/sans serif
+    \newcommand{\el}[2]{$\textsf{#1}_{\textsf{#2}}$}
+    \node (cz) [refel] at (0,0) {\el{C}{Z}};
+    \coordinate (leftear) at (-7,0);
+    \coordinate (rightear) at ($(leftear)!2!(cz)$);
+    \path
+        let
+            \p1=($(leftear)-(cz)$)
+        in
+            (cz) ++(0,-\x1) coordinate (nose);
+    \coordinate (back) at ($(nose)!2!(cz)$);
+    \node (t7) [el] at ($(leftear)!.2!(cz)$) {\el{T}{7}};
+    \node (c5) [el] at ($(leftear)!.4!(cz)$) {\el{C}{5}};
+    \node (c3) [el] at ($(leftear)!.6!(cz)$) {\el{C}{3}};
+    \node (c1) [el] at ($(leftear)!.8!(cz)$) {\el{C}{1}};
+    \node (c2) [el] at ($(leftear)!1.2!(cz)$) {\el{C}{2}};
+    \node (c4) [el] at ($(leftear)!1.4!(cz)$) {\el{C}{4}};
+    \node (c6) [el] at ($(leftear)!1.6!(cz)$) {\el{C}{6}};
+    \node (t8) [el] at ($(leftear)!1.8!(cz)$) {\el{T}{8}};
+    \node (c) [circle through=(t7)] at (cz) {};
+    \node (co) [name path=co,circle through=(leftear)] at (cz) {};
+
+    \node (tp7) [el] at (c.198) {\el{TP}{7}};
+    \node (p7) [el] at (c.216) {\el{P}{7}};
+    \node (po7) [el] at (c.234) {\el{PO}{7}};
+    \node (o1) [el] at (c.252) {\el{O}{1}};
+    \node (oz) [el] at (c.270) {\el{O}{Z}};
+    \node (o2) [el] at (c.288) {\el{O}{2}};
+    \node (po8) [el] at (c.306) {\el{PO}{8}};
+    \node (p8) [el] at (c.324) {\el{P}{8}};
+    \node (tp8) [el] at (c.342) {\el{TP}{8}};
+    \node (ft8) [el] at (c.18) {\el{FT}{8}};
+    \node (f8) [el] at (c.36) {\el{F}{8}};
+    \node (af8) [el] at (c.54) {\el{AF}{8}};
+    \node (fp2) [el] at (c.72) {\el{FP}{2}};
+    \node (fpz) [el] at (c.90) {\el{FP}{Z}};
+    \node (fp1) [el] at (c.108) {\el{FP}{1}};
+    \node (af7) [el] at (c.126) {\el{AF}{7}};
+    \node (f7) [el] at (c.144) {\el{F}{7}};
+    \node (ft7) [el] at (c.162) {\el{FT}{7}};
+
+    \node (iz) [el] at (back) {\el{I}{Z}};
+    \node (cpz) [el] at ($(cz)!.25!(oz)$) {\el{CP}{Z}};
+    \node (pz) [el] at ($(cz)!.5!(oz)$) {\el{P}{Z}};
+    \node (poz) [el] at ($(cz)!.75!(oz)$) {\el{PO}{Z}};
+    \node (fcz) [el] at ($(cz)!.25!(fpz)$) {\el{FC}{Z}};
+    \node (fz) [el] at ($(cz)!.5!(fpz)$) {\el{F}{Z}};
+    \node (afz) [el] at ($(cz)!.75!(fpz)$) {\el{AF}{Z}};
+
+    \begin{pgfonlayer}{background}
+        \draw
+            let
+                \p1=($(leftear)-(cz)$)
+            in
+                (leftear) circle [y radius={0.2*\x1},x radius={0.1*\x1}]
+                (rightear) circle [y radius={0.2*\x1},x radius={0.1*\x1}]
+                (nose) circle [y radius={0.2*\x1},x radius={0.1*\x1}];
+        \node [draw,fill=white,circle through=(tp7)] at (cz) {};
+        \node [draw,fill=white,circle through=(leftear)] at (cz) {};
+
+        \draw (leftear) -- (rightear);
+        \draw (nose) -- (back);
+
+        \begin{scope}
+            \path
+                let
+                    \p1=($(leftear)-(cz)$)
+                in
+                    [clip] (cz) circle (\x1);
+            \draw [name path global=d2]
+                let \p1=($(p7)-(p7 -| cz)$),
+                    \p2=($(pz)-(p7 -| cz)$),
+                    \n1={\x1/\y2*\x1/2+\y2/2}
+                in
+                    ($(pz)-(0,\n1)$) circle (\n1);
+        \end{scope}
+        \begin{scope}
+            \path
+                let
+                    \p1=($(t7)-(cz)$)
+                in
+                    [clip,draw] (cz) circle (\x1);
+            \draw [name path global=d1]
+                let
+                    \p1=($(tp7)-(tp7 -| cz)$),
+                    \p2=($(cpz)-(tp7 -| cz)$),
+                    \n1={\x1/\y2*\x1/2+\y2/2}
+                in
+                    ($(cpz)-(0,\n1)$) circle (\n1);
+            \draw [name path global=d3]
+                let \p1=($(po7)-(po7 -| cz)$),
+                    \p2=($(poz)-(po7 -| cz)$),
+                    \n1={\x1/\y2*\x1/2+\y2/2}
+                in
+                    ($(poz)-(0,\n1)$) circle (\n1);
+            \draw [name path global=u1]
+                let \p1=($(ft7)-(ft7 -| cz)$),
+                    \p2=($(ft7 -| cz)-(fcz)$),
+                    \n1={\x1/\y2*\x1/2+\y2/2}
+                in
+                    ($(fcz)+(0,\n1)$) circle (\n1);
+            \draw [name path global=u2]
+                let \p1=($(f7)-(f7 -| cz)$),
+                    \p2=($(f7 -| cz)-(fz)$),
+                    \n1={\x1/\y2*\x1/2+\y2/2}
+                in
+                    ($(fz)+(0,\n1)$) circle (\n1);
+            \draw [name path global=u3]
+                let \p1=($(af7)-(af7 -| cz)$),
+                    \p2=($(af7 -| cz)-(afz)$),
+                    \n1={\x1/\y2*\x1/2+\y2/2}
+                in
+                    ($(afz)+(0,\n1)$) circle (\n1);
+            \draw [name path global=l1]
+                let \p1=($(oz)-(cz)$),
+                    \p2=($(cz)-(c1)$),
+                    \n1={\y1/\x2*\y1/2+\x2/2}
+                in
+                    ($(c1)+(\n1,0)$) circle (\n1);
+            \draw [name path global=l2]
+                let \p1=($(o1)-(o1 |- cz)$),
+                    \p2=($(o1 |- cz)-(c3)$),
+                    \n1={\y1/\x2*\y1/2+\x2/2}
+                in
+                    ($(c3)+(\n1,0)$) circle (\n1);
+            \draw [name path global=l3]
+                let \p1=($(o1)-(o1 |- cz)$),
+                    \p2=($(o1 |- cz)-(c5)$),
+                    \n1={\y1/\x2*\y1/2+\x2/2}
+                in
+                    ($(c5)+(\n1,0)$) circle (\n1);
+            \draw [name path global=r1]
+                let \p1=($(oz)-(cz)$),
+                    \p2=($(c2)-(cz)$),
+                    \n1={\y1/\x2*\y1/2+\x2/2}
+                in
+                    ($(c2)-(\n1,0)$) circle (\n1);
+            \draw [name path global=r2]
+                let \p1=($(o2)-(o2 |- cz)$),
+                    \p2=($(c4)-(o2 |- cz)$),
+                    \n1={\y1/\x2*\y1/2+\x2/2}
+                in
+                    ($(c4)-(\n1,0)$) circle (\n1);
+            \draw [name path global=r3]
+                let \p1=($(o2)-(o2 |- cz)$),
+                    \p2=($(c6)-(o2 |- cz)$),
+                    \n1={\y1/\x2*\y1/2+\x2/2}
+                in
+                    ($(c6)-(\n1,0)$) circle (\n1);
+        \end{scope}
+    \end{pgfonlayer}
+
+    \node (f1) [el,name intersections={of=l1 and u2,by=x,sort by=u2}] at (x) {\el{F}{1}};
+    \node (fc1) [el,name intersections={of=l1 and u1,by=x,sort by=u1}] at (x) {\el{FC}{1}};
+    \node (cp1) [el,name intersections={of=l1 and d1,by=x}] at (x) {\el{CP}{1}};
+    \node (p1) [el,name intersections={of=l1 and d2,by=x}] at (x) {\el{P}{1}};
+
+    \node (f2) [el,name intersections={of=r1 and u2,by=x}] at (x) {\el{F}{2}};
+    \node (fc2) [el,name intersections={of=r1 and u1,by=x}] at (x) {\el{FC}{2}};
+    \node (cp2) [el,name intersections={of=r1 and d1,by=x,sort by=d1}] at (x) {\el{CP}{2}};
+    \node (p2) [el,name intersections={of=r1 and d2,by=x,sort by=d2}] at (x) {\el{P}{2}};
+
+    \node (af3) [el,name intersections={of=l2 and u3,by=x,sort by=u3}] at (x) {\el{AF}{3}};
+    \node (f3) [el,name intersections={of=l2 and u2,by=x,sort by=u2}] at (x) {\el{F}{3}};
+    \node (fc3) [el,name intersections={of=l2 and u1,by=x,sort by=u1}] at (x) {\el{FC}{3}};
+    \node (cp3) [el,name intersections={of=l2 and d1,by=x}] at (x) {\el{CP}{3}};
+    \node (p3) [el,name intersections={of=l2 and d2,by=x}] at (x) {\el{P}{3}};
+    \node (po3) [el,name intersections={of=l2 and d3,by=x}] at (x) {\el{PO}{3}};
+
+    \node (af4) [el,name intersections={of=r2 and u3,by=x}] at (x) {\el{AF}{4}};
+    \node (f4) [el,name intersections={of=r2 and u2,by=x}] at (x) {\el{F}{4}};
+    \node (fc4) [el,name intersections={of=r2 and u1,by=x}] at (x) {\el{FC}{4}};
+    \node (cp4) [el,name intersections={of=r2 and d1,by=x,sort by=d1}] at (x) {\el{CP}{4}};
+    \node (p4) [el,name intersections={of=r2 and d2,by=x,sort by=d2}] at (x) {\el{P}{4}};
+    \node (po4) [el,name intersections={of=r2 and d3,by=x,sort by=d3}] at (x) {\el{PO}{4}};
+
+    \node (f5) [el,name intersections={of=l3 and u2,by=x,sort by=u2}] at (x) {\el{F}{5}};
+    \node (fc5) [el,name intersections={of=l3 and u1,by=x,sort by=u1}] at (x) {\el{FC}{5}};
+    \node (cp5) [el,name intersections={of=l3 and d1,by=x}] at (x) {\el{CP}{5}};
+    \node (p5) [el,name intersections={of=l3 and d2,by=x}] at (x) {\el{P}{5}};
+
+    \node (f6) [el,name intersections={of=r3 and u2,by=x}] at (x) {\el{F}{6}};
+    \node (fc6) [el,name intersections={of=r3 and u1,by=x}] at (x) {\el{FC}{6}};
+    \node (cp6) [el,name intersections={of=r3 and d1,by=x,sort by=d1}] at (x) {\el{CP}{6}};
+    \node (p6) [el,name intersections={of=r3 and d2,by=x,sort by=d2}] at (x) {\el{P}{6}};
+
+    \node (p9) [el,name intersections={of=co and d2,by=x}] at (x) {\el{P}{9}};
+    \node (p10) [el,name intersections={of=co and d2,by=x,sort by=d2}] at (x) {\el{P}{10}};
+\end{tikzpicture}

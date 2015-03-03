@@ -1,0 +1,353 @@
+% KU Leuven latex presentation template
+%
+% © 2012 Michael Hofmann
+%
+% This work is licensed under the Creative Commons Attribution 3.0 Unported License.
+% To view a copy of this license, visit
+% http://creativecommons.org/licenses/by/3.0/ or send a letter to Creative
+% Commons, 444 Castro Street, Suite 900, Mountain View, California, 94041, USA.
+
+\documentclass[t,12pt,english
+\ifx\beamermode\undefined\else,\beamermode\fi
+$if(classoptions)$
+    ,$classoptions$
+$endif$
+]{beamer}
+%\setbeameroption{show notes}
+%\setbeameroption{show only notes}
+
+\usepackage[utf8]{inputenc}
+\usepackage[T1]{fontenc}
+\usepackage{amsmath}
+\usepackage[nohyperlinks]{acronym}
+\usepackage{babel,lmodern,graphicx,mathptmx,xspace,wasysym,microtype,booktabs,tabularx,relsize,textcomp,longtable,lipsum,colortbl,eurosym}
+\usepackage[olditem,oldenum]{paralist}
+\usepackage[babel=true]{csquotes}
+\usepackage[thinqspace,amssymb,textstyle]{SIunits}
+\usepackage[font=scriptsize,labelfont=bf]{caption}
+\usepackage[textsize=tiny]{todonotes}
+
+\usepackage{url}
+
+\graphicspath{{figures/}}
+\DeclareGraphicsExtensions{.pdf,.png,.jpeg,.jpg}         % Fix sort order in case the same file exists with multiple extensions
+\frenchspacing
+
+\input{templates/definitions.tex}
+
+\usepackage{multicol,etoolbox,multimedia,pdfpages}
+
+% From Raphael
+\usepackage[notquote]{hanging}
+
+\usepackage[normalem]{ulem}
+\pdfstringdefDisableCommands{\renewcommand{\sout}{}}
+
+$if(biblatex)$
+\usepackage[style=authoryear-comp,natbib=true,backend=bibtex]{biblatex}
+\ExecuteBibliographyOptions{
+    bibencoding=ascii,
+    texencoding=utf8,
+    backref=false,
+    dashed=false,                                    % no dash instead of recurring author and editor names
+    maxnames=2,
+    maxbibnames=99,
+    uniquename=init,firstinits=true,terseinits=true, % only care about initials
+    useprefix=true,                                  % sort van Wieringen correctly
+    sortcites=false,                                 % do not sort multiple citations
+    doi=false,
+    url=false,
+$if(biboptions)$
+    ,$biboptions$
+$endif$
+}
+\AtEveryBibitem{\clearfield{month}}
+\DeclareFieldFormat{eprint:pubmed}{\iffootnote{}{\mkbibacro{PMID}\addcolon\space
+  \ifhyperref
+    {\href{http://www.ncbi.nlm.nih.gov/pubmed/#1}{\nolinkurl{#1}}}
+    {\nolinkurl{#1}}}}
+\DeclareFieldFormat{isbn}{\iffootnote{}{\mkbibacro{ISBN}\addcolon\space
+  \ifhyperref{\href{http://amzn.com/#1}{\nolinkurl{#1}}}{\nolinkurl{#1}}}}
+\DeclareFieldFormat{issn}{}
+\setlength\bibhang{2em}
+$endif$
+
+$if(biblio-files)$
+\addbibresource{$biblio-files$}
+$endif$
+
+%% From pandoc default template
+\usepackage{ifxetex,ifluatex}
+\usepackage{fixltx2e} % provides \textsubscript
+\ifxetex
+  \usepackage{fontspec,xltxtra,xunicode}
+  \defaultfontfeatures{Mapping=tex-text,Scale=MatchLowercase}
+\else
+  \ifluatex
+    \usepackage{fontspec}
+    \defaultfontfeatures{Mapping=tex-text,Scale=MatchLowercase}
+  \else
+    \usepackage[utf8]{inputenc}
+  \fi
+\fi
+
+$if(highlighting-macros)$
+$highlighting-macros$
+$endif$
+$if(verbatim-in-note)$
+\usepackage{fancyvrb}
+$endif$
+$if(fancy-enums)$
+\usepackage{enumerate}
+$endif$
+$if(tables)$
+\usepackage{ctable}
+\usepackage{float} % provides the H option for float placement
+$endif$
+%% End pandoc
+
+\mode<presentation>
+
+%\hypersetup{pdfpagemode=FullScreen}
+
+\definecolor{kuldefault}{HTML}{00407a}
+\definecolor{kulbright}{HTML}{52bdec}
+\definecolor{kulleft}{HTML}{1d8db0}
+\definecolor{kulright}{HTML}{116e8a}
+
+\definecolor{kulyellow}{HTML}{BC8F00}
+\definecolor{kulorange}{HTML}{BC6E00}
+\definecolor{kulgreen}{HTML}{007F4F}
+\definecolor{kulred}{HTML}{FF4422}
+
+\setbeamercolor{structure}{fg=kulbright}
+\setbeamercolor{title}{fg=white}
+\setbeamercolor{footline}{parent=title}
+\setbeamercolor{normal text}{fg=kuldefault}
+\setbeamercolor{item}{parent=normal text}
+\setbeamercolor{section in toc}{parent=normal text}
+\setbeamerfont{title}{size=\Large}
+\setbeamerfont{tiny structure}{series=\bfseries}
+
+\setbeamersize{text margin left=0cm}
+\setbeamersize{sidebar width left=0.8cm}
+
+\setbeamertemplate{navigation symbols}{}
+\setbeamertemplate{itemize item}{\footnotesize\raise1pt\hbox{\textbullet}}
+\setbeamertemplate{itemize subitem}{--}
+\setbeamertemplate{itemize subsubitem}{\tiny\raise1.5pt\hbox{\textbullet}}
+
+\setlength\leftmargini{1em}
+\setlength\leftmarginii{1em}
+\setlength\leftmarginiii{1em}
+
+\defbeamertemplate{background canvas}{nofooter}
+{%
+    \pgfdeclarehorizontalshading{bgshading}{0.62cm}{color(0cm)=(kulleft); color(\the\paperwidth)=(kulright)}%
+    \hskip-\paperwidth%
+    \hskip1.8cm%
+}
+
+\defbeamertemplate{background canvas}{kul}
+{%
+    \pgfdeclarehorizontalshading{bgshading}{0.62cm}{color(0cm)=(kulleft); color(\the\paperwidth)=(kulright)}%
+    \vbox to 0.62cm{%
+        \pgfuseshading{bgshading}%
+    }%
+    \hskip-\paperwidth%
+    \hskip1.8cm%
+    \vbox to \paperheight{%
+        \vskip8.68cm\hskip10.33cm\includegraphics[width=2.10cm]{templates/kuleuven}%
+    }%
+}
+
+\defbeamertemplate{background canvas}{title}
+{%
+    \pgfdeclarehorizontalshading{bgshading}{8.70cm}{color(0cm)=(kulleft); color(\the\paperwidth)=(kulright)}%
+    \vbox to 8.70cm{%
+        \pgfuseshading{bgshading}%
+    }%
+    \hskip-\paperwidth%
+    \hskip1.8cm%
+    \vbox to \paperheight{%
+        \vskip0.5cm\hskip0.5cm\includegraphics[width=2.83cm]{templates/kuleuven}%
+        \vskip0.99cm\hskip0.76cm\includegraphics[width=2.84cm]{templates/key}%
+        \vskip-0.57cm\hskip11.61cm\includegraphics[width=0.58cm]{templates/sedes}%
+    }%
+}
+
+\defbeamertemplate{background canvas}{plain}{}
+
+\defbeamertemplate{footline}{large}
+{%
+    \vskip.4cm% make room for the logo
+    \begin{beamercolorbox}[ht=1em]{page number in head/foot}%
+    \centering\insertframenumber\vskip.25cm%
+    \end{beamercolorbox}%
+}
+
+\defbeamertemplate{footline}{small}
+{%
+    \vskip.4cm% make room for the logo
+    \begin{beamercolorbox}[ht=1em]{normal text}%
+    \mdseries\centering\insertframenumber\vskip.25cm%
+    \end{beamercolorbox}%
+}
+
+\setbeamertemplate{footline}[large]
+
+\setbeamertemplate{frametitle}
+{%
+    \nointerlineskip%
+    \vbox to 0.98cm{%
+        \vskip.28cm%
+        {\usebeamercolor[fg]{framesubtitle}\usebeamerfont{framesubtitle}\insertsupertitle\strut\par}%
+        \vskip-.2cm%
+        {\usebeamercolor[fg]{frametitle}\usebeamerfont{frametitle}\insertframetitle\strut\par}%
+    }%
+}
+
+\setbeamertemplate{title page}
+{
+    \vbox{}%
+    \vskip2.8cm%
+    \vbox to 7cm{%
+        \hskip2.8cm%
+        \begin{minipage}{7.9cm}
+            \begin{beamercolorbox}{title}
+                \usebeamerfont{title}%
+                \inserttitle\par%
+                \ifx\insertsubtitle\undefined%
+                \else%
+                    \vskip0.25em%
+                    {\usebeamerfont{subtitle}\usebeamercolor[fg]{subtitle}\insertsubtitle\par}%
+                \fi%
+            \end{beamercolorbox}%
+            \vskip1em\par
+            \begin{beamercolorbox}{author}
+                \usebeamerfont{author}\usebeamercolor[fg]{subtitle}%
+                \insertauthor
+            \end{beamercolorbox}
+            \begin{beamercolorbox}{institute}
+                \usebeamerfont{institute}\usebeamercolor[fg]{subtitle}%
+                \insertinstitute
+                \end{beamercolorbox}
+            \begin{beamercolorbox}{date}
+                \usebeamerfont{date}\usebeamercolor[fg]{subtitle}%
+                \insertdate
+            \end{beamercolorbox}%
+        \end{minipage}%
+    }
+}
+
+\mode<all>
+
+$if(sectiontoc)$
+\AtBeginSection[]{{
+    \renewcommand{\insertsupertitle}{}
+    \begin{frame}{Outline}
+    \tableofcontents[currentsection]
+    \end{frame}
+}}
+$endif$
+
+
+% Defining a new coordinate system for the page:
+%
+% --------------------------
+% |(-1,1)    (0,1)    (1,1)|
+% |                        |
+% |(-1,0)    (0,0)    (1,0)|
+% |                        |
+% |(-1,-1)   (0,-1)  (1,-1)|
+% --------------------------
+\makeatletter
+\def\parsecomma#1,#2\endparsecomma{\def\page@x{#1}\def\page@y{#2}}
+\tikzdeclarecoordinatesystem{page}{
+    \parsecomma#1\endparsecomma
+    \pgfpointanchor{current page}{north east}
+    % Save the upper right corner
+    \pgf@xc=\pgf@x%
+    \pgf@yc=\pgf@y%
+    % save the lower left corner
+    \pgfpointanchor{current page}{south west}
+    \pgf@xb=\pgf@x%
+    \pgf@yb=\pgf@y%
+    % Transform to the correct placement
+    \pgfmathparse{(\pgf@xc-\pgf@xb)*\page@x+(\pgf@xb)}
+    \expandafter\pgf@x\expandafter=\pgfmathresult pt
+    \pgfmathparse{(\pgf@yc-\pgf@yb)*\page@y+(\pgf@yb)}
+    \expandafter\pgf@y\expandafter=\pgfmathresult pt
+}
+\makeatother
+
+% Example:
+%\begin{tikzpicture}[remember picture,overlay,every node/.style={anchor=center}]
+%  \node at (page cs:0.5,0.3) {0.5,0.3};
+%  \node at (page cs:0,0) {0,0};
+%  \draw(page cs:0,0) -- (page cs:1,1);
+%  \draw[thick,red] (page cs:0,0) rectangle (page cs:1,1);
+%  \draw[thick,green] (page cs:0.2,0.2) rectangle (page cs:0.8,0.8);
+%\end{tikzpicture}
+
+
+% section in title
+\newcommand{\insertsupertitle}{\insertsectionhead}
+
+$if(numbersections)$
+\setcounter{secnumdepth}{5}
+$else$
+\setcounter{secnumdepth}{0}
+$endif$
+
+$if(title)$
+\title{$title$}
+$endif$
+$if(author)$
+\author{$for(author)$$author$$sep$ \and $endfor$}
+$endif$
+$if(date)$
+\date{$date$}
+$endif$
+\institute{ExpORL, Dept. Neurosciences, University of Leuven, Belgium}
+
+$for(header-includes)$
+$header-includes$
+$endfor$
+
+\begin{document}
+
+\setbeamertemplate{background canvas}[title]
+
+\begin{frame}[plain]
+    \titlepage
+\end{frame}
+\note{}
+
+\setbeamertemplate{background canvas}[kul]
+%\setbeamertemplate{background canvas}[plain]
+
+$for(include-before)$
+$include-before$
+$endfor$
+
+$if(toc)$
+\begin{frame}{Outline}
+\tableofcontents
+\end{frame}
+$endif$
+
+$body$
+
+$if(biblatex)$
+\renewcommand{\insertsupertitle}{}
+\begin{frame}{Bibliography}
+\printbibliography
+\end{frame}
+$endif$
+
+$for(include-after)$
+$include-after$
+$endfor$
+
+\end{document}

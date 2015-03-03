@@ -1,0 +1,14 @@
+*~
+/*-example.tex
+/*-example.pdf
+/*-example-handouts.pdf
+/*-example.ppt
+/*-example.odt
+/*-latex.pdf
+/*-latex-handouts.pdf
+/*-latex.ppt
+/*-latex.odt
+/windows-installer/*.msi
+/windows-installer/*.exe
+/windows-installer/*.zip
+/windows-installer/*.sublime-package
