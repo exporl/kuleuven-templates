@@ -23,6 +23,7 @@
 \usepackage[thinqspace,amssymb,textstyle]{SIunits}
 \usepackage[font=scriptsize,labelfont=bf]{caption}
 \usepackage[textsize=tiny]{todonotes}
+\usepackage[symbol]{footmisc}
 
 \usepackage{url}
 
@@ -139,6 +140,11 @@
     \end{beamercolorbox}%
 }
 
+\defbeamertemplate{footline}{nopagenumber}
+{%
+    \vskip.4cm% make room for the logo
+}
+
 \defbeamertemplate{footline}{small}
 {%
     \vskip.4cm% make room for the logo
@@ -251,7 +257,7 @@
 
 \setbeamertemplate{background canvas}[title]
 
-\begin{frame}[plain]
+\begin{frame}[plain,noframenumbering]
     \titlepage
 \end{frame}
 \note{}
@@ -260,9 +266,11 @@
 %\setbeamertemplate{background canvas}[plain]
 
 
-\begin{frame}{Outline}
+\setbeamertemplate{background canvas}[kul]\setbeamertemplate{footline}[nopagenumber]
+\begin{frame}[noframenumbering]{Outline}
 \tableofcontents
 \end{frame}
+\setbeamertemplate{background canvas}[kul]\setbeamertemplate{footline}[large]
 
 \section{First Section}\label{first-section}
 
