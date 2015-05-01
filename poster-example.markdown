@@ -12,7 +12,7 @@ institute: Institute, Dept., University
 longinstitute: Institute, Department, University, Country
 web: 'https://university.edu/'
 biblio-files: parsed-references.bib
-posteroptions: width=90,height=120,scale=1.2,grid
+posteroptions: width=90,height=120,scale=1.2 #,grid
 headerheight: 13cm
 # large, Large, LARGE, huge, Huge, veryHuge, VeryHuge, VERYHuge
 titlefont: size=\veryHuge,series=\bfseries
