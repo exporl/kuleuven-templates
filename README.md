@@ -1,6 +1,6 @@
 # KU Leuven Markdown templates
 
-Latest version and bugreports on Github: <https://github.com/mh21/kuleuven-templates/>
+Latest version and bugreports on Github: <https://github.com/exporl/kuleuven-templates/>
 
 This repository contains markdown templates for presentations and posters according to the KU Leuven Corporate Design.
 Next to the actual templates, a build system based on pandoc/texlive/make is provided.
@@ -15,7 +15,10 @@ Pull requests welcome!
 ## Markdown or Latex
 
 You can also stick with Latex and not use Markdown.
-In this case, just use [presentation-latex.tex](presentation-latex.tex) as a template to get started.
+In this case, just use the latex versions to get started.
+
+- presentation: [presentation-latex.tex](presentation-latex.tex)
+- poster: [poster-latex.tex](poster-latex.tex)
 
 ## Linux installation
 
