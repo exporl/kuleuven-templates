@@ -1,0 +1,6 @@
+# Use a local build dir
+BUILDDIR=.build
+
+# Define a bib source to automatically copy the reference database on changes
+BIBSOURCE=$(HOME)/path/to/mendeley.bib
+

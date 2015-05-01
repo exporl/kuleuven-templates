@@ -2,9 +2,13 @@
 
 Latest version and bugreports on Github: <https://github.com/mh21/kuleuven-templates/>
 
-This repository contains markdown templates for presentations according to the KU Leuven Corporate Design.
-You can find an example at [presentation-example.pdf](presentation-example.pdf).
+This repository contains markdown templates for presentations and posters according to the KU Leuven Corporate Design.
 Next to the actual templates, a build system based on pandoc/texlive/make is provided.
+
+Examples:
+
+- presentation: [presentation-example.pdf](presentation-example.pdf)
+- poster: [poster-example.pdf](poster-example.pdf)
 
 Pull requests welcome!
 
@@ -21,7 +25,7 @@ If you only want to use the templates (without history), use
 
 Install dependencies:
 
-    sudo apt-get install pandoc gpp texlive make texlive-latex-recommended texlive-science biblatex
+    sudo apt-get install pandoc python-pandocfilters gpp make texlive texlive-latex-recommended texlive-science texlive-bibtex-extra
 
 For building your documents:
 
@@ -95,9 +99,8 @@ Enable autobuild: Preferences -> Package Settings -> SublimeOnSaveBuild -> Setti
 Further TODOs
 -------------
 
-- use yaml instead of custom headers
+- use yaml instead of custom headers in all examples
 - ondemand should do markdown -> tex and tex -> pdf separately, at the moment
   pdflatex is run two times
 - letter template
-- poster template
 - support for Rmd/knitr: Rmd -> md

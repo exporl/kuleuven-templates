@@ -11,6 +11,11 @@
 
 SHELL=/bin/bash
 BUILDDIR=/tmp/latex-build$(subst /,-,$(abspath .))
+BIBSOURCE=
+
+# To customize, copy Makefile.local-example to Makefile.local
+-include Makefile.local
+
 LATEXOPTIONS=--synctex=1 -shell-escape -interaction=nonstopmode -output-directory=$(BUILDDIR)
 LATEXCMD=TEXINPUTS=$(BUILDDIR):figures: pdflatex $(LATEXOPTIONS)
 BIBTEXCMD=BIBINPUTS=$(BUILDDIR): openout_any=a bibtex
@@ -51,8 +56,6 @@ EPSPDFPICTURES=$(patsubst %.eps,$(BUILDDIR)/%.pdf,$(notdir $(wildcard *.eps figu
 EPSPNGPICTURES=$(patsubst %.eps,$(BUILDDIR)/%-png.png,$(notdir $(wildcard *.eps figures/*.eps)))
 TIKZPDFPICTURES=$(patsubst %.tikz,$(BUILDDIR)/%.pdf,$(notdir $(wildcard *.tikz figures/*.tikz)))
 MDSOURCES=$(sort $(basename $(wildcard *.markdown)) $(basename $(wildcard *.tex)))
-# Define a bib source to automatically copy the reference database on changes
-#BIBSOURCE=$(HOME)/path/to/mendeley.bib
 
 all: pdflatex
 
@@ -65,7 +68,7 @@ pdflatex-all: $(MDSOURCES:%=pdflatex-%)
 pdfview-all: $(MDSOURCES:%=pdfview-%)
 clean-all: $(MDSOURCES:%=clean-%)
 
-.SECONDARY: $(PDFPDFPICTURES) $(EPSPNGPICTURES) $(EPSPDFPICTURES) $(TIKZPDFPICTURES)
+.SECONDARY: $(PDFPDFPICTURES) $(EPSPNGPICTURES) $(EPSPDFPICTURES) $(TIKZPDFPICTURES) $(MDSOURCES:%=%.tex)
 
 %.tex: %.markdown
 	mkdir -p $(BUILDDIR)
@@ -189,7 +192,7 @@ $(BUILDDIR)/parsed-references.bib: references.bib
 	    | sed 's/pmid = {\(.*\)}/eprinttype = {pubmed},\neprint = {\1}/g' \
 	    > $@
 
-regenerate-latex-templates: presentation-latex report-latex abstract-latex
+regenerate-latex-templates: presentation-latex poster-latex report-latex abstract-latex
 
 presentation-latex:
 	( \
@@ -207,6 +210,31 @@ presentation-latex:
 	    echo '# First Section'; \
 	    echo ''; \
 	    echo '### First slide'; \
+	) > $@.markdown
+	-make $@.tex
+	-rm $@.markdown
+
+poster-latex:
+	( \
+	    echo '%% smart'; \
+	    echo '%% to=latex'; \
+	    echo '%% filter=templates/poster-filters.py'; \
+	    echo '%% template=templates/poster.tex'; \
+	    echo ''; \
+	    echo '---'; \
+	    echo 'title: Poster title'; \
+	    echo 'author: [Poster author 1, Poster author 2]'; \
+	    echo 'email: author@university.edu'; \
+	    echo 'institute: institute name'; \
+	    echo 'longinstitute: long institute name'; \
+	    echo "web: 'https://university.edu/'"; \
+	    echo '---'; \
+	    echo ''; \
+	    echo '[columns=2]'; \
+	    echo ''; \
+	    echo '[column]'; \
+	    echo ''; \
+	    echo '# First block'; \
 	) > $@.markdown
 	-make $@.tex
 	-rm $@.markdown
