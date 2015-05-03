@@ -91,20 +91,20 @@ institutefont: size=\Large
 
 [columns=2]
 
-[column]
+[column=0.4]
 
 # Conclusions
 
 \lipsum[12]
 
-\vskip2.6cm
+\vskip1.4cm
 
-[column]
+[column=0.6]
 
 # Bibliography
 
 \printbibliography
 
-\vskip6.0cm
+\vskip7.3cm
 
 <!-- vi: set spell spelllang=en linebreak et nolist showbreak=>\ \ \  : -->
