@@ -5,6 +5,8 @@ import sys
 incolumns = False
 inblock = False
 columns = 1
+colwidthleft = 1.0
+colleft = 1
 
 def lb(s):
     return pf.RawBlock('latex', s)
@@ -18,13 +20,15 @@ def fig(name, props):
 # TODO: use f=latex/beamer to switch between slides or poster
 
 def structure_para(v, f, m):
-    global columns, incolumns, inblock
+    global columns, colwidthleft, colleft, incolumns, inblock
     value = pf.stringify(v)
     if value.startswith('[') and value.endswith(']'):
         content = value[1:-1]
         result = []
         if content.startswith('columns='):
             columns = int(content[8:])
+            colwidthleft = 1.0
+            colleft = columns
             if inblock:
                 result.append(lb(r'\end{block}'))
             inblock = False
@@ -33,17 +37,17 @@ def structure_para(v, f, m):
             incolumns = True
             result.append(lb(r'\begin{columns}'))
             return result
-        elif content == 'column':
+        elif content == 'column' or content.startswith('column='):
             if inblock:
                 result.append(lb(r'\end{block}'))
             inblock = False
-            result.append(lb(r'\column{(\linewidth-%dcm)/%d}' % (columns - 1, columns)))
-            return result
-        elif content.startswith('column='):
-            if inblock:
-                result.append(lb(r'\end{block}'))
-            inblock = False
-            result.append(lb(r'\column{(\linewidth-%dcm)*\real{%f}}' % (columns - 1, float(content[7:]))))
+            if content.startswith('column='):
+                width = float(content[7:])
+            else:
+                width = colwidthleft / colleft
+            colwidthleft -= width
+            colleft -= 1
+            result.append(lb(r'\column{(\linewidth-%dcm)*\real{%f}}' % (columns - 1, width)))
             return result
 
 def structure_header(v, f, m):

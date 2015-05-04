@@ -99,7 +99,7 @@ institutefont: size=\Large
 
 \vskip1.4cm
 
-[column=0.6]
+[column]
 
 # Bibliography
 
