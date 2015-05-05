@@ -103,7 +103,7 @@ def parse_figlist(v):
 def image_figure(v, f, m):
     figstart = [ li('\\begin{figure}\n'), ]
     figs = [ fig(*f) for f in parse_figlist(v[1][0].replace('%20', ' ')) ]
-    caption = [ li('    \\caption{') ] + v[0] + [ li('}\n') ]
+    caption = [ li('    \\caption{') ] + v[0] + [ li('}\n') ] if len(v[0]) > 0 else []
     figend = [ li('\\end{figure}') ]
     return figstart + figs + caption + figend
 
