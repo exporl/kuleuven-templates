@@ -89,11 +89,17 @@ clean-all: $(MDSOURCES:%=clean-%)
 	    | perl -p0e 's/\\verb\+AAAAA(.+?)ZZZZZ\+/\1/gs' \
 	    > $*.tex
 
-pdflatex-%: %.tex $(PDFPDFPICTURES) $(EPSPDFPICTURES) $(TIKZPDFPICTURES) $(BUILDDIR)/parsed-references.bib
+pdflatex-%: %.tex %.markdown $(PDFPDFPICTURES) $(EPSPDFPICTURES) $(TIKZPDFPICTURES) $(BUILDDIR)/parsed-references.bib
 	mkdir -p $(BUILDDIR)
 	-$(LATEXCMD) $*.tex | grep -v hbox
 	-for i in "$(BUILDDIR)/$*"*.aux; do $(BIBTEXCMD) "$$i"; done
 	-cp $(BUILDDIR)/$*.pdf .
+
+pdflatex-%: %.Rmd $(PDFPDFPICTURES) $(EPSPDFPICTURES) $(TIKZPDFPICTURES) $(BUILDDIR)/parsed-references.bib
+	TEXINPUTS=$(BUILDDIR):figures: RSTUDIO_PANDOC=/usr/lib/rstudio/bin/pandoc R -e 'rmarkdown::render("$<")'
+	# TODO these do not work as the buildpath is wrong
+	-for i in "$(BUILDDIR)/$*"*.aux; do $(BIBTEXCMD) "$$i"; done
+	#-cp $(BUILDDIR)/$*.pdf .
 
 odt-%: %.markdown $(EPSPNGPICTURES) $(BUILDDIR)/parsed-references.bib
 	mkdir -p $(BUILDDIR)

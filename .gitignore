@@ -12,3 +12,5 @@
 /windows-installer/*.exe
 /windows-installer/*.zip
 /windows-installer/*.sublime-package
+/*_cache
+/*_files

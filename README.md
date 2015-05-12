@@ -9,8 +9,15 @@ Examples:
 
 - presentation: [presentation-example.pdf](presentation-example.pdf)
 - poster: [poster-example.pdf](poster-example.pdf)
+- poster with R figures: [poster-r-example.pdf](poster-r-example.pdf)
 
 Pull requests welcome!
+
+## R Markdown
+
+If you are using Markdown with R and/or [RStudio](http://rstudio.com/), you can also use the pandoc support of RMarkdown to create presentations or posters.
+See [poster-r-example.Rmd](poster-r-example.Rmd) for an example.
+If you are using RStudio, you can just click the `Knit PDF` button to compile your markdown document.
 
 ## Markdown or Latex
 
