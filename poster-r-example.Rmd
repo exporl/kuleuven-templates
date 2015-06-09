@@ -12,20 +12,20 @@ headerheight: 13cm
 titlefont: size=\veryHuge,series=\bfseries
 authorfont: size=\huge
 institutefont: size=\Large
-output:
-  pdf_document:
-    keep_tex: yes
-    template: templates/poster.tex
-    pandoc_args: [--filter, templates/poster-filters.py, --biblatex, --smart]
-    fig_width: 16
-    fig_height: 4
-    fig_caption: yes
-    fig_crop: false
+knit: (function(input, encoding, make = TRUE) { source('templates/makefile-renderer.R', local = TRUE) })
 ---
 
-```{r packages-and-options, echo=FALSE}
+%% smart
+%% to=latex
+%% template=templates/poster.tex
+%% filter=templates/poster-filters.py
+%% biblatex
+
+```{r packages-and-options, cache=FALSE}
 library('ggplot2')
+library('knitr')
 theme_set(theme_grey(base_size=10))
+knitr::opts_chunk$set(fig.width = 16, fig.height = 4)
 ```
 
 [columns=2]
@@ -71,7 +71,7 @@ ggplot(iris, aes(Sepal.Length, Petal.Length)) +
 
 # Big figure
 
-![electrodes!](presentation-examplefig-electrodes{width=.8\linewidth})
+![electrodes!](presentation-examplefig-electrodes{width=.7\linewidth})
 
 # Baz
 
@@ -99,13 +99,15 @@ ggplot(iris, aes(Sepal.Length, Petal.Length)) +
     \label{tab:blub}
 \end{table}
 
+\vskip0.4cm
+
 [columns=2]
 
 [column=0.4]
 
 # Conclusions
 
-\lipsum[12]
+\lipsum[13]
 
 [column]
 
@@ -113,6 +115,6 @@ ggplot(iris, aes(Sepal.Length, Petal.Length)) +
 
 \printbibliography
 
-\vskip7.3cm
+\vskip4.4cm
 
 <!-- vi: set spell spelllang=en linebreak et nolist showbreak=>\ \ \  : -->

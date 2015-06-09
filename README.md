@@ -3,21 +3,22 @@
 Latest version and bugreports on Github: <https://github.com/exporl/kuleuven-templates/>
 
 This repository contains markdown templates for presentations and posters according to the KU Leuven Corporate Design.
-Next to the actual templates, a build system based on pandoc/texlive/make is provided.
+Next to the actual templates, a build system based on R/pandoc/texlive/make is provided.
 
 Examples:
 
 - presentation: [presentation-example.pdf](presentation-example.pdf)
 - poster: [poster-example.pdf](poster-example.pdf)
 - poster with R figures: [poster-r-example.pdf](poster-r-example.pdf)
+- paper with R figures: [paper-r-example.pdf](paper-r-example.pdf)
 
 Pull requests welcome!
 
 ## R Markdown
 
 If you are using Markdown with R and/or [RStudio](http://rstudio.com/), you can also use the pandoc support of RMarkdown to create presentations or posters.
-See [poster-r-example.Rmd](poster-r-example.Rmd) for an example.
-If you are using RStudio, you can just click the `Knit PDF` button to compile your markdown document.
+See [poster-r-example.Rmd](poster-r-example.Rmd) and [paper-r-example.Rmd](paper-r-example.Rmd) and for examples.
+If you are using RStudio, you can just click the `Knit` button to compile your markdown document.
 
 ## Markdown or Latex
 
@@ -113,4 +114,3 @@ Further TODOs
 - ondemand should do markdown -> tex and tex -> pdf separately, at the moment
   pdflatex is run two times
 - letter template
-- support for Rmd/knitr: Rmd -> md

@@ -68,6 +68,9 @@ pdflatex-all: $(MDSOURCES:%=pdflatex-%)
 pdfview-all: $(MDSOURCES:%=pdfview-%)
 clean-all: $(MDSOURCES:%=clean-%)
 
+builddir:
+	@echo $(BUILDDIR)/
+
 .SECONDARY: $(PDFPDFPICTURES) $(EPSPNGPICTURES) $(EPSPDFPICTURES) $(TIKZPDFPICTURES) $(MDSOURCES:%=%.tex)
 
 %.tex: %.markdown
@@ -95,11 +98,8 @@ pdflatex-%: %.tex %.markdown $(PDFPDFPICTURES) $(EPSPDFPICTURES) $(TIKZPDFPICTUR
 	-for i in "$(BUILDDIR)/$*"*.aux; do $(BIBTEXCMD) "$$i"; done
 	-cp $(BUILDDIR)/$*.pdf .
 
-pdflatex-%: %.Rmd $(PDFPDFPICTURES) $(EPSPDFPICTURES) $(TIKZPDFPICTURES) $(BUILDDIR)/parsed-references.bib
-	TEXINPUTS=$(BUILDDIR):figures: RSTUDIO_PANDOC=/usr/lib/rstudio/bin/pandoc R -e 'rmarkdown::render("$<")'
-	# TODO these do not work as the buildpath is wrong
-	-for i in "$(BUILDDIR)/$*"*.aux; do $(BIBTEXCMD) "$$i"; done
-	#-cp $(BUILDDIR)/$*.pdf .
+%.markdown: %.Rmd
+	R -e 'input <- "$<"; make <- FALSE; source("templates/makefile-renderer.R", local=TRUE)'
 
 odt-%: %.markdown $(EPSPNGPICTURES) $(BUILDDIR)/parsed-references.bib
 	mkdir -p $(BUILDDIR)
