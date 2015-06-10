@@ -185,7 +185,7 @@ $(BUILDDIR)/%.tikzdriver.tex: %.tikz
 
 references.bib: $(BIBSOURCE)
 	if [[ -n "$<" ]]; then \
-	    cp $< $@; \
+	    cp "$<" $@; \
 	fi
 
 $(BUILDDIR)/parsed-references.bib: references.bib
