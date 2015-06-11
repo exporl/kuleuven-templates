@@ -17,7 +17,7 @@ Pull requests welcome!
 ## R Markdown
 
 If you are using Markdown with R and/or [RStudio](http://rstudio.com/), you can also use the pandoc support of RMarkdown to create presentations or posters.
-See [poster-r-example.Rmd](poster-r-example.Rmd) and [paper-r-example.Rmd](paper-r-example.Rmd) and for examples.
+See [poster-r-example.Rmd](poster-r-example.Rmd) and [paper-r-example.Rmd](paper-r-example.Rmd) for examples.
 If you are using RStudio, you can just click the `Knit` button to compile your markdown document.
 
 ## Markdown or Latex
@@ -112,4 +112,5 @@ Further TODOs
 
 - ondemand should do markdown -> tex and tex -> pdf separately, at the moment
   pdflatex is run two times
+- get rid of gpp, implement everything as pandoc filters
 - letter template
