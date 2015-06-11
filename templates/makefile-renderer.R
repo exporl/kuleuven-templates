@@ -15,7 +15,9 @@ knitr::opts_chunk$set(tidy = FALSE,
                       fig.path = fig.path,
                       cache.path = paste0(builddir, input, '-cache/'))
 knitr::knit_hooks$set(crop = knitr::hook_pdfcrop)
-knitr::knit(paste0(input, '.Rmd'), paste0(input, '.markdown'))
+knitr::knit(paste0(input, '.Rmd'), paste0(input, '.markdown'), envir = new.env())
+
+unlink(fig.path, recursive = TRUE)
 
 for (rmd_warning in knitr::knit_meta(class = "rmd_warning")) {
     message("Warning: ", rmd_warning)
