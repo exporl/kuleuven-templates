@@ -17,29 +17,23 @@
 \usepackage[T1]{fontenc}
 \usepackage{amsmath}
 \usepackage[nohyperlinks]{acronym}
-\usepackage{babel,lmodern,graphicx,mathptmx,xspace,wasysym,microtype,booktabs,tabularx,relsize,textcomp,longtable,lipsum,colortbl,eurosym}
+\usepackage{babel,lmodern,graphicx,mathptmx,xspace,wasysym,microtype,booktabs,tabularx,relsize,textcomp,longtable,lipsum,colortbl,eurosym,url,multicol,etoolbox,multimedia,pdfpages,fixltx2e}
 \usepackage[olditem,oldenum]{paralist}
 \usepackage[babel=true]{csquotes}
 \usepackage[thinqspace,amssymb,textstyle]{SIunits}
 \usepackage[font=scriptsize,labelfont=bf]{caption}
 \usepackage[textsize=tiny]{todonotes}
 \usepackage[symbol]{footmisc}
+\usepackage[notquote]{hanging}
+\usepackage[normalem]{ulem}
 
-\usepackage{url}
-
+\pdfstringdefDisableCommands{\renewcommand{\sout}{}}
 \graphicspath{{figures/}}
-\DeclareGraphicsExtensions{.pdf,.png,.jpeg,.jpg}         % Fix sort order in case the same file exists with multiple extensions
+% Fix sort order in case the same file exists with multiple extensions
+\DeclareGraphicsExtensions{.pdf,.png,.jpeg,.jpg}
 \frenchspacing
 
 \input{templates/definitions.tex}
-
-\usepackage{multicol,etoolbox,multimedia,pdfpages}
-
-% From Raphael
-\usepackage[notquote]{hanging}
-
-\usepackage[normalem]{ulem}
-\pdfstringdefDisableCommands{\renewcommand{\sout}{}}
 
 
 
@@ -247,10 +241,10 @@
 
 \setcounter{secnumdepth}{0}
 
-\title{Presentation title}
-\author{Presentation author}
-\date{Date of presentation}
-\institute{Institute,~Dept.,~University}
+\title{Title}
+\author{Author 1 \and Author 2}
+\date{Date}
+\institute{institute name}
 
 
 \begin{document}

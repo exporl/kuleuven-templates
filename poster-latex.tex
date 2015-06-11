@@ -7,7 +7,7 @@
 % http://creativecommons.org/licenses/by/3.0/ or send a letter to Creative
 % Commons, 444 Castro Street, Suite 900, Mountain View, California, 94041, USA.
 
-\documentclass[english,xcolor=table,hyperref={pdfpagelabels=false},t
+\documentclass[english,xcolor=table,t
 ]{beamer}
 
 \usepackage[size=custom,width=100,height=100
@@ -17,7 +17,7 @@
 \usepackage[T1]{fontenc}
 \usepackage{amsmath}
 \usepackage[nolist,nohyperlinks]{acronym}
-\usepackage{babel,lmodern,graphicx,mathptmx,xspace,wasysym,microtype,booktabs,tabularx,relsize,textcomp,longtable,lipsum,colortbl,eurosym,url,multicol,etoolbox,multimedia,pdfpages}
+\usepackage{babel,lmodern,graphicx,mathptmx,xspace,wasysym,microtype,booktabs,tabularx,relsize,textcomp,longtable,lipsum,colortbl,eurosym,url,multicol,etoolbox,multimedia,pdfpages,fixltx2e}
 \usepackage[olditem,oldenum]{paralist}
 \usepackage[babel=true]{csquotes}
 \usepackage[thinqspace,amssymb,textstyle]{SIunits}
@@ -73,6 +73,7 @@
 
 \setbeamercolor{structure}{fg=kuldark}
 \setbeamerfont{structure}{size=\large}
+\setbeamerfont*{item}{parent=normal text}
 
 \setbeamertemplate{background canvas}{%
   \pgfdeclarehorizontalshading{backgroundshading}{\the\paperheight}{color(0cm)=(kulbgleft); color(\the\paperwidth)=(kulbgright)}%
@@ -132,7 +133,7 @@
   \box\layoutbox%
   \leavevmode%
   \begin{beamercolorbox}[ht=4ex,leftskip=1cm,rightskip=1cm]{footline}%
-    \url{https://university.edu/} \hfill long institute name \hfill \texttt{author@university.edu}
+    \url{university.edu} \hfill long institute name \hfill \texttt{author@university.edu}
     \vskip.8ex
   \end{beamercolorbox}
 }
@@ -175,8 +176,8 @@
   }
 }
 
-\title{Poster title}
-\author{Poster author 1 \and Poster author 2}
+\title{Title}
+\author{Author 1 \and Author 2}
 \institute{institute name}
 
 
@@ -187,7 +188,7 @@
 
 \begin{columns}
 
-\column{(\linewidth-1cm)/2}
+\column{(\linewidth-1cm)*\real{0.500000}}
 
 \begin{block}{First block}
 

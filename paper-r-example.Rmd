@@ -1,12 +1,13 @@
 ---
 title: Thorough research of this special topic regarding the influence of various factors
-author: [Paper Author 1, Paper Author 2]
-papersize: a4paper
+author: [Author 1, Author 2]
 biblio-files: parsed-references.bib
 classoptions: DIV=14,twocolumn,fontsize=9pt
+biboptions: doi=true
 toc: true
+toc-depth: 2
 numbersections: true
-numbersectionlevel: 3
+numbersectionlevel: 2
 knit: (function(input, encoding, make = TRUE) { source('templates/makefile-renderer.R', local = TRUE) })
 ---
 
@@ -26,6 +27,8 @@ knitr::opts_chunk$set(fig.width = 3, fig.height = 2.5)
 # Heading 1
 
 ## Heading 2
+
+### Heading 3
 
 <!-- Comments -->
 Default lists:
@@ -66,3 +69,5 @@ ggplot(iris, aes(Sepal.Length, Petal.Length)) +
     geom_point(aes(color = Species)) +
     facet_wrap(~ Species)
 ```
+
+<!-- vi: set spell spelllang=en linebreak et nolist showbreak=>\ \ \  : -->

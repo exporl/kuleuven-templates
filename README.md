@@ -110,7 +110,6 @@ Enable autobuild: Preferences -> Package Settings -> SublimeOnSaveBuild -> Setti
 Further TODOs
 -------------
 
-- use yaml instead of custom headers in all examples
 - ondemand should do markdown -> tex and tex -> pdf separately, at the moment
   pdflatex is run two times
 - letter template

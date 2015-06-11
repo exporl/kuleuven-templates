@@ -73,6 +73,9 @@ builddir:
 
 .SECONDARY: $(PDFPDFPICTURES) $(EPSPNGPICTURES) $(EPSPDFPICTURES) $(TIKZPDFPICTURES) $(MDSOURCES:%=%.tex)
 
+%.markdown: %.Rmd
+	R -e 'input <- "$<"; make <- FALSE; source("templates/makefile-renderer.R", local=TRUE)'
+
 %.tex: %.markdown
 	mkdir -p $(BUILDDIR)
 	( \
@@ -92,14 +95,11 @@ builddir:
 	    | perl -p0e 's/\\verb\+AAAAA(.+?)ZZZZZ\+/\1/gs' \
 	    > $*.tex
 
-pdflatex-%: %.tex %.markdown $(PDFPDFPICTURES) $(EPSPDFPICTURES) $(TIKZPDFPICTURES) $(BUILDDIR)/parsed-references.bib
+pdflatex-%: %.tex $(PDFPDFPICTURES) $(EPSPDFPICTURES) $(TIKZPDFPICTURES) $(BUILDDIR)/parsed-references.bib
 	mkdir -p $(BUILDDIR)
 	-$(LATEXCMD) $*.tex | grep -v hbox
 	-for i in "$(BUILDDIR)/$*"*.aux; do $(BIBTEXCMD) "$$i"; done
 	-cp $(BUILDDIR)/$*.pdf .
-
-%.markdown: %.Rmd
-	R -e 'input <- "$<"; make <- FALSE; source("templates/makefile-renderer.R", local=TRUE)'
 
 odt-%: %.markdown $(EPSPNGPICTURES) $(BUILDDIR)/parsed-references.bib
 	mkdir -p $(BUILDDIR)
@@ -202,16 +202,18 @@ regenerate-latex-templates: presentation-latex poster-latex report-latex abstrac
 
 presentation-latex:
 	( \
-	    echo '% Presentation title'; \
-	    echo '% Presentation author'; \
-	    echo '% Date of presentation'; \
+	    echo '---'; \
+	    echo 'title: Title'; \
+	    echo 'author: [Author 1, Author 2]'; \
+	    echo 'date: Date'; \
+	    echo 'institute: institute name'; \
+	    echo 'toc: true'; \
+	    echo '---'; \
 	    echo ''; \
 	    echo '%% smart'; \
 	    echo '%% to=beamer'; \
 	    echo '%% slide-level 3'; \
 	    echo '%% template=templates/presentation.tex'; \
-	    echo '%% toc'; \
-	    echo '%% variable institute=Institute,~Dept.,~University'; \
 	    echo ''; \
 	    echo '# First Section'; \
 	    echo ''; \
@@ -222,19 +224,19 @@ presentation-latex:
 
 poster-latex:
 	( \
+	    echo '---'; \
+	    echo 'title: Title'; \
+	    echo 'author: [Author 1, Author 2]'; \
+	    echo 'email: author@university.edu'; \
+	    echo 'institute: institute name'; \
+	    echo 'longinstitute: long institute name'; \
+	    echo 'web: university.edu'; \
+	    echo '---'; \
+	    echo ''; \
 	    echo '%% smart'; \
 	    echo '%% to=latex'; \
 	    echo '%% filter=templates/poster-filters.py'; \
 	    echo '%% template=templates/poster.tex'; \
-	    echo ''; \
-	    echo '---'; \
-	    echo 'title: Poster title'; \
-	    echo 'author: [Poster author 1, Poster author 2]'; \
-	    echo 'email: author@university.edu'; \
-	    echo 'institute: institute name'; \
-	    echo 'longinstitute: long institute name'; \
-	    echo "web: 'https://university.edu/'"; \
-	    echo '---'; \
 	    echo ''; \
 	    echo '[columns=2]'; \
 	    echo ''; \
@@ -247,9 +249,11 @@ poster-latex:
 
 report-latex:
 	( \
-	    echo '% Document title'; \
-	    echo '% Document author'; \
-	    echo '% Date of publication'; \
+	    echo '---'; \
+	    echo 'title: Title'; \
+	    echo 'author: [Author 1, Author 2]'; \
+	    echo 'date: Date'; \
+	    echo '---'; \
 	    echo ''; \
 	    echo '%% smart'; \
 	    echo '%% to=latex'; \
@@ -264,9 +268,11 @@ report-latex:
 
 abstract-latex:
 	( \
-	    echo '% Abstract title'; \
-	    echo '% first author; second author'; \
-	    echo '% Affiliation'; \
+	    echo '---'; \
+	    echo 'title: Title'; \
+	    echo 'author: [Author 1, Author 2]'; \
+	    echo 'institute: Institute, Dept., University'; \
+	    echo '---'; \
 	    echo ''; \
 	    echo '%% smart'; \
 	    echo '%% to=latex'; \

@@ -1,16 +1,10 @@
-%% smart
-%% to=latex
-%% filter=templates/poster-filters.py
-%% template=templates/poster.tex
-%% biblatex
-
 ---
 title: Thorough research of this special topic regarding the influence of various factors
 author: [Poster Author 1, Poster Author 2]
 email: author@university.edu
 institute: Institute, Dept., University
 longinstitute: Institute, Department, University, Country
-web: 'https://university.edu/'
+web: 'university.edu'
 biblio-files: parsed-references.bib
 posteroptions: width=90,height=120,scale=1.2 #,grid
 headerheight: 13cm
@@ -19,6 +13,12 @@ titlefont: size=\veryHuge,series=\bfseries
 authorfont: size=\huge
 institutefont: size=\Large
 ---
+
+%% smart
+%% to=latex
+%% template=templates/poster.tex
+%% filter=templates/poster-filters.py
+%% biblatex
 
 [columns=2]
 

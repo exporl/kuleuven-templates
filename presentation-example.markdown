@@ -1,16 +1,18 @@
-% Presentation title
-% Presentation author
-% Date of presentation
+---
+title: Thorough research of this special topic regarding the influence of various factors
+author: [Author 1, Author 2]
+date: Date of presentation
+institute: Institute, Dept., University
+biblio-files: parsed-references.bib
+toc: true
+sectiontoc: true
+---
 
 %% smart
 %% to=beamer
 %% slide-level 3
 %% template=templates/presentation.tex
-%% toc
-%% variable sectiontoc=1
 %% biblatex
-%% variable biblio-files=parsed-references.bib
-%% variable institute=Institute,~Dept.,~University
 
 # Introduction
 

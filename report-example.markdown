@@ -1,24 +1,27 @@
-% Document title
-% Document author
-% Date of publication
+---
+title: Thorough research of this special topic regarding the influence of various factors
+author: [Author 1, Author 2]
+date: Date of publication
+biblio-files: parsed-references.bib
+classoptions: DIV=12,parskip=half,fontsize=12pt
+biboptions: doi=true
+toc: true
+toc-depth: 2
+numbersections: true
+numbersectionlevel: 2
+---
 
-<!-- %% passed on to pandoc -->
 %% smart
 %% to=latex
 %% template=templates/report.tex
+%% filter=templates/paper-filters.py
 %% biblatex
-%% variable biblio-files=parsed-references.bib
-%% number-sections
-%% variable classoptions=fontsize=12pt,DIV=12,parskip=half
-%% variable biboptions=doi=true
-%% toc
-%% toc-depth=2
 
-Heading 1
-=========
+# Heading 1
 
-Heading 2
----------
+## Heading 2
+
+### Heading 3
 
 <!-- Comments -->
 Default lists:
@@ -28,8 +31,7 @@ Default lists:
 - Some units like \pps{900}, look in the template to see which ones are available.
 - **Highlights** and *highlights*.
 
-Unnumbered Heading {-}
-------------------
+## Unnumbered Heading {-}
 
 Numbered lists:
 
@@ -38,8 +40,8 @@ Numbered lists:
 3.  Third paragraph
 
     Continued paragraphs
-    \m{easy margin notes}
 
+##### easy margin notes
 Inlined lists:
 <#ipestart>
 \item Aenean faucibus.
