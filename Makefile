@@ -12,6 +12,7 @@
 SHELL=/bin/bash
 BUILDDIR=/tmp/latex-build$(subst /,-,$(abspath .))
 BIBSOURCE=
+COPYPDF=yes
 
 # To customize, copy Makefile.local-example to Makefile.local
 -include Makefile.local
@@ -55,10 +56,7 @@ PDFPDFPICTURES=$(wildcard *.pdf figures/*.pdf)
 EPSPDFPICTURES=$(patsubst %.eps,$(BUILDDIR)/%.pdf,$(notdir $(wildcard *.eps figures/*.eps)))
 EPSPNGPICTURES=$(patsubst %.eps,$(BUILDDIR)/%-png.png,$(notdir $(wildcard *.eps figures/*.eps)))
 TIKZPDFPICTURES=$(patsubst %.tikz,$(BUILDDIR)/%.pdf,$(notdir $(wildcard *.tikz figures/*.tikz)))
-MDSOURCES=$(sort $(basename $(wildcard *.markdown)) $(basename $(wildcard *.tex)))
-ifndef COPYPDF
-	COPYPDF=1
-endif
+MDSOURCES=$(sort $(basename $(wildcard *.Rmd)) $(basename $(wildcard *.markdown)) $(basename $(wildcard *.tex)))
 
 all: pdflatex
 
@@ -102,7 +100,7 @@ pdflatex-%: %.tex $(PDFPDFPICTURES) $(EPSPDFPICTURES) $(TIKZPDFPICTURES) $(BUILD
 	mkdir -p $(BUILDDIR)
 	-$(LATEXCMD) $*.tex | grep -v hbox
 	-for i in "$(BUILDDIR)/$*"*.aux; do $(BIBTEXCMD) "$$i"; done
-	-if [[ $(COPYPDF) -eq 1 ]]; then cp $(BUILDDIR)/$*.pdf .; fi
+	-if [[ -n "$(COPYPDF)" ]]; then cp $(BUILDDIR)/$*.pdf .; fi
 
 odt-%: %.markdown $(EPSPNGPICTURES) $(BUILDDIR)/parsed-references.bib
 	mkdir -p $(BUILDDIR)
