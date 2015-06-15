@@ -1,0 +1,4 @@
+% Change size and color of citations
+
+\renewcommand*{\bibfont}{\scriptsize}
+\renewcommand{\citesetup}{\footnotesize\color{kulbright}}

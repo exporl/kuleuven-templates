@@ -6,6 +6,7 @@ institute: Institute, Dept., University
 biblio-files: parsed-references.bib
 toc: true
 sectiontoc: true
+# header-includes: \input{templates/presentation.local.tex}
 ---
 
 %% smart

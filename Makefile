@@ -56,6 +56,9 @@ EPSPDFPICTURES=$(patsubst %.eps,$(BUILDDIR)/%.pdf,$(notdir $(wildcard *.eps figu
 EPSPNGPICTURES=$(patsubst %.eps,$(BUILDDIR)/%-png.png,$(notdir $(wildcard *.eps figures/*.eps)))
 TIKZPDFPICTURES=$(patsubst %.tikz,$(BUILDDIR)/%.pdf,$(notdir $(wildcard *.tikz figures/*.tikz)))
 MDSOURCES=$(sort $(basename $(wildcard *.markdown)) $(basename $(wildcard *.tex)))
+ifndef COPYPDF
+	COPYPDF=1
+endif
 
 all: pdflatex
 
@@ -99,7 +102,7 @@ pdflatex-%: %.tex $(PDFPDFPICTURES) $(EPSPDFPICTURES) $(TIKZPDFPICTURES) $(BUILD
 	mkdir -p $(BUILDDIR)
 	-$(LATEXCMD) $*.tex | grep -v hbox
 	-for i in "$(BUILDDIR)/$*"*.aux; do $(BIBTEXCMD) "$$i"; done
-	-cp $(BUILDDIR)/$*.pdf .
+	-if [[ $(COPYPDF) -eq 1 ]]; then cp $(BUILDDIR)/$*.pdf .; fi
 
 odt-%: %.markdown $(EPSPNGPICTURES) $(BUILDDIR)/parsed-references.bib
 	mkdir -p $(BUILDDIR)
@@ -114,7 +117,7 @@ odt-%: %.markdown $(EPSPNGPICTURES) $(BUILDDIR)/parsed-references.bib
 	-cp $(BUILDDIR)/$*.odt .
 
 pdfview-%: %.pdf
-	xdg-open $*.pdf &
+	xdg-open $(BUILDDIR)/$*.pdf &
 
 ondemand-%:
 	GREEN=`tput setaf 2`; \
@@ -139,7 +142,7 @@ handouts-%:
 	-$(LATEXCMD) $(BUILDDIR)/$*-handouts-helper.tex
 	-$(LATEXCMD) $(BUILDDIR)/$*-handouts.tex
 	-for i in "$(BUILDDIR)/$*-handouts-helper"*.aux; do $(BIBTEXCMD) "$$i"; done
-	-cp $(BUILDDIR)/$*-handouts.pdf .
+	-if [[ $(COPYPDF) -eq 1 ]]; then -cp $(BUILDDIR)/$*-handouts.pdf .; fi
 
 ppt-%:
 	rm -rf '$(BUILDDIR)/ppt' '$(BUILDDIR)/$*.odp'
