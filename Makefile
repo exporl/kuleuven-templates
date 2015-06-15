@@ -142,6 +142,10 @@ handouts-%:
 	-for i in "$(BUILDDIR)/$*-handouts-helper"*.aux; do $(BIBTEXCMD) "$$i"; done
 	-if [[ $(COPYPDF) -eq 1 ]]; then -cp $(BUILDDIR)/$*-handouts.pdf .; fi
 
+a4version-%:
+	convert -density 300 $(BUILDDIR)/$*.pdf $(BUILDDIR)/$*.png
+	PosteRazorg $(BUILDDIR)/$*.png
+
 ppt-%:
 	rm -rf '$(BUILDDIR)/ppt' '$(BUILDDIR)/$*.odp'
 	mkdir '$(BUILDDIR)/ppt' '$(BUILDDIR)/ppt/Pictures' '$(BUILDDIR)/ppt/META-INF'
