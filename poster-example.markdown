@@ -28,7 +28,7 @@ institutefont: size=\Large
 
 ### Graphs
 
-![two figures side-by-side](presentation-examplefig{width=0.5\linewidth},presentation-examplefig-magenta{width=0.5\linewidth})
+![two figures side-by-side](presentation-examplefig{width=0.5\linewidth,trim=0 0 0 1cm},presentation-examplefig-magenta{width=0.5\linewidth,trim=-1cm 0 0 0}})
 
 <!-- Comments -->
 ### Default lists
