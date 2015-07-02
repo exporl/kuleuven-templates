@@ -5,4 +5,4 @@
 # BIBSOURCE=$(HOME)/path/to/mendeley.bib
 
 # Leave the pdf file in the temp directory and don't copy it to the source directory
-# COPYPDF=
+# COPYPDF=no

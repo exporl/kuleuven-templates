@@ -100,7 +100,7 @@ pdflatex-%: %.tex $(PDFPDFPICTURES) $(EPSPDFPICTURES) $(TIKZPDFPICTURES) $(BUILD
 	mkdir -p $(BUILDDIR)
 	-$(LATEXCMD) $*.tex | grep -v hbox
 	-for i in "$(BUILDDIR)/$*"*.aux; do $(BIBTEXCMD) "$$i"; done
-	-if [[ -n "$(COPYPDF)" ]]; then cp $(BUILDDIR)/$*.pdf .; fi
+	-if [[ "$(COPYPDF)" = "yes" ]]; then cp $(BUILDDIR)/$*.pdf .; fi
 
 odt-%: %.markdown $(EPSPNGPICTURES) $(BUILDDIR)/parsed-references.bib
 	mkdir -p $(BUILDDIR)
