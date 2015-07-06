@@ -1,5 +1,6 @@
 *~
 /*.pdf
+/.travis.key
 /*-example.tex
 /*-example.ppt
 /*-example.odt
