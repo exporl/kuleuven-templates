@@ -27,7 +27,6 @@ $endif$
 \usepackage[olditem,oldenum]{paralist}
 \usepackage[babel=true]{csquotes}
 \usepackage[thinqspace,amssymb,textstyle]{SIunits}
-\usepackage[font=scriptsize,labelfont=bf]{caption}
 \usepackage[textsize=tiny]{todonotes}
 \usepackage[symbol]{footmisc}
 \usepackage[notquote]{hanging}
@@ -111,6 +110,7 @@ $endif$
 \setbeamercolor{structure}{fg=kuldark}
 \setbeamerfont{structure}{size=\large}
 \setbeamerfont*{item}{parent=normal text}
+\setbeamerfont{caption}{$captionfont$}
 
 \setbeamertemplate{background canvas}{%
   \pgfdeclarehorizontalshading{backgroundshading}{\the\paperheight}{color(0cm)=(kulbgleft); color(\the\paperwidth)=(kulbgright)}%

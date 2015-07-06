@@ -12,6 +12,7 @@ headerheight: 13cm
 titlefont: size=\veryHuge,series=\bfseries
 authorfont: size=\huge
 institutefont: size=\Large
+captionfont: size=\scriptsize
 ---
 
 %% smart
