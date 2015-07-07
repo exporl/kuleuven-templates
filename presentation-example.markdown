@@ -6,7 +6,9 @@ institute: Institute, Dept., University
 biblio-files: parsed-references.bib
 toc: true
 sectiontoc: true
-# header-includes: \input{templates/presentation.local.tex}
+captionfont: size=\scriptsize
+# customization of the templates
+header-includes: \input{presentation-example.header}
 ---
 
 %% smart
@@ -61,7 +63,10 @@ Default lists:
 <#colfirst>
 - Some things are better shown in columns
 <#colnext>
+\begin{figure}
 <#hfig presentation-examplefig-electrodes>
+\caption{The 10-20 system}
+\end{figure}
 <#colend>
 
 <#notoc><#nosupertitle>
