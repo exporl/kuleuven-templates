@@ -7,10 +7,10 @@ Next to the actual templates, a build system based on R/pandoc/texlive/make is p
 
 Examples:
 
-- presentation: [presentation-example.pdf](presentation-example.pdf)
-- poster: [poster-example.pdf](poster-example.pdf)
-- poster with R figures: [poster-r-example.pdf](poster-r-example.pdf)
-- paper with R figures: [paper-r-example.pdf](paper-r-example.pdf)
+- presentation: [presentation-example.pdf](//exporl.github.io/kuleuven-templates/presentation-example.pdf)
+- poster: [poster-example.pdf](//exporl.github.io/kuleuven-templates/poster-example.pdf)
+- poster with R figures: [poster-r-example.pdf](//exporl.github.io/kuleuven-templates/poster-r-example.pdf)
+- paper with R figures: [paper-r-example.pdf](//exporl.github.io/kuleuven-templates/paper-r-example.pdf)
 
 Pull requests welcome!
 
