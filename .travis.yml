@@ -39,6 +39,13 @@ after_success:
 - git symbolic-ref HEAD refs/heads/deploy
 - git reset HEAD .
 - mkdir -p kuleuven-templates
+- for i in *.pdf; do
+    pdftk "$i" output "$i.tmp" uncompress;
+    sed -i '/^\/\(Mod\|Creation\)Date (D:/s/[0-9]/0/g' "$i.tmp";
+    pdftk "$i.tmp" output "$i" compress;
+    sed -i '/^\/ID \[/s/[0-9a-fA-F]/D/g' "$i";
+    rm "$i.tmp";
+  done
 - mv *.pdf kuleuven-templates/
 - git add -f kuleuven-templates/
 - git commit -m "$(git log --format=%B -n 1 $TRAVIS_COMMIT)"
