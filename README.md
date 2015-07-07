@@ -1,5 +1,7 @@
 # KU Leuven Markdown templates
 
+[![Build Status](https://travis-ci.org/exporl/kuleuven-templates.svg?branch=master)](https://travis-ci.org/exporl/kuleuven-templates)
+
 Latest version and bugreports on Github: <https://github.com/exporl/kuleuven-templates/>
 
 This repository contains markdown templates for presentations and posters according to the KU Leuven Corporate Design.
