@@ -146,7 +146,8 @@ def image_figure(v, f, m):
 # Supported syntax:
 #   [columns=...]: start a new column set with the given number of columns
 #   [column]: start a new column with equal width
-#   [column=...]: start a new column with given fraction of the page width
+#   [column=...]: start a new column with given fraction of the line width
+#   [/columns]: end a column set
 #   # header1: start a new block
 #   ## header1: ignored for compatibility with the presentation template
 #   ### header3: start a new structural section (\structure)

@@ -30,7 +30,25 @@ In this case, just use the latex versions to get started.
 - presentation: [presentation-latex.tex](presentation-latex.tex)
 - poster: [poster-latex.tex](poster-latex.tex)
 
-## Linux installation
+## New commands
+
+Various gpp (of the form `<command param1|param2|...>`) and markdown (`[command=param]`) commands are available.
+The gpp commands can be found in [macros-latex.gpp](templates/macros-latex.gpp).
+
+### Markdown commands for posters
+
+- `[columns=...]`: start a new column set with the given number of columns
+- `[column]`: start a new column with equal width
+- `[column=...]`: start a new column with given fraction of the line width
+- `[/columns]`: end a column set
+- `# header1`: start a new block
+- `## header1`: ignored for compatibility with the presentation template
+- `### header3`: start a new structural section (\\structure)
+- `![caption](figure{options},figure{options...)`: figure float
+
+## Installation
+
+### Linux
 
 If you only want to use the templates (without history), use
 
@@ -50,7 +68,7 @@ To automatically watch for changes and rebuild as required:
 
 See the top of Makefile for more information.
 
-## Windows installation
+### Windows
 
 There is an automatic installer available in the windows-installer directory. To
 make it work, the following files need to be present:
@@ -66,7 +84,7 @@ make it work, the following files need to be present:
 
 Check the following sections on where to find them.
 
-### Latex build chain
+#### Latex build chain
 
 Install cygwin: <http://cygwin.com/setup-x86.exe> or <http://cygwin.com/cygwin-setup-x86_64.exe>
 
@@ -78,17 +96,17 @@ Install gpp somewhere into c:/program files (x86): <http://makc.googlecode.com/s
 
 - add the directory to the PATH environment variable
 
-### PDF viewer
+#### PDF viewer
 
 Install SumatraPDF for auto-refresh of PDF previews: <http://blog.kowalczyk.info/software/sumatrapdf/free-pdf-reader.html>
 
-### Configuration of texmaker
+#### Configuration of texmaker
 
 To use cygwin with texmaker: Go to options|Configure texmaker and change pdflatex command to:
 
     c:\cygwin64\bin\bash.exe -c "PATH=$PATH:/usr/bin pdflatex -synctex=1 -interaction=nonstopmode %.tex"
 
-### SublimeText
+#### SublimeText
 
 Install sublimetext from <http://www.sublimetext.com>
 
