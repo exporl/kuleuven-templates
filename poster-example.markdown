@@ -6,13 +6,13 @@ institute: Institute, Dept., University
 longinstitute: Institute, Department, University, Country
 web: 'university.edu'
 biblio-files: parsed-references.bib
-posteroptions: width=90,height=120,scale=1.2 #,grid
+posteroptions: width=90,height=116.3,scale=1.2 #,grid
 headerheight: 13cm
 # large, Large, LARGE, huge, Huge, veryHuge, VeryHuge, VERYHuge
 titlefont: size=\veryHuge,series=\bfseries
 authorfont: size=\huge
 institutefont: size=\Large
-captionfont: size=\scriptsize
+captionfont: size=\small
 ---
 
 %% smart
@@ -50,11 +50,35 @@ captionfont: size=\scriptsize
 
 # Bla
 
-\lipsum[1-2]
+\lipsum[1]
 
 # Blub
 
-\lipsum[3-5]
+[columns=2]
+
+[column=0.67]
+
+### Columns within columns within blocks within columns
+
+[columns=2]
+
+[column=0.59]
+
+\lipsum[3]
+
+[column]
+
+\lipsum[4]
+
+[/columns]
+
+[column]
+
+\lipsum[5]
+
+[/columns]
+
+\vskip0.7cm
 
 [column]
 
@@ -88,7 +112,7 @@ captionfont: size=\scriptsize
     \label{tab:blub}
 \end{table}
 
-\vskip3.7cm
+[/columns]
 
 [columns=2]
 
@@ -107,5 +131,7 @@ captionfont: size=\scriptsize
 \printbibliography
 
 \vskip7.3cm
+
+[/columns]
 
 <!-- vi: set spell spelllang=en linebreak et nolist showbreak=>\ \ \  : -->

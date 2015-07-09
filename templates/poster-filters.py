@@ -3,11 +3,59 @@ import pandocfilters as pf
 import json
 import sys
 
-incolumns = False
-inblock = False
-columns = 1
-colwidthleft = 1.0
-colleft = 1
+class Columns:
+    def __init__(self, result, columns = 1, main = False):
+        self.valid = False
+        self.reset(result, columns, main)
+
+    def reset(self, result, columns, main = False):
+        self.end(result)
+
+        self.main = main
+        self._columns = columns
+        self._colwidthleft = 1.0
+        self._colleft = columns
+        self.valid = result != None
+
+        self.begin(result)
+
+    def begin(self, result):
+        if not self.valid or result == None:
+            return
+        result.append(lb(r'\begin{columns}'))
+
+    def column(self, result, width = None):
+        if not self.valid or result == None:
+            return
+        if not width:
+            width = self._colwidthleft / self._colleft
+        self._colwidthleft -= width
+        self._colleft -= 1
+        result.append(lb(r'\column{(\linewidth-%dcm)*\real{%f}}' % (self._columns - 1, width)))
+
+    def end(self, result):
+        if not self.valid or result == None:
+            return
+        result.append(lb(r'\end{columns}'))
+        self.valid = False
+
+class Block:
+    def __init__(self):
+        self.active = False
+
+    def begin(self, result, title):
+        self.end(result)
+        result.append(lb(r'\begin{block}{%s}' % title))
+        self.active = True
+
+    def end(self, result):
+        if not self.active:
+            return
+        result.append(lb(r'\end{block}'))
+        self.active = False
+
+columns = []
+block = Block()
 
 def lb(s):
     return pf.RawBlock('latex', s)
@@ -18,47 +66,34 @@ def li(s):
 def fig(name, props):
     return li('    \\includegraphics[%s]{%s}\n' % (props, name))
 
-# TODO: use f=latex/beamer to switch between slides or poster
-
 def structure_para(v, f, m):
-    global columns, colwidthleft, colleft, incolumns, inblock
+    global columns, block
     value = pf.stringify(v)
     if value.startswith('[') and value.endswith(']'):
         content = value[1:-1]
         result = []
         if content.startswith('columns='):
-            columns = int(content[8:])
-            colwidthleft = 1.0
-            colleft = columns
-            if inblock:
-                result.append(lb(r'\end{block}'))
-            inblock = False
-            if incolumns:
-                result.append(lb(r'\end{columns}'))
-            incolumns = True
-            result.append(lb(r'\begin{columns}'))
+            columns.append(Columns(result, int(content[8:]), len(columns) == 0))
+            return result
+        elif content == '/columns':
+            if len(columns) <= 1:
+                block.end(result)
+            columns.pop().end(result)
             return result
         elif content == 'column' or content.startswith('column='):
-            if inblock:
-                result.append(lb(r'\end{block}'))
-            inblock = False
+            if len(columns) <= 1:
+                block.end(result)
             if content.startswith('column='):
-                width = float(content[7:])
+                columns[-1].column(result, float(content[7:]))
             else:
-                width = colwidthleft / colleft
-            colwidthleft -= width
-            colleft -= 1
-            result.append(lb(r'\column{(\linewidth-%dcm)*\real{%f}}' % (columns - 1, width)))
+                columns[-1].column(result)
             return result
 
 def structure_header(v, f, m):
-    global inblock
+    global block
     result = []
     if v[0] == 1:
-        if inblock:
-            result.append(lb(r'\end{block}'))
-        inblock = True
-        result.append(lb(r'\begin{block}{%s}' % pf.stringify(v[2])))
+        block.begin(result, pf.stringify(v[2]))
         return result
     elif v[0] == 2:
         # second level ignored and removed on posters

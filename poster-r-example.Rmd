@@ -101,6 +101,8 @@ ggplot(iris, aes(Sepal.Length, Petal.Length)) +
 
 \vskip0.4cm
 
+[/columns]
+
 [columns=2]
 
 [column=0.4]
@@ -116,5 +118,7 @@ ggplot(iris, aes(Sepal.Length, Petal.Length)) +
 \printbibliography
 
 \vskip4.4cm
+
+[/columns]
 
 <!-- vi: set spell spelllang=en linebreak et nolist showbreak=>\ \ \  : -->

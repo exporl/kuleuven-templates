@@ -248,6 +248,10 @@ poster-latex:
 	    echo '[column]'; \
 	    echo ''; \
 	    echo '# First block'; \
+	    echo ''; \
+	    echo '[column]'; \
+	    echo ''; \
+	    echo '[/columns]'; \
 	) > $@.markdown
 	-make $@.tex
 	-rm $@.markdown
