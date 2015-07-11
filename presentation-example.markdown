@@ -1,5 +1,6 @@
 ---
 title: Thorough research of this special topic regarding the influence of various factors
+subtitle: Yeah we did it!
 author: [Author 1, Author 2]
 date: Date of presentation
 institute: Institute, Dept., University
