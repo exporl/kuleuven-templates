@@ -30,10 +30,34 @@ In this case, just use the latex versions to get started.
 - presentation: [presentation-latex.tex](presentation-latex.tex)
 - poster: [poster-latex.tex](poster-latex.tex)
 
+## New pandoc variables
+
+### Pandoc variables for presentations
+
+- sectiontoc
+- subsectiontoc
+- multicolstoc
+- sectiontitle
+- subsectiontitle
+
 ## New commands
 
 Various gpp (of the form `<command param1|param2|...>`) and markdown (`[command=param]`) commands are available.
 The gpp commands can be found in [macros-latex.gpp](templates/macros-latex.gpp).
+
+### Markdown commands for presentations
+
+most of these need to be at the end of a frame
+
+- notoc (default)
+- sectiontoc
+- subsectiontoc
+- largefooter (default)
+- emptyfooter
+- smallfooter
+- nosupertitle (default)
+- sectiontitle
+- subsectiontitle
 
 ### Markdown commands for posters
 

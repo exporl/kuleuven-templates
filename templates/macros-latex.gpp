@@ -50,34 +50,6 @@
 <!--=\end{column}\end{columns}=-->
 >
 
-<!-- #notoc don't show table of contents -->
-<#define notoc|
-##
-\AtBeginSection[]{}
->
-
-<#define nosupertitle|
-##
-\renewcommand{\insertsupertitle}{}
->
-<#define sectiontitle|
-##
-\renewcommand{\insertsupertitle}{\insertsectionhead}
->
-<#define subsectiontitle|
-##
-\renewcommand{\insertsupertitle}{\insertsectionhead\ifx\insertsubsectionhead\empty\else{} -- \insertsubsectionhead\fi}
->
-
-<#define largefooter|
-##
-<!---\setbeamertemplate{background canvas}[kul]\setbeamertemplate{footline}[large]--->
->
-<#define smallfooter|
-##
-<!---\setbeamertemplate{background canvas}[plain]\setbeamertemplate{footline}[small]--->
->
-
 <#define right|$\rightarrow$>
 <#define approx|$\pm$>
 <#define sound|\movie[inlinesound,encoding=Signed,samplingrate=44100]{#1}{#2}>

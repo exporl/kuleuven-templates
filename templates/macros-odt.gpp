@@ -3,7 +3,6 @@
 <#define vfig|![#1-png](#1-png)>
 <#define slidefig|![#1-png](#1-png)>
 
-<#define notoc|>
 <#define nosupertitle|>
 <#define right|→>
 <#define approx|±>

@@ -7,6 +7,7 @@ institute: Institute, Dept., University
 biblio-files: parsed-references.bib
 toc: true
 sectiontoc: true
+sectiontitle: true
 captionfont: size=\scriptsize
 # customization of the templates
 header-includes: \input{presentation-example.header}
@@ -16,6 +17,7 @@ header-includes: \input{presentation-example.header}
 %% to=beamer
 %% slide-level 3
 %% template=templates/presentation.tex
+%% filter=templates/presentation-filters.py
 %% biblatex
 
 # Introduction
@@ -49,15 +51,15 @@ Default lists:
 
 <#slidefig presentation-examplefig-electrodes>
 
-<#smallfooter>
-
 ## Part 2
+
+[smallfooter]
 
 ### Results Slide 3
 
 - You can also just replace the footer by a minimal version
 
-<#largefooter>
+[largefooter]
 
 ### Results Slide 4
 
@@ -70,9 +72,11 @@ Default lists:
 \end{figure}
 <#colend>
 
-<#notoc><#nosupertitle>
-
 # Conclusions
+
+[notoc]
+
+[nosupertitle]
 
 ### Conclusions
 
