@@ -3,7 +3,7 @@
 if [ "$TRAVIS_SECURE_ENV_VARS" = "false" -o "$TRAVIS_BRANCH" = "updateprebuild" ]; then
     mkdir -p $HOME/prebuild/R $HOME/prebuild/texlive
 
-    R -e "install.packages(c('ggplot2','dplyr'),repos='http://cran.rstudio.com/',lib='$R_LIBS_USER')"
+    R -e "install.packages(c('ggplot2','dplyr','knitr'),repos='http://cran.rstudio.com/',lib='$R_LIBS_USER')"
 
     wget http://files.nothingisreal.com/software/gpp/gpp.tar.bz2
     tar -xjf gpp.tar.bz2
@@ -20,6 +20,7 @@ if [ "$TRAVIS_SECURE_ENV_VARS" = "false" -o "$TRAVIS_BRANCH" = "updateprebuild" 
     install-tl-*/install-tl --profile=.travis.texlive
 
     if [ "$TRAVIS_SECURE_ENV_VARS" = "true" -a "$TRAVIS_BRANCH" = "updateprebuild" -a "$TRAVIS_PULL_REQUEST" = "false" ]; then
+        find "$HOME/prebuild"
         mkdir .travis.prebuild
         tar -cJf - -C "$HOME" prebuild | openssl aes-256-cbc -K "$encrypted_ca520f04cf10_key" -iv "$encrypted_ca520f04cf10_iv" | split -d -b 100MB - .travis.prebuild/dependencies.tar.xz.enc.
         git add .travis.prebuild
@@ -28,5 +29,5 @@ if [ "$TRAVIS_SECURE_ENV_VARS" = "false" -o "$TRAVIS_BRANCH" = "updateprebuild" 
         git push deploy deploy:master
     fi
 else
-    git show $(git ls-tree HEAD:.travis.prebuild --name-only | sed 's|^|HEAD:.travis/rebuild/|g') | openssl aes-256-cbc -K "$encrypted_ca520f04cf10_key" -iv "$encrypted_ca520f04cf10_iv" -d | tar -xJf - -C "$HOME"
+    git show $(git ls-tree HEAD:.travis.prebuild --name-only | sed 's|^|HEAD:.travis.prebuild/|g') | openssl aes-256-cbc -K "$encrypted_ca520f04cf10_key" -iv "$encrypted_ca520f04cf10_iv" -d | tar -xJf - -C "$HOME"
 fi

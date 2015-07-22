@@ -11,7 +11,7 @@ addons:
             - lmodern
             - pdftk
 before_install:
-- export R_LIBS_USER=$HOME/prebuild/R PATH=$PATH:$HOME/prebuild/gpp/bin:$HOME/prebuild/texlive/bin/x86_64-linux PYTHONUSERBASE=$HOME/prebuild/python
+- export R_LIBS_USER=$HOME/prebuild/R PATH=$PATH:$HOME/prebuild/gpp/bin:$HOME/prebuild/texlive/bin/x86_64-linux:$HOME/prebuild/haskell/bin PYTHONUSERBASE=$HOME/prebuild/python
 - ./.travis.git
 - ./.travis.deps
 script:
@@ -30,4 +30,6 @@ after_success:
 - mv *.pdf kuleuven-templates/
 - git add -f kuleuven-templates/
 - git commit -m "$(git log --format=%B -n 1 $TRAVIS_COMMIT)"
-- if test "$TRAVIS_PULL_REQUEST" = "false" -a "$TRAVIS_BRANCH" = "master"; then git push deploy deploy:master; fi
+- if test "$TRAVIS_PULL_REQUEST" = "false" -a "$TRAVIS_BRANCH" = "master"; then
+    git push deploy deploy:master;
+  fi
