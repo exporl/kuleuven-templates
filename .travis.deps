@@ -22,12 +22,12 @@ if [ "$TRAVIS_SECURE_ENV_VARS" = "false" -o "$TRAVIS_BRANCH" = "updateprebuild" 
     if [ "$TRAVIS_SECURE_ENV_VARS" = "true" -a "$TRAVIS_BRANCH" = "updateprebuild" -a "$TRAVIS_PULL_REQUEST" = "false" ]; then
         find "$HOME/prebuild"
         mkdir .travis.prebuild
-        tar -cJf - -C "$HOME" prebuild | split -d -b 100MB - .travis.prebuild/dependencies.tar.xz.
+        tar -czf - -C "$HOME" prebuild | split -d -b 100MB - .travis.prebuild/dependencies.tar.gz.
         git add .travis.prebuild
         ls -la .travis.prebuild
         git commit -m "Updated travis build dependencies."
         git push deploy deploy:master
     fi
 else
-    git show $(git ls-tree HEAD:.travis.prebuild --name-only | sed 's|^|HEAD:.travis.prebuild/|g') | tar -xJf - -C "$HOME"
+    git show $(git ls-tree HEAD:.travis.prebuild --name-only | sed 's|^|HEAD:.travis.prebuild/|g') | tar -xzf - -C "$HOME"
 fi
