@@ -102,36 +102,27 @@ make it work, the following files need to be present:
     SumatraPDF-3.0-install.exe
     latex-markdown-templates.zip
     texmakerwin32_install.exe
-    cygwin-setup-x86_64.exe
 
 Check the following sections on where to find them.
 
-#### Latex build chain
-
-Install cygwin: <http://cygwin.com/setup-x86.exe> or <http://cygwin.com/cygwin-setup-x86_64.exe>
-
-- Install packages for make, texlive, texlive-latex, texlive-latexextra, texlive-fontutils, texlive-collection-fontsrecommended, texlive-collection-science, texlive-collection-genericrecommended, texlive-collection-bibtexextra
+#### Mardown/Latex build chain
 
 Install pandoc: <http://code.google.com/p/pandoc/downloads/list>
+
+Install a latex distribution, e.g. miktex or texlive: <http://miktex.org/download>, <https://www.tug.org/texlive/acquire-netinstall.html>
 
 #### PDF viewer
 
 Install SumatraPDF for auto-refresh of PDF previews: <http://blog.kowalczyk.info/software/sumatrapdf/free-pdf-reader.html>
 
-#### Configuration of texmaker
-
-To use cygwin with texmaker: Go to options|Configure texmaker and change pdflatex command to:
-
-    c:\cygwin64\bin\bash.exe -c "PATH=$PATH:/usr/bin pdflatex -synctex=1 -interaction=nonstopmode %.tex"
-
 #### SublimeText
 
 Install sublimetext from <http://www.sublimetext.com>
 
-Add a new build system system: Tools -> Build system -> New build system
+Add a new build system: Tools -> Build system -> New build system
 
     {
-        "cmd": ["c:\\cygwin\\bin\\bash.exe", "-c", "PATH=\"\\$PATH\":/cygdrive/c/cygwin/bin make pdflatex-$file_base_name"]
+        "cmd": ["pdflatex", "-synctex=1", "-interaction=nonstopmode", "$file"]
     }
 
 Install package control: <https://sublime.wbond.net>
@@ -141,7 +132,7 @@ Install SublimeOnSaveBuild: Ctrl-Shift-P -> Package Control: Install Package -> 
 Enable autobuild: Preferences -> Package Settings -> SublimeOnSaveBuild -> Settings - User
 
     {
-      "filename_filter": "\\.(markdown)$",
+      "filename_filter": "\\.(tex)$",
       "build_on_save": 1
     }
 
@@ -150,4 +141,6 @@ Further TODOs
 
 - ondemand should do markdown -> tex and tex -> pdf separately, at the moment
   pdflatex is run two times
-- letter template
+- Windows documentation for manual pandoc without make
+- Windows install of pandoc filters
+- Windows build rules/installer for pandoc

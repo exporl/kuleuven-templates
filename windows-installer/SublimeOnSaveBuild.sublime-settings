@@ -1,4 +1,4 @@
 {
-  "filename_filter": "\\.(markdown)$",
+  "filename_filter": "\\.(tex)$",
   "build_on_save": 1
 }
