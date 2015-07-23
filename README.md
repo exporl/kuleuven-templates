@@ -42,8 +42,7 @@ In this case, just use the latex versions to get started.
 
 ## New commands
 
-Various gpp (of the form `<command param1|param2|...>`) and markdown (`[command=param]`) commands are available.
-The gpp commands can be found in [macros-latex.gpp](templates/macros-latex.gpp).
+Various new markdown commands (`[command=param]`) are available.
 
 ### Markdown commands for presentations
 
@@ -80,7 +79,7 @@ If you only want to use the templates (without history), use
 
 Install dependencies:
 
-    sudo apt-get install pandoc python-pandocfilters gpp make texlive texlive-latex-recommended texlive-science texlive-bibtex-extra
+    sudo apt-get install pandoc python-pandocfilters make texlive texlive-latex-recommended texlive-science texlive-bibtex-extra
 
 For building your documents:
 
@@ -104,7 +103,6 @@ make it work, the following files need to be present:
     latex-markdown-templates.zip
     texmakerwin32_install.exe
     cygwin-setup-x86_64.exe
-    gpp.exe
 
 Check the following sections on where to find them.
 
@@ -115,10 +113,6 @@ Install cygwin: <http://cygwin.com/setup-x86.exe> or <http://cygwin.com/cygwin-s
 - Install packages for make, texlive, texlive-latex, texlive-latexextra, texlive-fontutils, texlive-collection-fontsrecommended, texlive-collection-science, texlive-collection-genericrecommended, texlive-collection-bibtexextra
 
 Install pandoc: <http://code.google.com/p/pandoc/downloads/list>
-
-Install gpp somewhere into c:/program files (x86): <http://makc.googlecode.com/svn/trunk/gpp.2.24-windows/>
-
-- add the directory to the PATH environment variable
 
 #### PDF viewer
 
@@ -156,5 +150,4 @@ Further TODOs
 
 - ondemand should do markdown -> tex and tex -> pdf separately, at the moment
   pdflatex is run two times
-- get rid of gpp, implement everything as pandoc filters
 - letter template

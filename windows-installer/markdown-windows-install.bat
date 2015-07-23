@@ -10,5 +10,3 @@ SumatraPDF-3.0-install.exe
 unzip latex-markdown-templates.zip -d "%USERPROFILE%\Documents"
 texmakerwin32_install.exe
 cygwin-setup-x86_64.exe -q --packages make,texlive,texlive-latex,texlive-latexextra,texlive-collection-fontutils,texlive-collection-fontsrecommended,texlive-collection-science,texlive-collection-genericrecommended,texlive-collection-bibtexextra,textlive-collection-fontutils,texlive-collection-binextra,texlive-collection-latexrecommended,texlive-collection-genericxextra,texlive-collection-humanities,texlive-collection-langenglish,texlive-collection-latexextra,texlive-collection-publishers,texlive-collection-plainextra,epstool,texlive-collection-binextra,texlive-collection-fontsextra,texlive-collection-mathextra
-copy gpp.exe "C:\cygwin64\bin"
-
