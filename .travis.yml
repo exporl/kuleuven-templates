@@ -17,7 +17,7 @@ before_install:
 script:
 - (make && make) &> /dev/null
 - make |& tee error.log
-- "! grep -q 'LaTeX Error' error.log"
+- "! grep -qE 'LaTeX Error|Undefined control sequence' error.log"
 after_success:
 - mkdir -p kuleuven-templates
 - for i in *.pdf; do
