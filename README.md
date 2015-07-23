@@ -44,6 +44,11 @@ In this case, just use the latex versions to get started.
 
 Various new markdown commands (`[command=param]`) are available.
 
+### Markdown commands for papers
+
+- `ipe`: start a new in-paragraph enumeration, use \item for the individual items
+- `/ipe`: end an in-paragraph enumeration
+
 ### Markdown commands for presentations
 
 most of these need to be at the end of a frame
@@ -68,6 +73,8 @@ most of these need to be at the end of a frame
 - `## header1`: ignored for compatibility with the presentation template
 - `### header3`: start a new structural section (\\structure)
 - `![caption](figure{options},figure{options...)`: figure float
+- `ipe`: start a new in-paragraph enumeration, use \item for the individual items
+- `/ipe`: end an in-paragraph enumeration
 
 ## Installation
 

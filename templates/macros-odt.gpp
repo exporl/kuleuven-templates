@@ -9,9 +9,6 @@
 <#define sound|>
 <#define pause|>
 
-<#define ipestart|>
-<#define ipeend|>
-
 <#define colfirst|>
 <#define colnext|>
 <#define colend|>

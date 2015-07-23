@@ -56,9 +56,6 @@
 
 <#define pause|<!---\pause--->>
 
-<#define ipestart|<!--=\begin{inparaenum}[(1)]=-->>
-<#define ipeend|<!--=\end{inparaenum}=-->>
-
 <#define todo|\todo{#1} >
 <#define todoinline|\todo[inline]{#1} >
 

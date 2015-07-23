@@ -50,11 +50,11 @@ Numbered lists:
 
 ##### easy margin notes
 Inlined lists:
-<#ipestart>
+[ipe]
 \item Aenean faucibus.
 \item Morbi dolor nulla, malesuada eu, pulvinar at, mollis ac, nulla.
 \item Curabitur auctor semper nulla.
-<#ipeend>
+[/ipe]
 
 See *man pandoc_markdown* for more information.
 

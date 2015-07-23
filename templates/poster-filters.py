@@ -165,6 +165,20 @@ def filter_image(k, v, f, m):
     if k == 'Image' and v[1][1] == 'fig:':
         return image_figure(v, f, m)
 
+# Supported syntax:
+#   [ipe]: start a new in-paragraph enumeration, use \item for the individual items
+#   [/ipe]: end an in-paragraph enumeration
+
+def filter_paraenum(k, v, f, m):
+    if k == 'Str':
+        value = v
+        if value.startswith('[') and value.endswith(']'):
+            content = value[1:-1]
+            if content == 'ipe':
+                return li('\\begin{inparaenum}[(1)]')
+            elif content == '/ipe':
+                return li('\\end{inparaenum}')
+
 if __name__ == '__main__':
     doc = json.loads(sys.stdin.read())
     if len(sys.argv) > 1:
@@ -173,4 +187,5 @@ if __name__ == '__main__':
         format = ''
     doc = pf.walk(doc, filter_structure, format, doc[0]['unMeta'])
     doc = pf.walk(doc, filter_image, format, doc[0]['unMeta'])
+    doc = pf.walk(doc, filter_paraenum, format, doc[0]['unMeta'])
     json.dump(doc, sys.stdout)
