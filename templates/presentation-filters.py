@@ -3,6 +3,45 @@ import pandocfilters as pf
 import json
 import sys
 
+class Columns:
+    def __init__(self, result, columns = 1, main = False):
+        self.valid = False
+        self.reset(result, columns, main)
+
+    def reset(self, result, columns, main = False):
+        self.end(result)
+
+        self.main = main
+        self._columns = columns
+        self._colwidthleft = 1.0
+        self._colleft = columns
+        self.valid = result != None
+
+        self.begin(result)
+
+    def begin(self, result):
+        if not self.valid or result == None:
+            return
+        result.append(lb(r'\begin{columns}[T,onlytextwidth]'))
+
+    def column(self, result, width = None):
+        if not self.valid or result == None:
+            return
+        if not width:
+            width = self._colwidthleft / self._colleft
+        self._colwidthleft -= width
+        self._colleft -= 1
+        # 5mm between columns, no idea why the vskip is necessary
+        result.append(lb(r'\column{(\linewidth-%fcm)*\real{%f}}\vskip-3pt' % (0.5 * (self._columns - 1), width)))
+
+    def end(self, result):
+        if not self.valid or result == None:
+            return
+        result.append(lb(r'\end{columns}'))
+        self.valid = False
+
+columns = []
+
 lastsection = ''
 lastsubsection = ''
 
@@ -21,10 +60,17 @@ def afterframe(s):
 def fig(name, props):
     return li('    \\includegraphics[%s]{%s}\n' % (props, name))
 
+# Supported syntax:
+#   [columns=...]: start a new column set with the given number of columns
+#   [column]: start a new column with equal width
+#   [column=...]: start a new column with given fraction of the line width
+#   [/columns]: end a column set
 def structure_para(v, f, m):
+    global columns
     value = pf.stringify(v)
     if value.startswith('[') and value.endswith(']'):
         content = value[1:-1]
+        result = []
         if content == 'notoc':
             return afterframe('\\notoc')
         elif content == 'sectiontoc':
@@ -43,6 +89,18 @@ def structure_para(v, f, m):
             return afterframe('\\sectiontitle')
         elif content == 'subsectiontitle':
             return afterframe('\\subsectiontitle')
+        elif content.startswith('columns='):
+            columns.append(Columns(result, int(content[8:])))
+            return result
+        elif content == '/columns':
+            columns.pop().end(result)
+            return result
+        elif content == 'column' or content.startswith('column='):
+            if content.startswith('column='):
+                columns[-1].column(result, float(content[7:]))
+            else:
+                columns[-1].column(result)
+            return result
 
 def structure_header(v, f, m):
     global lastsection, lastsubsection
@@ -105,6 +163,13 @@ def filter_structure(k, v, f, m):
     elif k == 'Header':
         return structure_header(v, f, m)
 
+# Supported syntax:
+#   ![caption](figure{options},figure{options...): figure float
+
+def filter_image(k, v, f, m):
+    if k == 'Image' and v[1][1] == 'fig:':
+        return image_figure(v, f, m)
+
 if __name__ == '__main__':
     doc = json.loads(sys.stdin.read())
     if len(sys.argv) > 1:
@@ -112,4 +177,5 @@ if __name__ == '__main__':
     else:
         format = ''
     doc = pf.walk(doc, filter_structure, format, doc[0]['unMeta'])
+    doc = pf.walk(doc, filter_image, format, doc[0]['unMeta'])
     json.dump(doc, sys.stdout)

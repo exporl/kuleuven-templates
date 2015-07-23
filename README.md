@@ -64,6 +64,12 @@ most of these need to be at the end of a frame
 - sectiontitle
 - subsectiontitle
 
+- `[columns=...]`: start a new column set with the given number of columns
+- `[column]`: start a new column with equal width
+- `[column=...]`: start a new column with given fraction of the line width
+- `[/columns]`: end a column set
+- `![caption](figure{options},figure{options...)`: figure float
+
 ### Markdown commands for posters
 
 - `[columns=...]`: start a new column set with the given number of columns

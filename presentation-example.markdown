@@ -63,14 +63,17 @@ Default lists:
 
 ### Results Slide 4
 
-<#colfirst>
+[columns=2]
+
+[column]
+
 - Some things are better shown in columns
-<#colnext>
-\begin{figure}
-<#hfig presentation-examplefig-electrodes>
-\caption{The 10-20 system}
-\end{figure}
-<#colend>
+
+[column]
+
+![The 10-20 system](presentation-examplefig-electrodes{width=\textwidth})
+
+[/columns]
 
 # Conclusions
 

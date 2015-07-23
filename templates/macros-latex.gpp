@@ -38,18 +38,6 @@
 \setbeamertemplate{background canvas}[kul]--->
 >
 
-<!-- #colfirst, #colnext, #colend create columns -->
-<!--    1- Column width (fraction) -->
-<#define colfirst|
-<!--=\begin{columns}[T,onlytextwidth]\begin{column}{<#ifeq #1|>0.49<#else>#1<#endif>\linewidth}\vskip-4pt=-->
->
-<#define colnext|
-<!--=\end{column}\begin{column}{<#ifeq #1|>0.49<#else>#1<#endif>\linewidth}\vskip-4pt=-->
->
-<#define colend|
-<!--=\end{column}\end{columns}=-->
->
-
 <#define right|$\rightarrow$>
 <#define approx|$\pm$>
 <#define sound|\movie[inlinesound,encoding=Signed,samplingrate=44100]{#1}{#2}>
