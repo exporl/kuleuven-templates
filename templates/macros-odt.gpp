@@ -2,8 +2,3 @@
 <#define hfig|![#1-png](#1-png)>
 <#define vfig|![#1-png](#1-png)>
 <#define slidefig|![#1-png](#1-png)>
-
-<#define nosupertitle|>
-<#define right|→>
-<#define approx|±>
-<#define sound|>

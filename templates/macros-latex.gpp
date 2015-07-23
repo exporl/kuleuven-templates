@@ -38,10 +38,6 @@
 \setbeamertemplate{background canvas}[kul]--->
 >
 
-<#define right|$\rightarrow$>
-<#define approx|$\pm$>
-<#define sound|\movie[inlinesound,encoding=Signed,samplingrate=44100]{#1}{#2}>
-
 <#define tikzpage|
 \begin{tikzpicture}[remember picture,overlay,every node/.style={anchor=center}]
 #1
