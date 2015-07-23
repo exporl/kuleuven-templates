@@ -1,0 +1,12 @@
+#!/bin/sh
+openssl aes-256-cbc -K $encrypted_ca520f04cf10_key -iv $encrypted_ca520f04cf10_iv -in .travis.key.enc -out ~/.ssh/id_rsa -d
+chmod 0600 ~/.ssh/id_rsa
+git config user.email "mh21@mh21.de"
+git config user.name "Michael Hofmann"
+git remote add deploy git@github.com:exporl/exporl.github.io.git
+git fetch deploy
+git branch deploy remotes/deploy/master
+git symbolic-ref HEAD refs/heads/deploy
+git reset HEAD .
+
+
