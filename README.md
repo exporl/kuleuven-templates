@@ -46,6 +46,7 @@ Various new markdown commands (`[command=param]`) are available.
 
 ### Markdown commands for papers
 
+- `##### header5`: margin note
 - `ipe`: start a new in-paragraph enumeration, use \item for the individual items
 - `/ipe`: end an in-paragraph enumeration
 

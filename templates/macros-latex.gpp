@@ -56,11 +56,6 @@
 
 <#define pause|<!---\pause--->>
 
-<#define todo|\todo{#1} >
-<#define todoinline|\todo[inline]{#1} >
-
-
-
 <#define tikzpage|
 \begin{tikzpicture}[remember picture,overlay,every node/.style={anchor=center}]
 #1

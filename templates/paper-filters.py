@@ -22,7 +22,7 @@ def fig(name, props):
 def structure_para(v, f, m):
     global marginnote
     if not len(marginnote) == 0:
-        note = [li(r'\m{%s}' % marginnote)]
+        note = [li('\\m{%s}' % marginnote)]
         marginnote = ''
         return pf.Para(note + v)
 
