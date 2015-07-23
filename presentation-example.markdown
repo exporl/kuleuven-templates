@@ -82,7 +82,7 @@ Default lists:
 
 Numbered lists:
 
-1.  First paragraph <#pause>
+1.  First paragraph \pause
 2.  Second paragraph
 3.  Third paragraph
 
