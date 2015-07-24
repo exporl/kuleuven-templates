@@ -1,5 +1,6 @@
 *~
 *.pyc
+/Makefile.local
 /*.pdf
 /.travis.key
 /*-example.tex
