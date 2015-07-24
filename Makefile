@@ -1,4 +1,4 @@
-# Pandoc/Latex make file
+# R/Pandoc/Latex make file
 #
 # make pdflatex: build
 # make pdfview: start pdf viewer
@@ -52,7 +52,6 @@ TIKZTOTEXCMD=( \
 	echo '\input{$(<F)}'; \
 	echo '\end{document}'; \
     ) > $@
-GPPCMD=gpp -U '<\#' '>' '\B' '|' '>' '<' '>' '\#' '' +n
 PDFPDFPICTURES=$(wildcard *.pdf figures/*.pdf)
 EPSPDFPICTURES=$(patsubst %.eps,$(BUILDDIR)/%.pdf,$(notdir $(wildcard *.eps figures/*.eps)))
 EPSPNGPICTURES=$(patsubst %.eps,$(BUILDDIR)/%-png.png,$(notdir $(wildcard *.eps figures/*.eps)))
@@ -80,40 +79,14 @@ builddir:
 
 %.tex: %.markdown
 	mkdir -p $(BUILDDIR)
-	( \
-	    cat $*.markdown | sed -n '1,3{/^%[^%]/p}'; \
-	    cat templates/macros-latex.gpp | sed '/^<!-- /d'; \
-	    cat $*.markdown | sed -n '1,3{/^%[^%]/b};p' \
-	) \
-	    | $(GPPCMD) \
-	    | sed "/^%% /d" \
-	    | perl -p0e 's/<\!---(.+?)--->/\\begin{PANDOCESCAPE}\1\\end{PANDOCESCAPE}/gs' \
-	    | perl -p0e 's/<\!--=(.+?)=-->/\\verb+AAAAA\1ZZZZZ+/gs' \
-	    | perl -p0e 's/^[\n ]*% /% /' \
-	    > $(BUILDDIR)/$*.markdown; \
-	cat $(BUILDDIR)/$*.markdown \
-	    | pandoc -s $$(grep -h '^%% ' $*.markdown | sed 's/^%% /--/') \
-	    | perl -p0e 's/\\begin{PANDOCESCAPE}(.+?)\\end{PANDOCESCAPE}/\1/gs' \
-	    | perl -p0e 's/\\verb\+AAAAA(.+?)ZZZZZ\+/\1/gs' \
-	    > $*.tex
+	sed "/^%% /d" $*.markdown > $(BUILDDIR)/$*.markdown
+	pandoc -s $$(grep -h '^%% ' $*.markdown | sed 's/^%% /--/') $(BUILDDIR)/$*.markdown -o $*.tex
 
 pdflatex-%: %.tex $(PDFPDFPICTURES) $(EPSPDFPICTURES) $(TIKZPDFPICTURES) $(BUILDDIR)/parsed-references.bib
 	mkdir -p $(BUILDDIR)
 	-$(LATEXCMD) $*.tex
 	-for i in "$(BUILDDIR)/$*"*.aux; do $(BIBTEXCMD) "$$i"; done
 	-if [[ "$(COPYPDF)" = "yes" ]]; then cp $(BUILDDIR)/$*.pdf .; fi
-
-odt-%: %.markdown $(EPSPNGPICTURES) $(BUILDDIR)/parsed-references.bib
-	mkdir -p $(BUILDDIR)
-	( \
-	    echo '<#include templates/macros-odt.gpp>'; \
-	    cat $*.markdown \
-	) \
-	    | $(GPPCMD) \
-	    | sed "/^%% /d" \
-	    | perl -p0e 's/^[\n ]*% /% /' \
-	    | ( cd $(BUILDDIR) && pandoc -s --default-image-extension png $$(grep -h '^%% ' $(abspath $*).markdown | grep -vE '^%% (template|to=)' | sed 's/^%% /--/') -o $*.odt )
-	-cp $(BUILDDIR)/$*.odt .
 
 pdfview-%: %.pdf
 	xdg-open $(BUILDDIR)/$*.pdf &
@@ -125,7 +98,7 @@ ondemand-%:
 	inotifywait . -q -e close_write -m --format "%w%f" \
 	    | while read filename; do \
 	    [[ "$$filename" =~ tmp-pdfcrop-.*\.tex$$ ]] && continue; \
-	    [[ "$$filename" =~ ^\./[^.].*\.(tex|sty|markdown|gpp|eps|tikz)|Makefile$$ ]] || continue; \
+	    [[ "$$filename" =~ ^\./[^.].*\.(tex|sty|markdown|eps|tikz)|Makefile$$ ]] || continue; \
 	    echo $${GREEN}Change detected in $$filename$${NORMAL}; \
 	    while read -t 1 filename; do \
 		echo $${GREEN}Change detected in $$filename$${NORMAL}; \

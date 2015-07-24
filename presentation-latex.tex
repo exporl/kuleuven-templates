@@ -17,7 +17,7 @@
 \usepackage[T1]{fontenc}
 \usepackage{amsmath}
 \usepackage[nohyperlinks]{acronym}
-\usepackage{babel,lmodern,graphicx,mathptmx,xspace,wasysym,microtype,booktabs,tabularx,relsize,textcomp,longtable,lipsum,colortbl,eurosym,url,multicol,etoolbox,multimedia,pdfpages,fixltx2e}
+\usepackage{babel,lmodern,graphicx,mathptmx,xspace,wasysym,microtype,booktabs,tabularx,relsize,textcomp,longtable,lipsum,colortbl,eurosym,url,multicol,etoolbox,multimedia,pdfpages,fixltx2e,ifluatex}
 \usepackage[olditem,oldenum]{paralist}
 \usepackage[babel=true]{csquotes}
 \usepackage[thinqspace,amssymb,textstyle]{SIunits}
@@ -25,6 +25,7 @@
 \usepackage[symbol]{footmisc}
 \usepackage[notquote]{hanging}
 \usepackage[normalem]{ulem}
+%\usepackage{lua-visual-debug}
 
 \pdfstringdefDisableCommands{\renewcommand{\sout}{}}
 \graphicspath{{figures/}}
@@ -37,20 +38,6 @@
 
 
 %% From pandoc default template
-\usepackage{ifxetex,ifluatex}
-\usepackage{fixltx2e} % provides \textsubscript
-\ifxetex
-  \usepackage{fontspec,xltxtra,xunicode}
-  \defaultfontfeatures{Mapping=tex-text,Scale=MatchLowercase}
-\else
-  \ifluatex
-    \usepackage{fontspec}
-    \defaultfontfeatures{Mapping=tex-text,Scale=MatchLowercase}
-  \else
-    \usepackage[utf8]{inputenc}
-  \fi
-\fi
-
 %% End pandoc
 
 \mode<presentation>
@@ -77,8 +64,9 @@
 \setbeamerfont{tiny structure}{series=\bfseries}
 \setbeamerfont{caption}{}
 
-\setbeamersize{text margin left=0cm}
-\setbeamersize{sidebar width left=0.8cm}
+\setbeamersize{text margin left=0.8cm}
+\setbeamersize{text margin right=0.8cm}
+\setbeamersize{sidebar width left=0cm}
 
 \setbeamertemplate{navigation symbols}{}
 \setbeamertemplate{itemize item}{\footnotesize\raise1pt\hbox{\textbullet}}
@@ -89,61 +77,69 @@
 \setlength\leftmarginii{1em}
 \setlength\leftmarginiii{1em}
 
-\defbeamertemplate{background canvas}{nofooter}
-{%
-    \pgfdeclarehorizontalshading{bgshading}{0.62cm}{color(0cm)=(kulleft); color(\the\paperwidth)=(kulright)}%
-    \hskip-\paperwidth%
-    \hskip1.8cm%
-}
-
-\defbeamertemplate{background canvas}{kul}
-{%
-    \pgfdeclarehorizontalshading{bgshading}{0.62cm}{color(0cm)=(kulleft); color(\the\paperwidth)=(kulright)}%
-    \vbox to 0.62cm{%
-        \pgfuseshading{bgshading}%
-    }%
-    \hskip-\paperwidth%
-    \hskip1.8cm%
-    \vbox to \paperheight{%
-        \vskip8.68cm\hskip10.33cm\includegraphics[width=2.10cm]{templates/kuleuven}%
-    }%
-}
-
 \defbeamertemplate{background canvas}{title}
 {%
     \pgfdeclarehorizontalshading{bgshading}{8.70cm}{color(0cm)=(kulleft); color(\the\paperwidth)=(kulright)}%
     \vbox to 8.70cm{%
-        \pgfuseshading{bgshading}%
+        \pgfuseshading{bgshading}\hspace*{-1.6cm}%
     }%
     \hskip-\paperwidth%
-    \hskip1.8cm%
+    \hskip1.6cm%
     \vbox to \paperheight{%
         \vskip0.5cm\hskip0.5cm\includegraphics[width=2.83cm]{templates/kuleuven}%
         \vskip0.99cm\hskip0.76cm\includegraphics[width=2.84cm]{templates/key}%
-        \vskip-0.57cm\hskip11.61cm\includegraphics[width=0.58cm]{templates/sedes}%
+        \vskip-0.57cm\hskip11.61cm\includegraphics[width=0.58cm]{templates/sedes}\hspace*{-1cm}%
+        \vfill
     }%
+}
+
+\defbeamertemplate{background canvas}{grid}
+{%
+    \begin{tikzpicture}[remember picture,overlay,every node/.style={anchor=center}]
+        \foreach \d in {0,...,20} {
+            \draw[gray] (\d,0) -- (\d,-20);
+            \draw[gray] (0,-\d) -- (20,-\d);
+            \draw[lightgray] (\d+0.5,0) -- (\d+0.5,-20);
+            \draw[lightgray] (0,-\d-0.5) -- (20,-\d-0.5);
+            \node[anchor=north,red,font=\tiny] at (\d,0) {\d};
+            \node[anchor=west,red,font=\tiny] at (0,-\d) {\d};
+        }
+    \end{tikzpicture}
 }
 
 \defbeamertemplate{background canvas}{plain}{}
 
 \defbeamertemplate{footline}{large}
 {%
-    \vskip.4cm% make room for the logo
-    \begin{beamercolorbox}[ht=1em]{page number in head/foot}%
-    \centering\insertframenumber\vskip.25cm%
+    \pgfdeclarehorizontalshading{bgshading}{0.62cm}{color(0cm)=(kulleft); color(\the\paperwidth)=(kulright)}%
+    \vskip.3cm% make room for the logo
+    \parbox[t][0.62cm]{\paperwidth}{\pgfuseshading{bgshading}}\par%
+    \vskip-0.62cm%
+    \begin{beamercolorbox}[ht=0.37cm,dp=0.25cm,center]{page number in head/foot}%
+    \insertframenumber%
     \end{beamercolorbox}%
+    \vskip-0.92cm%
+    \parbox[t][0.92cm]{\paperwidth}{\hskip10.33cm\includegraphics[width=2.10cm]{templates/kuleuven}}\par%
 }
 
 \defbeamertemplate{footline}{nopagenumber}
 {%
-    \vskip.4cm% make room for the logo
+    \pgfdeclarehorizontalshading{bgshading}{0.62cm}{color(0cm)=(kulleft); color(\the\paperwidth)=(kulright)}%
+    \vskip.3cm% make room for the logo
+    \parbox[t][0.62cm]{\paperwidth}{\pgfuseshading{bgshading}}\par%
+    \vskip-0.62cm%
+    \begin{beamercolorbox}[ht=0.37cm,dp=0.25cm,center,ignorebg]{page number in head/foot}%
+    %
+    \end{beamercolorbox}%
+    \vskip-0.92cm%
+    \parbox[t][0.92cm]{\paperwidth}{\hskip10.33cm\includegraphics[width=2.10cm]{templates/kuleuven}}\par%
 }
 
 \defbeamertemplate{footline}{small}
 {%
-    \vskip.4cm% make room for the logo
-    \begin{beamercolorbox}[ht=1em]{normal text}%
-    \mdseries\centering\insertframenumber\vskip.25cm%
+    \vskip.3cm% make room for the logo
+    \begin{beamercolorbox}[ht=0.37cm,dp=0.25cm,center,ignorebg]{normal text}%
+    \mdseries\insertframenumber%
     \end{beamercolorbox}%
 }
 
@@ -152,19 +148,18 @@
 \setbeamertemplate{frametitle}
 {%
     \nointerlineskip%
-    \vbox to 0.98cm{%
-        \vskip.28cm%
-        {\usebeamercolor[fg]{framesubtitle}\usebeamerfont{framesubtitle}\insertsupertitle\strut\par}%
-        \vskip-.2cm%
-        {\usebeamercolor[fg]{frametitle}\usebeamerfont{frametitle}\insertframetitle\strut\par}%
-    }%
+    \vskip.28cm%
+    {\usebeamercolor[fg]{framesubtitle}\usebeamerfont{framesubtitle}\insertsupertitle\strut\par}%
+    \vskip-.2cm%
+    {\usebeamercolor[fg]{frametitle}\usebeamerfont{frametitle}\insertframetitle\strut\par}%
+    \vskip-.3cm%
 }
 
 \setbeamertemplate{title page}
 {
     \vbox{}%
     \vskip2.8cm%
-    \vbox to 7cm{%
+    \vbox to 6.5cm{%
         \hskip2.8cm%
         \begin{minipage}{7.9cm}
             \begin{beamercolorbox}{title}
@@ -190,22 +185,70 @@
                 \insertdate
             \end{beamercolorbox}%
         \end{minipage}%
+        \vfill
     }
 }
 
 \mode<all>
 
+\newcommand{\inlinesound}[2]{\movie[inlinesound,encoding=Signed,samplingrate=44100]{#1}{#2}}
+
+% disable for now as otherwise all commands that go between frames generated by
+% the filter will result in duplicate toc lines
+\renewcommand{\addcontentsline}[3]{}
+
+\newcommand{\largefooter}{\setbeamertemplate{footline}[large]}
+\newcommand{\emptyfooter}{\setbeamertemplate{footline}[nopagenumber]}
+\newcommand{\smallfooter}{\setbeamertemplate{footline}[small]}
+
+\newcommand{\sectiontoc}{\AtBeginSection[]{{
+    \nosupertitle
+    \emptyfooter
+    \begin{frame}[noframenumbering]{Outline}
+                \tableofcontents[currentsection]
+            \end{frame}
+    \largefooter
+}}}
+
+\newcommand{\subsectiontoc}{\AtBeginSubsection[]{{
+    \nosupertitle
+    \emptyfooter
+    \begin{frame}[noframenumbering]{Outline}
+                \tableofcontents[currentsection,currentsubsection]
+           \end{frame}
+    \largefooter
+}}}
+
+\newcommand{\notoc}{\AtBeginSection[]{}\AtBeginSubsection[]{}}
+
+\newcommand{\nosupertitle}{\renewcommand{\insertsupertitle}{}}
+\newcommand{\sectiontitle}{\renewcommand{\insertsupertitle}{\insertsectionhead}}
+\newcommand{\subsectiontitle}{\renewcommand{\insertsupertitle}{\insertsectionhead\ifx\insertsubsectionhead\empty\else{} -- \insertsubsectionhead\fi}}
+
+% animations do not work atm as figures are set on independent frames
+\newcommand{\slidefig}[2]{\usebackgroundtemplate{\parbox[c][\paperheight][c]{\paperwidth}{\centering\includegraphics#1[height=\paperheight,width=\paperwidth,keepaspectratio]{#2}}}\begin{frame}[plain]\end{frame}\usedefaultcanvas}
+
+\newcommand{\usedefaultcanvas}{\setbeamertemplate{background canvas}[\defaultcanvas]}
+\newcommand{\gridcanvas}{\renewcommand{\defaultcanvas}{grid}\usedefaultcanvas}
+\newcommand{\plaincanvas}{\renewcommand{\defaultcanvas}{plain}\usedefaultcanvas}
+
+\newcommand{\insertsupertitle}{}
+
+
+
+
+
+
+\newcommand{\defaultcanvas}{plain}
 
 
 % Defining a new coordinate system for the page:
 %
-% --------------------------
-% |(-1,1)    (0,1)    (1,1)|
-% |                        |
-% |(-1,0)    (0,0)    (1,0)|
-% |                        |
-% |(-1,-1)   (0,-1)  (1,-1)|
-% --------------------------
+% ----------------
+% |(0,1)    (1,1)|
+% |              |
+% |(0,0)    (1,0)|
+% ----------------
 \makeatletter
 \def\parsecomma#1,#2\endparsecomma{\def\page@x{#1}\def\page@y{#2}}
 \tikzdeclarecoordinatesystem{page}{
@@ -235,10 +278,6 @@
 %  \draw[thick,green] (page cs:0.2,0.2) rectangle (page cs:0.8,0.8);
 %\end{tikzpicture}
 
-
-% section in title
-\newcommand{\insertsupertitle}{\insertsectionhead}
-
 \setcounter{secnumdepth}{0}
 
 \title{Title}
@@ -254,17 +293,15 @@
 \begin{frame}[plain,noframenumbering]
     \titlepage
 \end{frame}
-\note{}
 
-\setbeamertemplate{background canvas}[kul]
-%\setbeamertemplate{background canvas}[plain]
+\usedefaultcanvas
 
 
-\setbeamertemplate{background canvas}[kul]\setbeamertemplate{footline}[nopagenumber]
+\emptyfooter
 \begin{frame}[noframenumbering]{Outline}
-\tableofcontents
-\end{frame}
-\setbeamertemplate{background canvas}[kul]\setbeamertemplate{footline}[large]
+        \tableofcontents
+    \end{frame}
+\largefooter
 
 \section{First Section}\label{first-section}
 

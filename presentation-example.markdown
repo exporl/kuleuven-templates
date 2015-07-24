@@ -27,8 +27,7 @@ header-includes: \input{presentation-example.header}
 <!--Show the first figure on the first slide, and the second on the second.
     When in handout mode (last parameter) where everything is normally shown on
     one slide, hide the first figure by setting its slide number to zero -->
-<#hfig presentation-examplefig|1|0>
-<#hfig presentation-examplefig-magenta|2>
+![<1|handout:0><2>{h}](presentation-examplefig,presentation-examplefig-magenta)
 
 <!-- Comments -->
 Default lists:
@@ -49,7 +48,7 @@ Default lists:
 
 - You can show full-screen figures as on the next slide
 
-<#slidefig presentation-examplefig-electrodes>
+![{s}](presentation-examplefig-electrodes)
 
 ## Part 2
 
@@ -71,7 +70,7 @@ Default lists:
 
 [column]
 
-![The 10-20 system]({width=\textwidth}presentation-examplefig-electrodes)
+![{h}The 10-20 system](presentation-examplefig-electrodes)
 
 [/columns]
 

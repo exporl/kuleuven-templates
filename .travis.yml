@@ -11,7 +11,7 @@ addons:
             - lmodern
             - pdftk
 before_install:
-- export R_LIBS_USER=$HOME/prebuild/R PATH=$PATH:$HOME/prebuild/gpp/bin:$HOME/prebuild/texlive/bin/x86_64-linux:$HOME/prebuild/haskell/bin PYTHONUSERBASE=$HOME/prebuild/python
+- export R_LIBS_USER=$HOME/prebuild/R PATH=$PATH:$HOME/prebuild/texlive/bin/x86_64-linux:$HOME/prebuild/haskell/bin PYTHONUSERBASE=$HOME/prebuild/python
 - ./.travis.git
 - ./.travis.deps
 script:

@@ -39,7 +39,7 @@ knitr::opts_chunk$set(fig.width = 4.7, fig.height = 1.9)
 
 ### Introduction Slide 1
 
-![<1|handout:0><2>{h}](presentation-examplefig,presentation-examplefig-magenta)
+![<1|handout:0><2>{f}](presentation-examplefig,presentation-examplefig-magenta)
 
 <!-- Comments -->
 Default lists:
@@ -98,11 +98,11 @@ Default lists:
 
 [column]
 
-![<1|handout:0><2>]({h}presentation-examplefig-electrodes,{h}presentation-examplefig-electrodes-ref)
+![<1|handout:0><2>]({f}presentation-examplefig-electrodes,{f}presentation-examplefig-electrodes-ref)
 
 [column]
 
-![<1|handout:0><2>{h}](presentation-examplefig-electrodes,presentation-examplefig-electrodes-ref)
+![<1|handout:0><2>{f}](presentation-examplefig-electrodes,presentation-examplefig-electrodes-ref)
 
 [/columns]
 
@@ -112,8 +112,8 @@ Default lists:
 
 [column]
 
-![<1|handout:0><2>{h}](presentation-examplefig-electrodes)
-![<1|handout:0><2>{h}](presentation-examplefig-electrodes-ref)
+![<1|handout:0><2>{f}](presentation-examplefig-electrodes)
+![<1|handout:0><2>{f}](presentation-examplefig-electrodes-ref)
 
 [column]
 
@@ -135,11 +135,11 @@ ggplot(iris, aes(Sepal.Length, Petal.Length)) +
 
 [column]
 
-![The 10-20 system]({h}presentation-examplefig-electrodes)
+![The 10-20 system]({width=\textwidth}presentation-examplefig-electrodes)
 
 [column]
 
-![{h}The 10-20 system](presentation-examplefig-electrodes)
+![{width=\textwidth}The 10-20 system](presentation-examplefig-electrodes)
 
 [/columns]
 

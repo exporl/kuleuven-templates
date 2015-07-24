@@ -4,33 +4,45 @@
 
 Latest version and bugreports on Github: <https://github.com/exporl/kuleuven-templates/>
 
-This repository contains markdown templates for presentations and posters according to the KU Leuven Corporate Design.
+This repository contains R/markdown/Latex templates for presentations and posters according to the KU Leuven Corporate Design.
 Next to the actual templates, a build system based on R/pandoc/texlive/make is provided.
 
 Examples:
 
+- presentation with R figures: [presentation-r-example.pdf](//exporl.github.io/kuleuven-templates/presentation-r-example.pdf)
 - presentation: [presentation-example.pdf](//exporl.github.io/kuleuven-templates/presentation-example.pdf)
-- poster: [poster-example.pdf](//exporl.github.io/kuleuven-templates/poster-example.pdf)
 - poster with R figures: [poster-r-example.pdf](//exporl.github.io/kuleuven-templates/poster-r-example.pdf)
+- poster: [poster-example.pdf](//exporl.github.io/kuleuven-templates/poster-example.pdf)
 - paper with R figures: [paper-r-example.pdf](//exporl.github.io/kuleuven-templates/paper-r-example.pdf)
 
 Pull requests welcome!
 
-## R Markdown
+## R, Markdown or Latex
 
-If you are using Markdown with R and/or [RStudio](http://rstudio.com/), you can also use the pandoc support of RMarkdown to create presentations or posters.
-See [poster-r-example.Rmd](poster-r-example.Rmd) and [paper-r-example.Rmd](paper-r-example.Rmd) for examples.
-If you are using RStudio, you can just click the `Knit` button to compile your markdown document.
+If you are already experienced with Latex, you could start with the Latex
+templates and never bother with all that fancy new R/Markdown stuff:
 
-## Markdown or Latex
+- Latex presentation: [presentation-latex.tex](presentation-latex.tex)
+- Latex poster: [poster-latex.tex](poster-latex.tex)
 
-You can also stick with Latex and not use Markdown.
-In this case, just use the latex versions to get started.
+If you need something that is a bit easier on the eyes and which allows very
+easy customization of the templates, take a look at the Markdown examples:
 
-- presentation: [presentation-latex.tex](presentation-latex.tex)
-- poster: [poster-latex.tex](poster-latex.tex)
+- Markdown presentation: [presentation-example.markdown](presentation-example.tex)
+- Markdown poster: [poster-example.tex](poster-example.tex)
 
-## New pandoc variables
+If you care about the reproducibility of your research, and want to be able to
+analyze your data and generate your figures in the same place where you write
+your text, R/Markdown should fit the bill quite nicely.
+
+If you are using [RStudio](http://rstudio.com/), you can just click the `Knit`
+button to compile your markdown document.
+
+- R/Markdown presentation: [presentation-r-example.Rmd](presentation-r-example.Rmd)
+- R/Markdown poster: [poster-r-example.Rmd](poster-r-example.Rmd)
+- R/Markdown paper: [paper-r-example.Rmd](paper-r-example.Rmd)
+
+## New Pandoc variables
 
 ### Pandoc variables for presentations
 
@@ -39,10 +51,12 @@ In this case, just use the latex versions to get started.
 - multicolstoc
 - sectiontitle
 - subsectiontitle
+- gridcanvas
 
-## New commands
+## New Markdown commands
 
-Various new markdown commands (mostly of the form `[command=param]`) are available.
+Various new Markdown commands (mostly of the form `[command=param]`) are
+available.
 
 ### Markdown commands for papers/presentations/posters
 
@@ -50,7 +64,8 @@ Various new markdown commands (mostly of the form `[command=param]`) are availab
 
     - `*`: starred figure environment (normally spans 2 columns)
     - `<anim>`: beamer animation specification
-    - `<option>`: latex figure options
+    - `<option>`: latex figure options, use the shortcuts `h` (horizontal fill),
+      `v` (vertical fill), `f` (fill) and `s` (slide fill) to do the Right Thing
 
     If multiple animation/option settings are defined next to the caption,
     they get spread across the figures. Paragraphs that only consist of
@@ -62,11 +77,16 @@ Various new markdown commands (mostly of the form `[command=param]`) are availab
     - `![caption]{figure}`: basic figure, put into a float
     - `![*caption]{figure}`: basic figure, put into a column-spanning float
     - `![{options}caption]{figure}`: basic figure in float, custom options
-    - `![{options}caption]{figure1,figure2}`: two figures in one float, custom options for all
-    - `![{options1}{options2}caption]{figure1,figure2}`: two figures in one float, custom options per figure
-    - `![caption]{{options1}figure1,{options2}figure2}`: two figures in one float, custom options per figure
-    - `![<1><2>caption]{figure1,figure2}`: two figures in one float, with animation
-    - `![<1><2>caption]{figure1}![<1><2>caption]{figure2}`: two figures with same caption in one paragraph get collapsed into one float
+    - `![{options}caption]{figure1,figure2}`: two figures in one float, custom
+      options for all
+    - `![{options1}{options2}caption]{figure1,figure2}`: two figures in one
+      float, custom options per figure
+    - `![caption]{{options1}figure1,{options2}figure2}`: two figures in one
+      float, custom options per figure
+    - `![<1><2>caption]{figure1,figure2}`: two figures in one float, with
+      animation
+    - `![<1><2>caption]{figure1}![<1><2>caption]{figure2}`: two figures with
+      same caption in one paragraph get collapsed into one float
 
 ### Markdown commands for papers
 
@@ -87,6 +107,8 @@ most of these need to be at the end of a frame
 - nosupertitle (default)
 - sectiontitle
 - subsectiontitle
+- plaincanvas (default)
+- gridcanvas
 
 - `[columns=...]`: start a new column set with the given number of columns
 - `[column]`: start a new column with equal width
@@ -107,12 +129,19 @@ most of these need to be at the end of a frame
 
 ## Make targets
 
+For building your documents:
+
+    make
+
+To automatically watch for changes and rebuild as required:
+
+    make ondemand
+
 - pdflatex-<basename>
 - handouts-<basename>
 - ppt-<basename>
 - a4version-<basename>
 - ondemand-<basename>
-
 
 ## Installation
 
@@ -125,16 +154,6 @@ If you only want to use the templates (without history), use
 Install dependencies:
 
     sudo apt-get install pandoc python-pandocfilters make texlive texlive-latex-recommended texlive-science texlive-bibtex-extra
-
-For building your documents:
-
-    make
-
-To automatically watch for changes and rebuild as required:
-
-    make ondemand
-
-See the top of Makefile for more information.
 
 ### Windows
 
@@ -193,4 +212,4 @@ Further TODOs
 - export a4version/handouts/ppt on travis
 - check that latex templates are unchanged on travis
 - explain anim specs
-- document special fig types: s, h, v
+- restore tikz helpers

@@ -34,7 +34,8 @@ def latexstringify(x):
 #
 #     *: starred figure environment (normally spans 2 columns)
 #     <anim>: beamer animation specification
-#     <option>: latex figure options
+#     <option>: latex figure options, use the shortcuts `h` (horizontal fill),
+#     `v` (vertical fill), `f` (fill) and `s` (slide fill) to do the Right Thing
 #
 #     If multiple animation/option settings are defined next to the caption,
 #     they get spread across the figures. Paragraphs that only consist of
@@ -144,6 +145,7 @@ class Image:
         [o, slide] = re.subn(r'(^|,)s($|,)', '', o)
         o = re.sub(r'(^|,)h($|,)', r'\1width=\\textwidth\2', o)
         o = re.sub(r'(^|,)v($|,)', r'\1height=0.72\\textheight\2', o)
+        o = re.sub(r'(^|,)f($|,)', r'\1width=\\textwidth,height=0.72\\textheight,keepaspectratio\2', o)
         return [o, slide > 0]
 
     def _parse_caption(self, v):

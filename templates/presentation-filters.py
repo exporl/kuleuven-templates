@@ -77,10 +77,14 @@ def structure_para(v, f, m):
             return afterframe('\\smallfooter')
         elif content == 'nosupertitle':
             return afterframe('\\nosupertitle')
-        if content == 'sectiontitle':
+        elif content == 'sectiontitle':
             return afterframe('\\sectiontitle')
         elif content == 'subsectiontitle':
             return afterframe('\\subsectiontitle')
+        elif content == 'gridcanvas':
+            return afterframe('\\gridcanvas')
+        elif content == 'plaincanvas':
+            return afterframe('\\plaincanvas')
         elif content.startswith('columns='):
             columns.append(Columns(result, int(content[8:])))
             return result

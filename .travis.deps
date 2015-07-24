@@ -5,10 +5,6 @@ if [ "$TRAVIS_BRANCH" = "updateprebuild" -a "$TRAVIS_PULL_REQUEST" = "false" ]; 
 
     R -e "install.packages(c('ggplot2','dplyr','knitr'),repos='http://cran.rstudio.com/',lib='$R_LIBS_USER')"
 
-    wget http://files.nothingisreal.com/software/gpp/gpp.tar.bz2
-    tar -xjf gpp.tar.bz2
-    ( cd gpp-*/ && ./configure --prefix="$HOME/prebuild/gpp" && make all install )
-
     cabal update
     sed -i "s|-- prefix:.*home.*|prefix: $HOME/prebuild/haskell|" "$HOME/.cabal/config"
     cabal install pandoc
