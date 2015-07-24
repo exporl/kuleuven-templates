@@ -28,6 +28,7 @@ $endif$
 \usepackage[symbol]{footmisc}
 \usepackage[notquote]{hanging}
 \usepackage[normalem]{ulem}
+%\usepackage{lua-visual-debug}
 
 \pdfstringdefDisableCommands{\renewcommand{\sout}{}}
 \graphicspath{{figures/}}
@@ -71,20 +72,6 @@ $if(biblio-files)$
 $endif$
 
 %% From pandoc default template
-\usepackage{ifxetex,ifluatex}
-\usepackage{fixltx2e} % provides \textsubscript
-\ifxetex
-  \usepackage{fontspec,xltxtra,xunicode}
-  \defaultfontfeatures{Mapping=tex-text,Scale=MatchLowercase}
-\else
-  \ifluatex
-    \usepackage{fontspec}
-    \defaultfontfeatures{Mapping=tex-text,Scale=MatchLowercase}
-  \else
-    \usepackage[utf8]{inputenc}
-  \fi
-\fi
-
 $if(highlighting-macros)$
 % Note: removed highlighting-macros from pandoc to change fontsize
 %% Custom code highlighting
@@ -166,14 +153,14 @@ $endif$
 {%
     \pgfdeclarehorizontalshading{bgshading}{8.70cm}{color(0cm)=(kulleft); color(\the\paperwidth)=(kulright)}%
     \vbox to 8.70cm{%
-        \pgfuseshading{bgshading}%
+        \pgfuseshading{bgshading}\hspace*{-1.6cm}%
     }%
     \hskip-\paperwidth%
-    \hskip1.8cm%
+    \hskip1.6cm%
     \vbox to \paperheight{%
         \vskip0.5cm\hskip0.5cm\includegraphics[width=2.83cm]{templates/kuleuven}%
         \vskip0.99cm\hskip0.76cm\includegraphics[width=2.84cm]{templates/key}%
-        \vskip-0.57cm\hskip11.61cm\includegraphics[width=0.58cm]{templates/sedes}%
+        \vskip-0.57cm\hskip11.61cm\includegraphics[width=0.58cm]{templates/sedes}\hspace*{-1cm}%
         \vfill
     }%
 }
@@ -230,7 +217,7 @@ $endif$
 {
     \vbox{}%
     \vskip2.8cm%
-    \vbox to 7cm{%
+    \vbox to 6.5cm{%
         \hskip2.8cm%
         \begin{minipage}{7.9cm}
             \begin{beamercolorbox}{title}
