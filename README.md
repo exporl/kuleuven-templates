@@ -1,11 +1,13 @@
-# KU Leuven Markdown templates
+# KU Leuven R/Markdown templates
 
 [![Build Status](https://travis-ci.org/exporl/kuleuven-templates.svg?branch=master)](https://travis-ci.org/exporl/kuleuven-templates)
+
+<!-- TOC bookmarklet: https://github.com/sillero/github-markdown-toc -->
 
 Latest version and bugreports on Github: <https://github.com/exporl/kuleuven-templates/>
 
 This repository contains
-[R](https://en.wikipedia.org/wiki/R_programming_language),
+[R](https://en.wikipedia.org/wiki/R_programming_language)/[Markdown](http://rmarkdown.rstudio.com/),
 [Markdown](https://en.wikipedia.org/wiki/Markdown) and
 [LaTeX](https://en.wikipedia.org/wiki/LaTeX)
 templates for presentations and posters according to the KU Leuven Corporate
@@ -25,9 +27,9 @@ Examples:
 
 Pull requests welcome!
 
-## R, Markdown or LaTeX
+## R/Markdown, plain Markdown or LaTeX
 
-### R
+### R/Markdown
 
 If you care about the reproducibility of your research, and want to be able to
 analyze your data and generate your figures in the same place where you write
@@ -39,9 +41,9 @@ button to compile your R/Markdown document.
 - R/Markdown poster: [poster-r-example.Rmd](poster-r-example.Rmd)
 - R/Markdown paper: [paper-r-example.Rmd](paper-r-example.Rmd)
 
-### Markdown
+### Plain Markdown
 
-If you need something that is a bit easier on the eyes than LaTeX and allows very
+If you need something that is a easier on the eyes than LaTeX and allows very
 easy customization of the templates, but don't want to go the full way to
 R/Markdown, take a look at the plain Markdown examples:
 
@@ -60,12 +62,12 @@ that fancy new R/Markdown stuff, you can start with the LaTeX templates:
 
 ### Pandoc variables for presentations
 
-- sectiontoc
-- subsectiontoc
-- multicolstoc
-- sectiontitle
-- subsectiontitle
-- gridcanvas
+- `sectiontoc`
+- `subsectiontoc`
+- `multicolstoc`
+- `sectiontitle`
+- `subsectiontitle`
+- `gridcanvas`
 
 ## New Markdown commands
 
@@ -112,17 +114,17 @@ available.
 
 most of these need to be at the end of a frame
 
-- notoc (default)
-- sectiontoc
-- subsectiontoc
-- largefooter (default)
-- emptyfooter
-- smallfooter
-- nosupertitle (default)
-- sectiontitle
-- subsectiontitle
-- plaincanvas (default)
-- gridcanvas
+- `notoc` (default)
+- `sectiontoc`
+- `subsectiontoc`
+- `largefooter` (default)
+- `emptyfooter`
+- `smallfooter`
+- `nosupertitle` (default)
+- `sectiontitle`
+- `subsectiontitle`
+- `plaincanvas` (default)
+- `gridcanvas`
 
 - `[columns=...]`: start a new column set with the given number of columns
 - `[column]`: start a new column with equal width
@@ -151,11 +153,11 @@ To automatically watch for changes and rebuild as required:
 
     make ondemand
 
-- pdflatex-<basename>
-- handouts-<basename>
-- ppt-<basename>
-- a4version-<basename>
-- ondemand-<basename>
+- `pdflatex-<basename>`
+- `handouts-<basename>`
+- `ppt-<basename>`
+- `a4version-<basename>`
+- `ondemand-<basename>`
 
 ## Installation
 
