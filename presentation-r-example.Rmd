@@ -39,11 +39,7 @@ knitr::opts_chunk$set(fig.width = 4.7, fig.height = 1.9)
 
 ### Introduction Slide 1
 
-<!--Show the first figure on the first slide, and the second on the second.
-    When in handout mode (last parameter) where everything is normally shown on
-    one slide, hide the first figure by setting its slide number to zero -->
-<#hfig presentation-examplefig|1|0>
-<#hfig presentation-examplefig-magenta|2>
+![<1|handout:0><2>{h}](presentation-examplefig,presentation-examplefig-magenta)
 
 <!-- Comments -->
 Default lists:
@@ -60,23 +56,27 @@ Default lists:
 
 ## Part 1
 
-### Results Slide 1
-
-- You can show full-screen figures as on the next slide
-
-<#slidefig presentation-examplefig-electrodes>
-
-## Part 2
-
 [smallfooter]
 
-### Results Slide 3
+### Results Slide 1
 
-- You can also just replace the footer by a minimal version
+- You can replace the footer by a minimal version
 
 [largefooter]
 
 # Figure Examples
+
+### Full Screen
+
+- You can show full-screen figures as on the next slide
+
+![{s}](presentation-examplefig-electrodes)
+
+[largefooter]
+
+### Fill Vertical
+
+![{v}](presentation-examplefig-electrodes)
 
 ### Without Caption
 
@@ -84,11 +84,11 @@ Default lists:
 
 [column]
 
-![]({width=\textwidth}presentation-examplefig-electrodes)
+![]({h}presentation-examplefig-electrodes)
 
 [column]
 
-![{width=\textwidth}](presentation-examplefig-electrodes)
+![{h}](presentation-examplefig-electrodes)
 
 [/columns]
 
@@ -98,11 +98,11 @@ Default lists:
 
 [column]
 
-![<1|handout:0><2>]({width=\textwidth}presentation-examplefig-electrodes,{width=\textwidth}presentation-examplefig-electrodes-ref)
+![<1|handout:0><2>]({h}presentation-examplefig-electrodes,{h}presentation-examplefig-electrodes-ref)
 
 [column]
 
-![<1|handout:0><2>{width=\textwidth}](presentation-examplefig-electrodes,presentation-examplefig-electrodes-ref)
+![<1|handout:0><2>{h}](presentation-examplefig-electrodes,presentation-examplefig-electrodes-ref)
 
 [/columns]
 
@@ -112,8 +112,8 @@ Default lists:
 
 [column]
 
-![<1|handout:0><2>{width=\textwidth}](presentation-examplefig-electrodes)
-![<1|handout:0><2>{width=\textwidth}](presentation-examplefig-electrodes-ref)
+![<1|handout:0><2>{h}](presentation-examplefig-electrodes)
+![<1|handout:0><2>{h}](presentation-examplefig-electrodes-ref)
 
 [column]
 
@@ -135,11 +135,11 @@ ggplot(iris, aes(Sepal.Length, Petal.Length)) +
 
 [column]
 
-![The 10-20 system]({width=\textwidth}presentation-examplefig-electrodes)
+![The 10-20 system]({h}presentation-examplefig-electrodes)
 
 [column]
 
-![{width=\textwidth}The 10-20 system](presentation-examplefig-electrodes)
+![{h}The 10-20 system](presentation-examplefig-electrodes)
 
 [/columns]
 

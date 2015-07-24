@@ -192,3 +192,5 @@ Further TODOs
 - example sound file
 - export a4version/handouts/ppt on travis
 - check that latex templates are unchanged on travis
+- explain anim specs
+- document special fig types: s, h, v

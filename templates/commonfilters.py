@@ -1,3 +1,4 @@
+import re
 import pandocfilters as pf
 
 def lb(s):
@@ -50,6 +51,34 @@ def latexstringify(x):
 #   ![<1><2>caption]{figure1,figure2}: two figures in one float, with animation
 #   ![<1><2>caption]{figure1}![<1><2>caption]{figure2}: two figures with same caption in one paragraph get collapsed into one float
 
+class HeaderWatcher:
+    def __init__(self):
+        self._sections = []
+
+    def update(self, k, v, f, m):
+        if k == 'Header':
+            unnumbered = pf.Header(v[0], ('', ['unnumbered'], []), v[2])
+            if v[0] == 1:
+                self._sections = [unnumbered]
+            elif v[0] == 2:
+                self._sections = [self._sections[0], unnumbered]
+
+    def betweenframes(self, s):
+        return self._sections + [s]
+
+class ImageWalker:
+    def __init__(self):
+        self._watcher = HeaderWatcher()
+
+    def filter(self, k, v, f, m):
+        self._watcher.update(k, v, f, m)
+        if k == 'Image' and v[1][1] == 'fig:':
+            return Image(v, f, m).render(self._watcher, True)
+        if k == 'Para' and all(vv['t'] in ['Image', 'Space'] for vv in v):
+            images = [Image(vv['c'], f, m) for vv in v if vv['t'] == 'Image']
+            if len(images) > 0 and images[0].merge(images[1:]):
+                return images[0].render(self._watcher, False)
+
 class Image:
     def __init__(self, v, f, m):
         self._figtype = 'figure'
@@ -67,16 +96,30 @@ class Image:
         self._anims = self._spread(self._captionanims, self._anims)
         self._options = self._spread(self._captionoptions, self._options)
 
-    def render(self):
+    def render(self, watcher, inline):
         result = []
-        if len(self._caption) > 0:
-            result.append(li('\\begin{%s}\\centering\n' % self._figtype))
+        betweenframes = False
         for i, f in enumerate(self._filenames):
-            result.append(fig(f, self._options[i], self._anims[i]))
-        if len(self._caption) > 0:
-            result.extend([li('\\caption{'), li(self._caption), li('}\n')])
-            result.append(li('\\end{%s}' % self._figtype))
-        return result
+            anim = self._anims[i]
+            [options, slide] = self._mangleoptions(self._options[i])
+            if slide:
+                result.append(li('\\slidefig{%s}{%s}' % ('<' + anim + '>' if len(anim) > 0 else '', f)))
+                betweenframes = True
+                continue
+            if i == 0 and len(self._caption) > 0:
+                result.append(li('\\begin{%s}\n' % self._figtype))
+            if i == 0 and len(self._caption) == 0 and not inline:
+                result.append(li('\\centering'))
+            result.append(fig(f, options, anim))
+            if i + 1 == len(self._filenames) and len(self._caption) > 0:
+                result.extend([li('\\caption{'), li(self._caption), li('}\n')])
+                result.append(li('\\end{%s}' % self._figtype))
+        if inline:
+            if betweenframes:
+                return pf.Str('Unable to return paragraph when in inline mode')
+            return result
+        result = pf.Para(result)
+        return watcher.betweenframes(result) if betweenframes else result
 
     ''' Merge consecutive images with the same caption, recalculate anims and options '''
     def merge(self, others):
@@ -90,21 +133,18 @@ class Image:
         self._options = self._spread(self._captionoptions, self._options)
         return True
 
-    @staticmethod
-    def filter(k, v, f, m):
-        if k == 'Image' and v[1][1] == 'fig:':
-            return Image(v, f, m).render()
-        if k == 'Para' and all(vv['t'] in ['Image', 'Space'] for vv in v):
-            images = [Image(vv['c'], f, m) for vv in v if vv['t'] == 'Image']
-            if len(images) > 1 and images[0].merge(images[1:]):
-                return pf.Para(images[0].render())
-
     def _spread(self, tospread, pattern):
         if len(tospread) == 0:
             return pattern
         if len(tospread) == 1:
             return [tospread[0]] * len(pattern)
         return [tospread[i] if i < len(tospread) else p for i, p in enumerate(pattern)]
+
+    def _mangleoptions(self, o):
+        [o, slide] = re.subn(r'(^|,)s($|,)', '', o)
+        o = re.sub(r'(^|,)h($|,)', r'\1width=\\textwidth\2', o)
+        o = re.sub(r'(^|,)v($|,)', r'\1height=0.72\\textheight\2', o)
+        return [o, slide > 0]
 
     def _parse_caption(self, v):
         pos = 0

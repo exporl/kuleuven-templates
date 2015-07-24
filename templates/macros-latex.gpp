@@ -1,7 +1,3 @@
-<!-- Markdown/LaTeX macro's -->
-<!--    Developed by Tom Francart and Michael Hofmann -->
-<!--    Each macro takes a number of arguments described below. Optional arguments are given between [] -->
-
 <!-- #fig include graphical file -->
 <!--    1- filename, extension not required. Should be in current folder or graphicspath, which usually includes ./figures -->
 <!--    [2-] maximum figure height, in fraction of page height -->
@@ -15,27 +11,6 @@
 <!--    [3-] display order D: if specified, an animation will be generated and this figure will be the Dth one to be shown -->
 <!--    [4-] if 1, show this figure on the handouts -->
 <#define rawfig|<!---\includegraphics<#ifneq #3|><#3<#ifneq #4|>|handout:#4<#endif>><#endif>[#2,keepaspectratio]{#1}--->
->
-
-<!-- #vfig include graphical file, scale to page width -->
-<!--    1- filename, extension not required -->
-<!--    [2-] display order D: if specified, an animation will be generated and this figure will be the Dth one to be shown -->
-<!--    [3-] if 1, show this figure on the handouts -->
-<#define hfig|<!---\includegraphics<#ifneq #2|><#2<#ifneq #3|>|handout:#3<#endif>><#endif>[width=\textwidth]{#1}--->>
-
-<!-- #hfig include graphical file, scale to page height -->
-<!--    1- filename, extension not required -->
-<!--    [2-] display order D: if specified, an animation will be generated and this figure will be the Dth one to be shown -->
-<!--    [3-] if 1, show this figure on the handouts -->
-<#define vfig|<!---\includegraphics<#ifneq #2|><#2<#ifneq #3|>|handout:#3<#endif>><#endif>[height=0.72\paperheight]{#1}--->>
-
-<!-- #slidefig generate slide containing only given figure -->
-<!--    1- filename, extension not required -->
-<#define slidefig|
-##
-<!---\usebackgroundtemplate{\parbox[c][\paperheight][c]{\paperwidth}{\centering\includegraphics[height=\paperheight,width=\paperwidth,keepaspectratio]{#1}}}
-\begin{frame}[plain]\end{frame}
-\setbeamertemplate{background canvas}[kul]--->
 >
 
 <#define tikzpage|

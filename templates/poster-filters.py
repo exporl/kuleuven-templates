@@ -131,5 +131,5 @@ if __name__ == '__main__':
         format = ''
     doc = pf.walk(doc, filter_structure, format, doc[0]['unMeta'])
     doc = pf.walk(doc, filter_paraenum, format, doc[0]['unMeta'])
-    doc = pf.walk(doc, Image.filter, format, doc[0]['unMeta'])
+    doc = pf.walk(doc, ImageWalker().filter, format, doc[0]['unMeta'])
     json.dump(doc, sys.stdout)
