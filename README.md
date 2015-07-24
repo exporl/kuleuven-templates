@@ -2,7 +2,8 @@
 
 [![Build Status](https://travis-ci.org/exporl/kuleuven-templates.svg?branch=master)](https://travis-ci.org/exporl/kuleuven-templates)
 
-<!-- TOC bookmarklet: https://github.com/sillero/github-markdown-toc -->
+<!-- TOC bookmarklet: https://github.com/sillero/github-markdown-toc
+!function(){"use strict";function e(e){var n=[{tagIndex:0,index:0,text:"###Table of Contents"}].concat(e.map(function(e){return{tagIndex:parseInt(e.tagName[1]),text:e.textContent,url:e.querySelector("a").getAttribute("href")}}));return n.each=function(e){return n.forEach(e),n},n}function n(e,n){for(var r=e[n],t=n;t>=0;t--)if(e[t].tagIndex<r.tagIndex)return e[t]}function r(e,r,t){var o=n(t,r);o&&(o.children=o.children||[],o.children.push(e),e.index=o.index+1,e.remove=!0)}function t(e){return!("remove"in e)}function o(e,n){e=e||[];var r=[n.text];return n.index&&(r=[new Array(n.index).join("    "),"- [",n.text,"](",n.url,")"]),e.push(r.join("")),n.children&&(e=n.children.reduce(o,e)),e}var c=document.querySelector("#readme .markdown-body")||document.querySelector("#wiki-body .markdown-body"),i=Array.prototype.slice.call(c.querySelectorAll("h1, h2, h3, h4, h5, h6")),u=e(i).each(r).filter(t).reduce(o,[]).join("\n");console.log(u),alert(u)}(); -->
 
 Latest version and bugreports on Github: <https://github.com/exporl/kuleuven-templates/>
 
@@ -26,6 +27,27 @@ Examples:
 - paper with R figures: [paper-r-example.pdf](//exporl.github.io/kuleuven-templates/paper-r-example.pdf)
 
 Pull requests welcome!
+
+### Table of Contents
+- [R/Markdown, plain Markdown or LaTeX](#rmarkdown-plain-markdown-or-latex)
+    - [R/Markdown](#rmarkdown)
+    - [Plain Markdown](#plain-markdown)
+    - [LaTeX](#latex)
+- [New Pandoc variables](#new-pandoc-variables)
+    - [Pandoc variables for presentations](#pandoc-variables-for-presentations)
+- [New Markdown commands](#new-markdown-commands)
+    - [Markdown commands for papers/presentations/posters](#markdown-commands-for-paperspresentationsposters)
+    - [Markdown commands for papers](#markdown-commands-for-papers)
+    - [Markdown commands for presentations](#markdown-commands-for-presentations)
+    - [Markdown commands for posters](#markdown-commands-for-posters)
+- [Make targets](#make-targets)
+- [Installation](#installation)
+    - [Linux](#linux)
+    - [Windows](#windows)
+        - [Markdown/LaTeX build chain](#markdownlatex-build-chain)
+        - [PDF viewer](#pdf-viewer)
+        - [SublimeText](#sublimetext)
+- [Further TODOs](#further-todos)
 
 ## R/Markdown, plain Markdown or LaTeX
 
