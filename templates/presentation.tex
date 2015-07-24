@@ -161,13 +161,6 @@ $endif$
 \setlength\leftmarginii{1em}
 \setlength\leftmarginiii{1em}
 
-\defbeamertemplate{background canvas}{nofooter}
-{%
-    \pgfdeclarehorizontalshading{bgshading}{0.62cm}{color(0cm)=(kulleft); color(\the\paperwidth)=(kulright)}%
-    \hskip-\paperwidth%
-    \hskip1.8cm%
-}
-
 \defbeamertemplate{background canvas}{kul}
 {%
     \pgfdeclarehorizontalshading{bgshading}{0.62cm}{color(0cm)=(kulleft); color(\the\paperwidth)=(kulright)}%
@@ -224,12 +217,11 @@ $endif$
 \setbeamertemplate{frametitle}
 {%
     \nointerlineskip%
-    \vbox to 0.98cm{%
-        \vskip.28cm%
-        {\usebeamercolor[fg]{framesubtitle}\usebeamerfont{framesubtitle}\insertsupertitle\strut\par}%
-        \vskip-.2cm%
-        {\usebeamercolor[fg]{frametitle}\usebeamerfont{frametitle}\insertframetitle\strut\par}%
-    }%
+    \vskip.28cm%
+    {\usebeamercolor[fg]{framesubtitle}\usebeamerfont{framesubtitle}\insertsupertitle\strut\par}%
+    \vskip-.2cm%
+    {\usebeamercolor[fg]{frametitle}\usebeamerfont{frametitle}\insertframetitle\strut\par}%
+    \vskip-.3cm%
 }
 
 \setbeamertemplate{title page}
