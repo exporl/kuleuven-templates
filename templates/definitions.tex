@@ -1,3 +1,4 @@
+\ifluatex\else
 % textcomp defines 00B1 wrong, so fix it here
 \DeclareUnicodeCharacter{2192}{\ensuremath{\rightarrow}}
 \DeclareUnicodeCharacter{2194}{\ensuremath{\leftrightarrow}}
@@ -12,6 +13,7 @@
 \DeclareUnicodeCharacter{2265}{\ensuremath{\geq}}
 \DeclareUnicodeCharacter{03BC}{\micro}
 \DeclareUnicodeCharacter{2206}{\ensuremath{\Delta}}
+\fi
 
 \newcommand{\m}[1]{\todo[noline,bordercolor=orange!20,backgroundcolor=orange!20]{#1}}
 

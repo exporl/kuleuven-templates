@@ -6,3 +6,6 @@
 
 # Leave the pdf file in the temp directory and don't copy it to the source directory
 # COPYPDF=no
+
+# Use lualatex instead of pdflatex
+# LATEX=lualatex

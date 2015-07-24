@@ -13,12 +13,13 @@ SHELL=/bin/bash
 BUILDDIR=/tmp/latex-build$(subst /,-,$(abspath .))
 BIBSOURCE=
 COPYPDF=yes
+LATEX=pdflatex
 
 # To customize, copy Makefile.local-example to Makefile.local
 -include Makefile.local
 
 LATEXOPTIONS=--synctex=1 -shell-escape -interaction=nonstopmode -output-directory=$(BUILDDIR)
-LATEXCMD=TEXINPUTS=$(BUILDDIR):figures: pdflatex $(LATEXOPTIONS)
+LATEXCMD=TEXINPUTS=$(BUILDDIR):figures: $(LATEX) $(LATEXOPTIONS)
 BIBTEXCMD=BIBINPUTS=$(BUILDDIR): openout_any=a bibtex
 EPSTOPDFCMD=mkdir -p $(BUILDDIR) && epstopdf $< --outfile $@
 EPSTOPNGCMD=mkdir -p $(BUILDDIR) && convert $< $@
