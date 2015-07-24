@@ -29,7 +29,7 @@ captionfont: size=\small
 
 ### Graphs
 
-![two figures side-by-side](presentation-examplefig{width=0.5\linewidth,trim=0 0 0 1cm},presentation-examplefig-magenta{width=0.5\linewidth,trim=-1cm 0 0 0}})
+![two figures side-by-side]({width=0.5\linewidth,trim=0 0 0 1cm}presentation-examplefig,{width=0.5\linewidth,trim=-1cm 0 0 0}presentation-examplefig-magenta)
 
 <!-- Comments -->
 ### Default lists
@@ -84,7 +84,7 @@ captionfont: size=\small
 
 # Big figure
 
-![electrodes!](presentation-examplefig-electrodes{width=.8\linewidth})
+![electrodes!]({width=.8\linewidth}presentation-examplefig-electrodes)
 
 # Baz
 

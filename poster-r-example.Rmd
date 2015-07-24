@@ -36,7 +36,7 @@ knitr::opts_chunk$set(fig.width = 16, fig.height = 4)
 
 ### Graphs
 
-![two figures side-by-side](presentation-examplefig{width=0.5\linewidth},presentation-examplefig-magenta{width=0.5\linewidth})
+![two figures side-by-side]({width=0.5\linewidth}presentation-examplefig,{width=0.5\linewidth}presentation-examplefig-magenta)
 
 <!-- Comments -->
 ### Default lists
@@ -71,7 +71,7 @@ ggplot(iris, aes(Sepal.Length, Petal.Length)) +
 
 # Big figure
 
-![electrodes!](presentation-examplefig-electrodes{width=.7\linewidth})
+![electrodes!]({width=.7\linewidth}presentation-examplefig-electrodes)
 
 # Baz
 

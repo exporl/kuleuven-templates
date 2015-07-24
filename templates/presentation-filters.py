@@ -2,6 +2,16 @@
 import pandocfilters as pf
 import json
 import sys
+from commonfilters import *
+
+lastsection = ''
+lastsubsection = ''
+
+def afterframe(s):
+    global lastsection, lastsubsection
+    return [pf.Header(1, ('', ['unnumbered'], []), [pf.Str(lastsection)]),
+            pf.Header(2, ('', ['unnumbered'], []), [pf.Str(lastsubsection)]),
+            lb(s)]
 
 class Columns:
     def __init__(self, result, columns = 1, main = False):
@@ -41,24 +51,6 @@ class Columns:
         self.valid = False
 
 columns = []
-
-lastsection = ''
-lastsubsection = ''
-
-def lb(s):
-    return pf.RawBlock('latex', s)
-
-def li(s):
-    return pf.RawInline('latex', s)
-
-def afterframe(s):
-    global lastsection, lastsubsection
-    return [pf.Header(1, ('', ['unnumbered'], []), [pf.Str(lastsection)]),
-            pf.Header(2, ('', ['unnumbered'], []), [pf.Str(lastsubsection)]),
-            lb(s)]
-
-def fig(name, props):
-    return li('    \\includegraphics[%s]{%s}\n' % (props, name))
 
 # Supported syntax:
 #   [columns=...]: start a new column set with the given number of columns
@@ -110,47 +102,6 @@ def structure_header(v, f, m):
     elif v[0] == 2:
         lastsubsection = pf.stringify(v[2])
 
-def parse_figname(v, pos, l):
-    startpos = pos
-    while pos < l and v[pos] != ',' and v[pos] != '{':
-        pos = pos + 1
-    return [pos, v[startpos:pos]]
-
-def parse_figprops(v, pos, l):
-    startpos = pos
-    braces = 0
-    while pos < l and (v[pos] != '}' or braces > 0):
-        if v[pos] == '{':
-            braces = braces + 1
-        elif v[pos] == '}':
-            braces = braces - 1
-        pos = pos + 1
-    return [pos + 1, v[startpos:pos]] # closing }
-
-def parse_figitem(v, pos, l):
-    [pos, name] = parse_figname(v, pos, l)
-    if pos < l and v[pos] == '{':
-        [pos, prop] = parse_figprops(v, pos + 1, l)  # initial {
-    else:
-        prop = ''
-    return [pos + 1, [name, prop]] # comma between items
-
-def parse_figlist(v):
-    result = []
-    pos = 0
-    l = len(v)
-    while pos < l:
-        [pos, item] = parse_figitem(v, pos, l)
-        result.append(item)
-    return result
-
-def image_figure(v, f, m):
-    figstart = [ li('\\begin{figure}\n'), ]
-    figs = [ fig(*f) for f in parse_figlist(v[1][0].replace('%20', ' ')) ]
-    caption = [ li('    \\caption{') ] + v[0] + [ li('}\n') ] if len(v[0]) > 0 else []
-    figend = [ li('\\end{figure}') ]
-    return figstart + figs + caption + figend
-
 # Supported syntax:
 #   [columns=...]: start a new column set with the given number of columns
 #   [column]: start a new column with equal width
@@ -163,13 +114,6 @@ def filter_structure(k, v, f, m):
     elif k == 'Header':
         return structure_header(v, f, m)
 
-# Supported syntax:
-#   ![caption](figure{options},figure{options...): figure float
-
-def filter_image(k, v, f, m):
-    if k == 'Image' and v[1][1] == 'fig:':
-        return image_figure(v, f, m)
-
 if __name__ == '__main__':
     doc = json.loads(sys.stdin.read())
     if len(sys.argv) > 1:
@@ -177,5 +121,5 @@ if __name__ == '__main__':
     else:
         format = ''
     doc = pf.walk(doc, filter_structure, format, doc[0]['unMeta'])
-    doc = pf.walk(doc, filter_image, format, doc[0]['unMeta'])
+    doc = pf.walk(doc, Image.filter, format, doc[0]['unMeta'])
     json.dump(doc, sys.stdout)

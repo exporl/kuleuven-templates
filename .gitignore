@@ -1,10 +1,12 @@
 *~
+*.pyc
 /*.pdf
 /.travis.key
 /*-example.tex
 /*-example.ppt
 /*-example.odt
 /*-example-figures/
+/*-r-example.markdown
 /*-latex.ppt
 /*-latex.odt
 /windows-installer/*.msi

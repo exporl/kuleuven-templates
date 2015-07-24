@@ -42,7 +42,31 @@ In this case, just use the latex versions to get started.
 
 ## New commands
 
-Various new markdown commands (`[command=param]`) are available.
+Various new markdown commands (mostly of the form `[command=param]`) are available.
+
+### Markdown commands for papers/presentations/posters
+
+- `![*<anim>{option}caption]({options}figure,{options}figure...)`: figures
+
+    - `*`: starred figure environment (normally spans 2 columns)
+    - `<anim>`: beamer animation specification
+    - `<option>`: latex figure options
+
+    If multiple animation/option settings are defined next to the caption,
+    they get spread across the figures. Paragraphs that only consist of
+    figures with the same caption get collapsed into one float.
+
+    Examples:
+
+    - `![]{figure}`: basic figure, no float
+    - `![caption]{figure}`: basic figure, put into a float
+    - `![*caption]{figure}`: basic figure, put into a column-spanning float
+    - `![{options}caption]{figure}`: basic figure in float, custom options
+    - `![{options}caption]{figure1,figure2}`: two figures in one float, custom options for all
+    - `![{options1}{options2}caption]{figure1,figure2}`: two figures in one float, custom options per figure
+    - `![caption]{{options1}figure1,{options2}figure2}`: two figures in one float, custom options per figure
+    - `![<1><2>caption]{figure1,figure2}`: two figures in one float, with animation
+    - `![<1><2>caption]{figure1}![<1><2>caption]{figure2}`: two figures with same caption in one paragraph get collapsed into one float
 
 ### Markdown commands for papers
 
@@ -68,7 +92,6 @@ most of these need to be at the end of a frame
 - `[column]`: start a new column with equal width
 - `[column=...]`: start a new column with given fraction of the line width
 - `[/columns]`: end a column set
-- `![caption](figure{options},figure{options...)`: figure float
 
 ### Markdown commands for posters
 
@@ -79,9 +102,17 @@ most of these need to be at the end of a frame
 - `# header1`: start a new block
 - `## header1`: ignored for compatibility with the presentation template
 - `### header3`: start a new structural section (\\structure)
-- `![caption](figure{options},figure{options...)`: figure float
 - `ipe`: start a new in-paragraph enumeration, use \item for the individual items
 - `/ipe`: end an in-paragraph enumeration
+
+## Make targets
+
+- pdflatex-<basename>
+- handouts-<basename>
+- ppt-<basename>
+- a4version-<basename>
+- ondemand-<basename>
+
 
 ## Installation
 
@@ -119,7 +150,7 @@ make it work, the following files need to be present:
 
 Check the following sections on where to find them.
 
-#### Mardown/Latex build chain
+#### Markdown/Latex build chain
 
 Install pandoc: <http://code.google.com/p/pandoc/downloads/list>
 
@@ -159,3 +190,5 @@ Further TODOs
 - Windows install of pandoc filters
 - Windows build rules/installer for pandoc
 - example sound file
+- export a4version/handouts/ppt on travis
+- check that latex templates are unchanged on travis

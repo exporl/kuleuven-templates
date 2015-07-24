@@ -11,6 +11,7 @@ sectiontitle: true
 captionfont: size=\scriptsize
 # customization of the templates
 header-includes: \input{presentation-example.header}
+knit: (function(input, encoding, make = TRUE) { source('templates/makefile-renderer.R', local = TRUE) })
 ---
 
 %% smart
@@ -19,6 +20,20 @@ header-includes: \input{presentation-example.header}
 %% template=templates/presentation.tex
 %% filter=templates/presentation-filters.py
 %% biblatex
+
+```{r packages-and-options, cache=FALSE}
+library('ggplot2')
+library('knitr')
+
+linesize <- 0.25
+pointsize <- 1
+theme_set(theme_bw(base_size = 6) + theme(
+    line = element_line(size = linesize, colour = 'black', linetype = 1, lineend = 'butt')))
+for (geom in c('point', 'line', 'hline', 'vline', 'abline', 'boxplot', 'pointrange', 'errorbar', 'errorbarh')) {
+    update_geom_defaults(geom, list(size = ifelse(geom == 'point', pointsize, linesize)))
+}
+knitr::opts_chunk$set(fig.width = 4.7, fig.height = 1.9)
+```
 
 # Introduction
 
@@ -61,17 +76,70 @@ Default lists:
 
 [largefooter]
 
-### Results Slide 4
+# Figure Examples
+
+### Without Caption
 
 [columns=2]
 
 [column]
 
-- Some things are better shown in columns
+![]({width=\textwidth}presentation-examplefig-electrodes)
+
+[column]
+
+![{width=\textwidth}](presentation-examplefig-electrodes)
+
+[/columns]
+
+### Animated
+
+[columns=2]
+
+[column]
+
+![<1|handout:0><2>]({width=\textwidth}presentation-examplefig-electrodes,{width=\textwidth}presentation-examplefig-electrodes-ref)
+
+[column]
+
+![<1|handout:0><2>{width=\textwidth}](presentation-examplefig-electrodes,presentation-examplefig-electrodes-ref)
+
+[/columns]
+
+### Animated 2
+
+[columns=2]
+
+[column]
+
+![<1|handout:0><2>{width=\textwidth}](presentation-examplefig-electrodes)
+![<1|handout:0><2>{width=\textwidth}](presentation-examplefig-electrodes-ref)
+
+[column]
+
+```{r iris, fig.cap='<1|handout:0><2>iris data', fig.width=2.2, fig.height=2.2}
+ggplot(iris, aes(Sepal.Length, Petal.Length)) +
+    geom_point()
+
+
+ggplot(iris, aes(Sepal.Length, Petal.Length)) +
+    geom_point(aes(color = Species)) +
+    guides(color = FALSE)
+```
+
+[/columns]
+
+### With Caption
+
+[columns=2]
 
 [column]
 
 ![The 10-20 system]({width=\textwidth}presentation-examplefig-electrodes)
+
+[column]
+
+![{width=\textwidth}The 10-20 system](presentation-examplefig-electrodes)
 
 [/columns]
 

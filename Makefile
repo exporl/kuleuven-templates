@@ -140,7 +140,7 @@ handouts-%:
 	-$(LATEXCMD) $(BUILDDIR)/$*-handouts-helper.tex
 	-$(LATEXCMD) $(BUILDDIR)/$*-handouts.tex
 	-for i in "$(BUILDDIR)/$*-handouts-helper"*.aux; do $(BIBTEXCMD) "$$i"; done
-	-if [[ "$(COPYPDF)" = "yes" ]]; then -cp $(BUILDDIR)/$*-handouts.pdf .; fi
+	-if [[ "$(COPYPDF)" = "yes" ]]; then cp $(BUILDDIR)/$*-handouts.pdf .; fi
 
 a4version-%:
 	convert -density 300 $(BUILDDIR)/$*.pdf $(BUILDDIR)/$*.png
