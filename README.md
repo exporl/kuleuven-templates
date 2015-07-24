@@ -20,11 +20,11 @@ Design. Next to the actual templates, a build system based on
 
 Examples:
 
-- presentation with R figures: [presentation-r-example.pdf](//exporl.github.io/kuleuven-templates/presentation-r-example.pdf)
-- presentation: [presentation-example.pdf](//exporl.github.io/kuleuven-templates/presentation-example.pdf)
-- poster with R figures: [poster-r-example.pdf](//exporl.github.io/kuleuven-templates/poster-r-example.pdf)
-- poster: [poster-example.pdf](//exporl.github.io/kuleuven-templates/poster-example.pdf)
-- paper with R figures: [paper-r-example.pdf](//exporl.github.io/kuleuven-templates/paper-r-example.pdf)
+- Presentation with R figures: [presentation-r-example.pdf](//exporl.github.io/kuleuven-templates/presentation-r-example.pdf)
+- Presentation: [presentation-example.pdf](//exporl.github.io/kuleuven-templates/presentation-example.pdf)
+- Poster with R figures: [poster-r-example.pdf](//exporl.github.io/kuleuven-templates/poster-r-example.pdf)
+- Poster: [poster-example.pdf](//exporl.github.io/kuleuven-templates/poster-example.pdf)
+- Paper with R figures: [paper-r-example.pdf](//exporl.github.io/kuleuven-templates/paper-r-example.pdf)
 
 Pull requests welcome!
 
@@ -147,7 +147,6 @@ most of these need to be at the end of a frame
 - `subsectiontitle`
 - `plaincanvas` (default)
 - `gridcanvas`
-
 - `[columns=...]`: start a new column set with the given number of columns
 - `[column]`: start a new column with equal width
 - `[column=...]`: start a new column with given fraction of the line width
