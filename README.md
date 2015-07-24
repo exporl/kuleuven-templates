@@ -4,8 +4,16 @@
 
 Latest version and bugreports on Github: <https://github.com/exporl/kuleuven-templates/>
 
-This repository contains R/markdown/Latex templates for presentations and posters according to the KU Leuven Corporate Design.
-Next to the actual templates, a build system based on R/pandoc/texlive/make is provided.
+This repository contains
+[R](https://en.wikipedia.org/wiki/R_programming_language),
+[Markdown](https://en.wikipedia.org/wiki/Markdown) and
+[Latex](https://en.wikipedia.org/wiki/LaTeX)
+templates for presentations and posters according to the KU Leuven Corporate
+Design. Next to the actual templates, a build system based on
+[R](https://www.r-project.org/),
+[Pandoc](http://pandoc.org),
+[TeX Live](https://www.tug.org/texlive/) and
+[GNU Make](https://www.gnu.org/software/make/) is provided.
 
 Examples:
 
@@ -28,15 +36,15 @@ templates and never bother with all that fancy new R/Markdown stuff:
 If you need something that is a bit easier on the eyes and which allows very
 easy customization of the templates, take a look at the Markdown examples:
 
-- Markdown presentation: [presentation-example.markdown](presentation-example.tex)
-- Markdown poster: [poster-example.tex](poster-example.tex)
+- Markdown presentation: [presentation-example.markdown](presentation-example.markdown)
+- Markdown poster: [poster-example.markdown](poster-example.markdown)
 
 If you care about the reproducibility of your research, and want to be able to
 analyze your data and generate your figures in the same place where you write
 your text, R/Markdown should fit the bill quite nicely.
 
 If you are using [RStudio](http://rstudio.com/), you can just click the `Knit`
-button to compile your markdown document.
+button to compile your Markdown document.
 
 - R/Markdown presentation: [presentation-r-example.Rmd](presentation-r-example.Rmd)
 - R/Markdown poster: [poster-r-example.Rmd](poster-r-example.Rmd)
@@ -64,7 +72,7 @@ available.
 
     - `*`: starred figure environment (normally spans 2 columns)
     - `<anim>`: beamer animation specification
-    - `<option>`: latex figure options, use the shortcuts `h` (horizontal fill),
+    - `<option>`: Latex figure options, use the shortcuts `h` (horizontal fill),
       `v` (vertical fill), `f` (fill) and `s` (slide fill) to do the Right Thing
 
     If multiple animation/option settings are defined next to the caption,
@@ -171,9 +179,9 @@ Check the following sections on where to find them.
 
 #### Markdown/Latex build chain
 
-Install pandoc: <http://code.google.com/p/pandoc/downloads/list>
+Install Pandoc: <http://code.google.com/p/pandoc/downloads/list>
 
-Install a latex distribution, e.g. miktex or texlive: <http://miktex.org/download>, <https://www.tug.org/texlive/acquire-netinstall.html>
+Install a Latex distribution, e.g. MiKTeX or TeX Live: <http://miktex.org/download>, <https://www.tug.org/texlive/acquire-netinstall.html>
 
 #### PDF viewer
 
@@ -181,7 +189,7 @@ Install SumatraPDF for auto-refresh of PDF previews: <http://blog.kowalczyk.info
 
 #### SublimeText
 
-Install sublimetext from <http://www.sublimetext.com>
+Install SublimeText from <http://www.sublimetext.com>
 
 Add a new build system: Tools -> Build system -> New build system
 
