@@ -7,7 +7,7 @@ Latest version and bugreports on Github: <https://github.com/exporl/kuleuven-tem
 This repository contains
 [R](https://en.wikipedia.org/wiki/R_programming_language),
 [Markdown](https://en.wikipedia.org/wiki/Markdown) and
-[Latex](https://en.wikipedia.org/wiki/LaTeX)
+[LaTeX](https://en.wikipedia.org/wiki/LaTeX)
 templates for presentations and posters according to the KU Leuven Corporate
 Design. Next to the actual templates, a build system based on
 [R](https://www.r-project.org/),
@@ -25,30 +25,36 @@ Examples:
 
 Pull requests welcome!
 
-## R, Markdown or Latex
+## R, Markdown or LaTeX
 
-If you are already experienced with Latex, you could start with the Latex
-templates and never bother with all that fancy new R/Markdown stuff:
-
-- Latex presentation: [presentation-latex.tex](presentation-latex.tex)
-- Latex poster: [poster-latex.tex](poster-latex.tex)
-
-If you need something that is a bit easier on the eyes and which allows very
-easy customization of the templates, take a look at the Markdown examples:
-
-- Markdown presentation: [presentation-example.markdown](presentation-example.markdown)
-- Markdown poster: [poster-example.markdown](poster-example.markdown)
+### R
 
 If you care about the reproducibility of your research, and want to be able to
 analyze your data and generate your figures in the same place where you write
 your text, R/Markdown should fit the bill quite nicely.
-
 If you are using [RStudio](http://rstudio.com/), you can just click the `Knit`
-button to compile your Markdown document.
+button to compile your R/Markdown document.
 
 - R/Markdown presentation: [presentation-r-example.Rmd](presentation-r-example.Rmd)
 - R/Markdown poster: [poster-r-example.Rmd](poster-r-example.Rmd)
 - R/Markdown paper: [paper-r-example.Rmd](paper-r-example.Rmd)
+
+### Markdown
+
+If you need something that is a bit easier on the eyes than LaTeX and allows very
+easy customization of the templates, but don't want to go the full way to
+R/Markdown, take a look at the plain Markdown examples:
+
+- Markdown presentation: [presentation-example.markdown](presentation-example.markdown)
+- Markdown poster: [poster-example.markdown](poster-example.markdown)
+
+### LaTeX
+
+If you are already experienced in LaTeX, and you don't want to bother with all
+that fancy new R/Markdown stuff, you can start with the LaTeX templates:
+
+- LaTeX presentation: [presentation-latex.tex](presentation-latex.tex)
+- LaTeX poster: [poster-latex.tex](poster-latex.tex)
 
 ## New Pandoc variables
 
@@ -72,7 +78,7 @@ available.
 
     - `*`: starred figure environment (normally spans 2 columns)
     - `<anim>`: beamer animation specification
-    - `<option>`: Latex figure options, use the shortcuts `h` (horizontal fill),
+    - `<option>`: LaTeX figure options, use the shortcuts `h` (horizontal fill),
       `v` (vertical fill), `f` (fill) and `s` (slide fill) to do the Right Thing
 
     If multiple animation/option settings are defined next to the caption,
@@ -177,11 +183,11 @@ make it work, the following files need to be present:
 
 Check the following sections on where to find them.
 
-#### Markdown/Latex build chain
+#### Markdown/LaTeX build chain
 
 Install Pandoc: <http://code.google.com/p/pandoc/downloads/list>
 
-Install a Latex distribution, e.g. MiKTeX or TeX Live: <http://miktex.org/download>, <https://www.tug.org/texlive/acquire-netinstall.html>
+Install a LaTeX distribution, e.g. MiKTeX or TeX Live: <http://miktex.org/download>, <https://www.tug.org/texlive/acquire-netinstall.html>
 
 #### PDF viewer
 
