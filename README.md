@@ -101,7 +101,9 @@ available.
 - `![*<anim>{option}caption]({options}figure,{options}figure...)`: figures
 
     - `*`: starred figure environment (normally spans 2 columns)
-    - `<anim>`: beamer animation specification
+    - `<anim>`: beamer animation specification: slide to show the figure, 
+      starting from 1, if you don't want a figure to appear in the handouts 
+      specify slide 0 for handouts with something like `<2|handout:0>`
     - `<option>`: LaTeX figure options, use the shortcuts `h` (horizontal fill),
       `v` (vertical fill), `f` (fill) and `s` (slide fill) to do the Right Thing
 
@@ -248,5 +250,4 @@ Further TODOs
 - example sound file
 - export a4version/handouts/ppt on travis
 - check that latex templates are unchanged on travis
-- explain anim specs
 - restore tikz helpers
