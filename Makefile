@@ -113,19 +113,19 @@ a4version-%:
 	PosteRazorg $(BUILDDIR)/$*.png
 
 ppt-%:
-	rm -rf '$(BUILDDIR)/ppt' '$(BUILDDIR)/$*.odp'
-	mkdir '$(BUILDDIR)/ppt' '$(BUILDDIR)/ppt/Pictures' '$(BUILDDIR)/ppt/META-INF'
-	echo -n 'application/vnd.oasis.opendocument.presentation' > '$(BUILDDIR)/ppt/mimetype'
-	gs -sDEVICE=png16m -dSAFER -dBATCH -dNOPAUSE -dTextAlphaBits=4 -dGraphicsAlphaBits=4 -sOutputFile="$(BUILDDIR)/ppt/Pictures/%03d.png" -r254 '$*.pdf'
-	echo '<?xml version="1.0" encoding="UTF-8"?><manifest:manifest xmlns:manifest="urn:oasis:names:tc:opendocument:xmlns:manifest:1.0" manifest:version="1.2"><manifest:file-entry manifest:full-path="/" manifest:version="1.2" manifest:media-type="application/vnd.oasis.opendocument.presentation"/><manifest:file-entry manifest:full-path="content.xml" manifest:media-type="text/xml"/>' > '$(BUILDDIR)/ppt/META-INF/manifest.xml'
-	( cd $(BUILDDIR)/ppt && for i in Pictures/*.png; do echo "<manifest:file-entry manifest:full-path='$$i' manifest:media-type='image/png'/>"; done ) >> '$(BUILDDIR)/ppt/META-INF/manifest.xml'
-	echo '</manifest:manifest>' >> '$(BUILDDIR)/ppt/META-INF/manifest.xml'
-	echo '<?xml version="1.0" encoding="UTF-8"?><office:document-content xmlns:office="urn:oasis:names:tc:opendocument:xmlns:office:1.0" xmlns:draw="urn:oasis:names:tc:opendocument:xmlns:drawing:1.0" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svg="urn:oasis:names:tc:opendocument:xmlns:svg-compatible:1.0" office:version="1.2"><office:body><office:presentation>' > '$(BUILDDIR)/ppt/content.xml'
-	( cd $(BUILDDIR)/ppt && for i in Pictures/*.png; do echo "<draw:page><draw:frame svg:width='28cm' svg:height='21cm'><draw:image xlink:href='$$i'></draw:image></draw:frame></draw:page>"; done ) >> '$(BUILDDIR)/ppt/content.xml'
-	echo '</office:presentation></office:body></office:document-content>' >> '$(BUILDDIR)/ppt/content.xml'
-	( cd '$(BUILDDIR)/ppt' && zip '$(BUILDDIR)/$*.odp' -r . )
-	libreoffice '-env:UserInstallation=file://$(BUILDDIR)' --headless --invisible --convert-to ppt '$(BUILDDIR)/$*.odp'
-	xdg-open '$(BUILDDIR)/$*.ppt'
+	rm -rf '$(BUILDDIR)/$*-ppt' '$(BUILDDIR)/$*.odp'
+	mkdir '$(BUILDDIR)/$*-ppt' '$(BUILDDIR)/$*-ppt/Pictures' '$(BUILDDIR)/$*-ppt/META-INF'
+	echo -n 'application/vnd.oasis.opendocument.presentation' > '$(BUILDDIR)/$*-ppt/mimetype'
+	gs -sDEVICE=png16m -dSAFER -dBATCH -dNOPAUSE -dTextAlphaBits=4 -dGraphicsAlphaBits=4 -sOutputFile="$(BUILDDIR)/$*-ppt/Pictures/%03d.png" -r254 '$*.pdf'
+	echo '<?xml version="1.0" encoding="UTF-8"?><manifest:manifest xmlns:manifest="urn:oasis:names:tc:opendocument:xmlns:manifest:1.0" manifest:version="1.2"><manifest:file-entry manifest:full-path="/" manifest:version="1.2" manifest:media-type="application/vnd.oasis.opendocument.presentation"/><manifest:file-entry manifest:full-path="content.xml" manifest:media-type="text/xml"/>' > '$(BUILDDIR)/$*-ppt/META-INF/manifest.xml'
+	( cd $(BUILDDIR)/$*-ppt && for i in Pictures/*.png; do echo "<manifest:file-entry manifest:full-path='$$i' manifest:media-type='image/png'/>"; done ) >> '$(BUILDDIR)/$*-ppt/META-INF/manifest.xml'
+	echo '</manifest:manifest>' >> '$(BUILDDIR)/$*-ppt/META-INF/manifest.xml'
+	echo '<?xml version="1.0" encoding="UTF-8"?><office:document-content xmlns:office="urn:oasis:names:tc:opendocument:xmlns:office:1.0" xmlns:draw="urn:oasis:names:tc:opendocument:xmlns:drawing:1.0" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svg="urn:oasis:names:tc:opendocument:xmlns:svg-compatible:1.0" office:version="1.2"><office:body><office:presentation>' > '$(BUILDDIR)/$*-ppt/content.xml'
+	( cd $(BUILDDIR)/$*-ppt && for i in Pictures/*.png; do echo "<draw:page><draw:frame svg:width='28cm' svg:height='21cm'><draw:image xlink:href='$$i'></draw:image></draw:frame></draw:page>"; done ) >> '$(BUILDDIR)/$*-ppt/content.xml'
+	echo '</office:presentation></office:body></office:document-content>' >> '$(BUILDDIR)/$*-ppt/content.xml'
+	( cd '$(BUILDDIR)/$*-ppt' && zip '$(BUILDDIR)/$*.odp' -r . )
+	soffice '-env:UserInstallation=file://$(BUILDDIR)' --headless --invisible --convert-to ppt --outdir '$(BUILDDIR)' '$(BUILDDIR)/$*.odp'
+	-if [[ "$(COPYPDF)" = "yes" ]]; then cp $(BUILDDIR)/$*.ppt .; fi
 
 clean-%:
 	rm $*.pdf

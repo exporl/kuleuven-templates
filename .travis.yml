@@ -16,15 +16,16 @@ cache:
         - $HOME/prebuild/haskell
         - $HOME/prebuild/python
         - $HOME/prebuild/texlive
+        - $HOME/prebuild/libreoffice
 before_install:
-- export R_LIBS_USER=$HOME/prebuild/R PATH=$PATH:$HOME/prebuild/texlive/bin/x86_64-linux:$HOME/prebuild/haskell/bin PYTHONUSERBASE=$HOME/prebuild/python
+- export R_LIBS_USER=$HOME/prebuild/R PATH=$PATH:$HOME/prebuild/texlive/bin/x86_64-linux:$HOME/prebuild/haskell/bin:$HOME/prebuild/libreoffice/opt/libreoffice4.4/program PYTHONUSERBASE=$HOME/prebuild/python
 - ./.travis.git
 - find $HOME/prebuild -maxdepth 1 -type d -empty -exec ./.travis.deps '{}' ';'
 script:
 - (make && make) &> /dev/null
 - make |& tee error.log
 - for i in 1 2 3; do make handouts-presentation-example handouts-presentation-r-example; done &> /dev/null
-- which libreoffice
+- make ppt-presentation-example ppt-presentation-r-example
 - "! grep -qE 'LaTeX Error|Undefined control sequence' error.log"
 after_success:
 - mkdir -p kuleuven-templates
@@ -35,7 +36,7 @@ after_success:
     sed -i '/^\/ID \[/s/[0-9a-fA-F]/D/g' "$i";
     rm "$i.tmp";
   done
-- mv *.pdf kuleuven-templates/
+- mv *.pdf *.ppt kuleuven-templates/
 - git add -f kuleuven-templates/
 - git commit -m "$(git log --format=%B -n 1 $TRAVIS_COMMIT)"
 - if test "$TRAVIS_PULL_REQUEST" = "false" -a "$TRAVIS_BRANCH" = "master"; then

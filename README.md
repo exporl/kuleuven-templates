@@ -342,7 +342,7 @@ Further TODOs
 - ondemand should do markdown -> tex and tex -> pdf separately, at the moment
   pdflatex is run two times
 - example sound file
-- export a4version/handouts/ppt on travis
+- export a4version on travis
 - check that latex templates are unchanged on travis
 - restore tikz helpers
 - check the TODOs above
