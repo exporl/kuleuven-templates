@@ -10,10 +10,16 @@ addons:
             - haskell-platform
             - lmodern
             - pdftk
+cache:
+    directories:
+        - $HOME/prebuild/R
+        - $HOME/prebuild/haskell
+        - $HOME/prebuild/python
+        - $HOME/prebuild/texlive
 before_install:
 - export R_LIBS_USER=$HOME/prebuild/R PATH=$PATH:$HOME/prebuild/texlive/bin/x86_64-linux:$HOME/prebuild/haskell/bin PYTHONUSERBASE=$HOME/prebuild/python
 - ./.travis.git
-- ./.travis.deps
+- find $HOME/prebuild -maxdepth 1 -type d -empty -exec ./.travis.deps '{}' ';'
 script:
 - (make && make) &> /dev/null
 - make |& tee error.log
