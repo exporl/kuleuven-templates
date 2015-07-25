@@ -3,7 +3,7 @@
 [![Build Status](https://travis-ci.org/exporl/kuleuven-templates.svg?branch=master)](https://travis-ci.org/exporl/kuleuven-templates)
 
 <!-- TOC bookmarklet: https://github.com/sillero/github-markdown-toc
-!function(){"use strict";function e(e){var n=[{tagIndex:0,index:0,text:"###Table of Contents"}].concat(e.map(function(e){return{tagIndex:parseInt(e.tagName[1]),text:e.textContent,url:e.querySelector("a").getAttribute("href")}}));return n.each=function(e){return n.forEach(e),n},n}function n(e,n){for(var r=e[n],t=n;t>=0;t--)if(e[t].tagIndex<r.tagIndex)return e[t]}function r(e,r,t){var o=n(t,r);o&&(o.children=o.children||[],o.children.push(e),e.index=o.index+1,e.remove=!0)}function t(e){return!("remove"in e)}function o(e,n){e=e||[];var r=[n.text];return n.index&&(r=[new Array(n.index).join("    "),"- [",n.text,"](",n.url,")"]),e.push(r.join("")),n.children&&(e=n.children.reduce(o,e)),e}var c=document.querySelector("#readme .markdown-body")||document.querySelector("#wiki-body .markdown-body"),i=Array.prototype.slice.call(c.querySelectorAll("h1, h2, h3, h4, h5, h6")),u=e(i).each(r).filter(t).reduce(o,[]).join("\n");console.log(u),alert(u)}(); -->
+!function(){"use strict";function e(e){var n=[{tagIndex:0,index:0,text:"###Table of Contents"}].concat(e.map(function(e){return{tagIndex:parseInt(e.tagName[1]),text:e.textContent,url:e.querySelector("a").getAttribute("href")}}));return n.each=function(e){return n.forEach(e),n},n}function n(e,n){for(var r=e[n],t=n;t>=0;t-=1)if(e[t].tagIndex<r.tagIndex)return e[t]}function r(e,r,t){var o=n(t,r);o&&(o.children=o.children||[],o.children.push(e),e.index=o.index+1,e.remove=!0)}function t(e){return!("remove"in e)}function o(e,n){e=e||[];var r=[n.text];return n.index&&(r=[new Array(n.index).join("    "),"- [",n.text,"](",n.url,")"]),e.push(r.join("")),n.children&&(e=n.children.reduce(o,e)),e}var c=document.querySelector("#readme .markdown-body")||document.querySelector("#wiki-body .markdown-body"),i=Array.prototype.slice.call(c.querySelectorAll("h2, h3, h4, h5, h6")),u=e(i).each(r).filter(t).reduce(o,[]).join("\n");console.log(u),alert(u)}(); -->
 
 Latest version and bugreports on Github: <https://github.com/exporl/kuleuven-templates/>
 
@@ -33,6 +33,20 @@ Pull requests welcome!
     - [R/Markdown](#rmarkdown)
     - [Plain Markdown](#plain-markdown)
     - [LaTeX](#latex)
+- [Linux](#linux)
+    - [Installation](#installation)
+    - [Using Make](#using-make)
+        - [Make configuration](#make-configuration)
+        - [Make targets](#make-targets)
+- [Windows](#windows)
+    - [Installation](#installation-1)
+        - [R/Markdown/LaTeX build chain](#rmarkdownlatex-build-chain)
+        - [PDF viewer](#pdf-viewer)
+        - [SublimeText](#sublimetext)
+    - [Setting it up](#setting-it-up)
+        - [RStudio](#rstudio)
+        - [Texmaker](#texmaker)
+        - [SublimeText](#sublimetext-1)
 - [New Pandoc variables](#new-pandoc-variables)
     - [Pandoc variables for presentations](#pandoc-variables-for-presentations)
 - [New Markdown commands](#new-markdown-commands)
@@ -40,16 +54,11 @@ Pull requests welcome!
     - [Markdown commands for papers](#markdown-commands-for-papers)
     - [Markdown commands for presentations](#markdown-commands-for-presentations)
     - [Markdown commands for posters](#markdown-commands-for-posters)
-- [Make targets](#make-targets)
-- [Installation](#installation)
-    - [Linux](#linux)
-    - [Windows](#windows)
-        - [Markdown/LaTeX build chain](#markdownlatex-build-chain)
-        - [PDF viewer](#pdf-viewer)
-        - [SublimeText](#sublimetext)
 - [Further TODOs](#further-todos)
 
 ## R/Markdown, plain Markdown or LaTeX
+
+The templates are available in three versions.
 
 ### R/Markdown
 
@@ -80,6 +89,167 @@ that fancy new R/Markdown stuff, you can start with the LaTeX templates:
 - LaTeX presentation: [presentation-latex.tex](presentation-latex.tex)
 - LaTeX poster: [poster-latex.tex](poster-latex.tex)
 
+## Linux
+
+The easiest way to use the templates in Linux is with the included Makefile,
+although it is also possible to directly call Rmarkdown, Pandoc or LaTeX.
+
+### Installation
+
+To get started, install dependencies (for an Ubuntu 14.04LTS system, other
+distros should be very similar):
+
+To use the included build system based on GNU Make:
+
+    sudo apt-get install make
+
+For the LaTeX templates:
+
+    sude apt-get install texlive texlive-latex-recommended texlive-science texlive-bibtex-extra
+
+To be able to create a backup A4 version of posters:
+
+    sude apt-get install imagemagick posterazor
+
+To be able to create a backup Powerpoint version of presentations (I know, ieek):
+
+    sude apt-get install ghostscript libreoffice
+
+For the plain Markdown templates:
+
+    sudo apt-get install pandoc python-pandocfilters
+
+To use R/Markdown:
+
+    sudo apt-get install r-base-dev r-recommended
+
+You can clone the templates without history with
+
+    git clone --depth=1 https://github.com/exporl/kuleuven-templates && rm -rf kuleuven-templates/.git*
+
+### Using Make
+
+The included build system automatically transforms R/Markdown → plain Markdown →
+LaTeX → PDF.
+Building happens in a temporary directory under /tmp.
+Any eps/tikz files placed in the root and figures/ directories are automatically
+converted to pdf files there.
+
+#### Make configuration
+
+You can slightly configure the build system by copying the included
+Makefile.local-example to Makefile.local.
+
+- `BUILDDIR=.build`: Use a local build dir
+- `BIBSOURCE=$(HOME)/path/to/mendeley.bib`: Define a bib source to automatically
+  copy the reference database on changes
+- `COPYPDF=no`: Leave the pdf file in the temp directory and don't copy it to
+  the source directory
+- `LATEX=lualatex`: Use lualatex instead of pdflatex
+
+#### Make targets
+
+Several Make targets are available:
+
+- `make`, `make all`, `make pdflatex`: call `make pdflatex-<basename>` for all .Rmd,
+  .markdown and .tex found in the current directory
+- `make pdfview`, `make clean`, `make ondemand`: similar as above, for for the
+  `pdfview-<basename>`, `clean-<basename>` and `ondemand-<basename>` targets
+
+- `make <basename>.markdown`: convert an R/Markdown file to plain Markdown by
+  evaluating any embedded R code with [knitr](http://yihui.name/knitr/)
+- `make <basename>.tex`: convert a plain Markdown file to LaTeX with
+  [Pandoc](http://pandoc.org); any lines in the Markdown file that start with
+  `%% ` are transformed into options for Pandoc
+
+- `pdflatex-<basename>`: convert a LaTeX file to PDF by calling pdflatex and
+  bibtex; you might need to call this multiple times to get all references and
+  bib entries resolved correctly
+- `ondemand-<basename>`: watch for changes to any R/Markdown, plain Markdown or
+  LaTeX files in the current directory and call `make pdflatex-<basename>` on them
+- `handouts-<basename>`: create a LaTeX/Beamer handout version of a
+  presentation, check below for how to configure which figures of animations to
+  include
+- `ppt-<basename>`: create a PowerPoint version of your presentation by creating
+  images for each slide and combining them with [LibreOffice](https://www.libreoffice.org)
+- `a4version-<basename>`: create a backup A4 version of your poster in case you
+  forget that poster tube on the plane again with [PosteRazor](http://posterazor.sourceforge.net/)
+
+## Windows
+
+The Windows documentation is incomplete at the moment (TODO):
+- you have to manually call Pandoc and LaTeX, and, in the case of R/Markdown,
+  the RStudio knitr callback does not do this automatically either
+
+While it is possible to use Cygwin to get the Linux setup above working quite
+well, this is not covered here as most people on Windows do not have experience
+in a Unix environment.
+
+### Installation
+
+There is an automatic installer available in the windows-installer directory. To
+make it work, the following files need to be present:
+
+    pandoc-1.13.2-windows.msi
+    sublime-2-x64.exe
+    SublimeOnSaveBuild.zip
+    SumatraPDF-3.0-install.exe
+    latex-markdown-templates.zip
+    texmakerwin32_install.exe
+
+Check the following sections on where to find them.
+It does not install Python or the Python support for Pandoc filters, so you need
+to do this yourself (TODO).
+
+#### R/Markdown/LaTeX build chain
+
+- Install [RStudio](https://www.rstudio.com/)
+- Install [Pandoc](http://code.google.com/p/pandoc/downloads/list)
+- Install [Python 2](https://www.python.org/downloads/windows/)
+- Install [Python filter support for Pandoc](https://pypi.python.org/pypi/pandocfilters):
+  on a Windows command prompt, type
+
+    pip install pandocfilters
+
+- Install a LaTeX distribution, e.g. [MiKTeX](http://miktex.org/download) or [TeX Live](https://www.tug.org/texlive/acquire-netinstall.html)
+
+#### PDF viewer
+
+Install SumatraPDF for auto-refresh of PDF previews: <http://blog.kowalczyk.info/software/sumatrapdf/free-pdf-reader.html>
+
+#### SublimeText
+
+Install SublimeText from <http://www.sublimetext.com>
+
+Install package control: <https://sublime.wbond.net>
+
+Install SublimeOnSaveBuild: Ctrl-Shift-P -> Package Control: Install Package -> SublimeOnSaveBuild
+
+### Setting it up
+
+#### RStudio
+
+TODO
+
+#### Texmaker
+
+TODO
+
+#### SublimeText
+
+Add a new build system: Tools -> Build system -> New build system
+
+    {
+        "cmd": ["pdflatex", "-synctex=1", "-interaction=nonstopmode", "$file"]
+    }
+
+Enable autobuild: Preferences -> Package Settings -> SublimeOnSaveBuild -> Settings - User
+
+    {
+      "filename_filter": "\\.(tex)$",
+      "build_on_save": 1
+    }
+
 ## New Pandoc variables
 
 ### Pandoc variables for presentations
@@ -101,8 +271,8 @@ available.
 - `![*<anim>{option}caption]({options}figure,{options}figure...)`: figures
 
     - `*`: starred figure environment (normally spans 2 columns)
-    - `<anim>`: beamer animation specification: slide to show the figure, 
-      starting from 1, if you don't want a figure to appear in the handouts 
+    - `<anim>`: beamer animation specification: slide to show the figure,
+      starting from 1, if you don't want a figure to appear in the handouts
       specify slide 0 for handouts with something like `<2|handout:0>`
     - `<option>`: LaTeX figure options, use the shortcuts `h` (horizontal fill),
       `v` (vertical fill), `f` (fill) and `s` (slide fill) to do the Right Thing
@@ -166,88 +336,13 @@ most of these need to be at the end of a frame
 - `ipe`: start a new in-paragraph enumeration, use \item for the individual items
 - `/ipe`: end an in-paragraph enumeration
 
-## Make targets
-
-For building your documents:
-
-    make
-
-To automatically watch for changes and rebuild as required:
-
-    make ondemand
-
-- `pdflatex-<basename>`
-- `handouts-<basename>`
-- `ppt-<basename>`
-- `a4version-<basename>`
-- `ondemand-<basename>`
-
-## Installation
-
-### Linux
-
-If you only want to use the templates (without history), use
-
-    git clone --depth=1 https://github.com/mh21/kuleuven-templates && rm -rf kuleuven-templates/.git*
-
-Install dependencies:
-
-    sudo apt-get install pandoc python-pandocfilters make texlive texlive-latex-recommended texlive-science texlive-bibtex-extra
-
-### Windows
-
-There is an automatic installer available in the windows-installer directory. To
-make it work, the following files need to be present:
-
-    pandoc-1.13.2-windows.msi
-    sublime-2-x64.exe
-    SublimeOnSaveBuild.zip
-    SumatraPDF-3.0-install.exe
-    latex-markdown-templates.zip
-    texmakerwin32_install.exe
-
-Check the following sections on where to find them.
-
-#### Markdown/LaTeX build chain
-
-Install Pandoc: <http://code.google.com/p/pandoc/downloads/list>
-
-Install a LaTeX distribution, e.g. MiKTeX or TeX Live: <http://miktex.org/download>, <https://www.tug.org/texlive/acquire-netinstall.html>
-
-#### PDF viewer
-
-Install SumatraPDF for auto-refresh of PDF previews: <http://blog.kowalczyk.info/software/sumatrapdf/free-pdf-reader.html>
-
-#### SublimeText
-
-Install SublimeText from <http://www.sublimetext.com>
-
-Add a new build system: Tools -> Build system -> New build system
-
-    {
-        "cmd": ["pdflatex", "-synctex=1", "-interaction=nonstopmode", "$file"]
-    }
-
-Install package control: <https://sublime.wbond.net>
-
-Install SublimeOnSaveBuild: Ctrl-Shift-P -> Package Control: Install Package -> SublimeOnSaveBuild
-
-Enable autobuild: Preferences -> Package Settings -> SublimeOnSaveBuild -> Settings - User
-
-    {
-      "filename_filter": "\\.(tex)$",
-      "build_on_save": 1
-    }
-
 Further TODOs
 -------------
 
 - ondemand should do markdown -> tex and tex -> pdf separately, at the moment
   pdflatex is run two times
-- Windows documentation for manual pandoc without make
-- Windows install of pandoc filters
-- Windows build rules/installer for pandoc
 - example sound file
 - export a4version/handouts/ppt on travis
 - check that latex templates are unchanged on travis
 - restore tikz helpers
+- check the TODOs above

@@ -1,15 +1,7 @@
-# R/Pandoc/Latex make file
-#
-# make pdflatex: build
-# make pdfview: start pdf viewer
-# make ondemand: watch source files and automatically rebuild
-# make handouts-...: create handouts for a specific presentation
-# make ppt-...: create ppt version for a specific presentation (nicely rendered at 1280x960)
-#
-# Building happens in a temporary directory under /tmp, and eps/tikz files in the
-# root and figures/ directories are automatically converted to pdf there.
+# R/Pandoc/Latex make file, see README.md for details
 
 SHELL=/bin/bash
+
 BUILDDIR=/tmp/latex-build$(subst /,-,$(abspath .))
 BIBSOURCE=
 COPYPDF=yes
@@ -98,7 +90,7 @@ ondemand-%:
 	inotifywait . -q -e close_write -m --format "%w%f" \
 	    | while read filename; do \
 	    [[ "$$filename" =~ tmp-pdfcrop-.*\.tex$$ ]] && continue; \
-	    [[ "$$filename" =~ ^\./[^.].*\.(tex|sty|markdown|eps|tikz)|Makefile$$ ]] || continue; \
+	    [[ "$$filename" =~ ^\./[^.].*\.(tex|sty|Rmd|markdown|eps|tikz)|Makefile$$ ]] || continue; \
 	    echo $${GREEN}Change detected in $$filename$${NORMAL}; \
 	    while read -t 1 filename; do \
 		echo $${GREEN}Change detected in $$filename$${NORMAL}; \
