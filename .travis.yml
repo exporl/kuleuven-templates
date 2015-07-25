@@ -24,6 +24,7 @@ script:
 - (make && make) &> /dev/null
 - make |& tee error.log
 - for i in 1 2 3; do make handouts-presentation-example handouts-presentation-r-example; done &> /dev/null
+- which libreoffice
 - "! grep -qE 'LaTeX Error|Undefined control sequence' error.log"
 after_success:
 - mkdir -p kuleuven-templates
