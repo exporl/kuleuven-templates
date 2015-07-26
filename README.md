@@ -301,24 +301,24 @@ available.
 ### Markdown commands for papers
 
 - `##### header5`: margin note
-- `ipe`: start a new in-paragraph enumeration, use \item for the individual items
-- `/ipe`: end an in-paragraph enumeration
+- `[ipe]`: start a new in-paragraph enumeration, use \item for the individual items
+- `[/ipe]`: end an in-paragraph enumeration
 
 ### Markdown commands for presentations
 
 most of these need to be at the end of a frame
 
-- `notoc` (default)
-- `sectiontoc`
-- `subsectiontoc`
-- `largefooter` (default)
-- `emptyfooter`
-- `smallfooter`
-- `nosupertitle` (default)
-- `sectiontitle`
-- `subsectiontitle`
-- `plaincanvas` (default)
-- `gridcanvas`
+- `[notoc]` (default)
+- `[sectiontoc]`
+- `[subsectiontoc]`
+- `[largefooter]` (default)
+- `[emptyfooter]`
+- `[smallfooter]`
+- `[nosupertitle]` (default)
+- `[sectiontitle]`
+- `[subsectiontitle]`
+- `[plaincanvas]` (default)
+- `[gridcanvas]`
 - `[columns=...]`: start a new column set with the given number of columns
 - `[column]`: start a new column with equal width
 - `[column=...]`: start a new column with given fraction of the line width
@@ -333,8 +333,8 @@ most of these need to be at the end of a frame
 - `# header1`: start a new block
 - `## header1`: ignored for compatibility with the presentation template
 - `### header3`: start a new structural section (\\structure)
-- `ipe`: start a new in-paragraph enumeration, use \item for the individual items
-- `/ipe`: end an in-paragraph enumeration
+- `[ipe]`: start a new in-paragraph enumeration, use \item for the individual items
+- `[/ipe]`: end an in-paragraph enumeration
 
 Further TODOs
 -------------
@@ -342,7 +342,6 @@ Further TODOs
 - ondemand should do markdown -> tex and tex -> pdf separately, at the moment
   pdflatex is run two times
 - example sound file
-- export a4version on travis
 - check that latex templates are unchanged on travis
 - restore tikz helpers
 - check the TODOs above

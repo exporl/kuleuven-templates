@@ -109,8 +109,8 @@ handouts-%:
 	-if [[ "$(COPYPDF)" = "yes" ]]; then cp $(BUILDDIR)/$*-handouts.pdf .; fi
 
 a4version-%:
-	convert -density 300 $(BUILDDIR)/$*.pdf $(BUILDDIR)/$*.png
-	PosteRazorg $(BUILDDIR)/$*.png
+	gs -sDEVICE=png16m -dSAFER -dBATCH -dNOPAUSE -dTextAlphaBits=4 -dGraphicsAlphaBits=4 -sOutputFile="$(BUILDDIR)/$*-%03d.png" -r300 '$(BUILDDIR)/$*.pdf'
+	PosteRazor $(BUILDDIR)/$*.png
 
 ppt-%:
 	rm -rf '$(BUILDDIR)/$*-ppt' '$(BUILDDIR)/$*.odp'
