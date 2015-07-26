@@ -64,7 +64,7 @@ clean-all: $(MDSOURCES:%=clean-%)
 builddir:
 	@echo $(BUILDDIR)/
 
-.SECONDARY: $(PDFPDFPICTURES) $(EPSPNGPICTURES) $(EPSPDFPICTURES) $(TIKZPDFPICTURES) $(MDSOURCES:%=%.tex)
+.SECONDARY: $(PDFPDFPICTURES) $(EPSPNGPICTURES) $(EPSPDFPICTURES) $(TIKZPDFPICTURES) $(MDSOURCES:%=%.tex) $(MDSOURCES:%=%.markdown)
 
 %.markdown: %.Rmd
 	R -e 'input <- "$<"; make <- FALSE; source("templates/makefile-renderer.R", local=TRUE)'

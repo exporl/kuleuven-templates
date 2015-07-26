@@ -36,7 +36,7 @@ after_success:
     sed -i '/^\/ID \[/s/[0-9a-fA-F]/D/g' "$i";
     rm "$i.tmp";
   done
-- mv *.pdf *.ppt kuleuven-templates/
+- mv *.pdf *.ppt *-r-example.markdown *-example.tex kuleuven-templates/
 - git add -f kuleuven-templates/
 - git commit -m "$(git log --format=%B -n 1 $TRAVIS_COMMIT)"
 - if test "$TRAVIS_PULL_REQUEST" = "false" -a "$TRAVIS_BRANCH" = "master"; then
