@@ -155,13 +155,11 @@ Several Make targets are available:
   .markdown and .tex found in the current directory
 - `make pdfview`, `make clean`, `make ondemand`: similar as above, for for the
   `pdfview-<basename>`, `clean-<basename>` and `ondemand-<basename>` targets
-
 - `make <basename>.markdown`: convert an R/Markdown file to plain Markdown by
   evaluating any embedded R code with [knitr](http://yihui.name/knitr/)
 - `make <basename>.tex`: convert a plain Markdown file to LaTeX with
   [Pandoc](http://pandoc.org); any lines in the Markdown file that start with
   `%% ` are transformed into options for Pandoc
-
 - `pdflatex-<basename>`: convert a LaTeX file to PDF by calling pdflatex and
   bibtex; you might need to call this multiple times to get all references and
   bib entries resolved correctly
@@ -207,23 +205,18 @@ to do this yourself (TODO).
 - Install [Pandoc](http://code.google.com/p/pandoc/downloads/list)
 - Install [Python 2](https://www.python.org/downloads/windows/)
 - Install [Python filter support for Pandoc](https://pypi.python.org/pypi/pandocfilters):
-  on a Windows command prompt, type
-
-    pip install pandocfilters
-
+  on a Windows command prompt, type `pip install pandocfilters`
 - Install a LaTeX distribution, e.g. [MiKTeX](http://miktex.org/download) or [TeX Live](https://www.tug.org/texlive/acquire-netinstall.html)
 
 #### PDF viewer
 
-Install SumatraPDF for auto-refresh of PDF previews: <http://blog.kowalczyk.info/software/sumatrapdf/free-pdf-reader.html>
+- Install [SumatraPDF](http://blog.kowalczyk.info/software/sumatrapdf/free-pdf-reader.html) for auto-refresh of PDF previews
 
 #### SublimeText
 
-Install SublimeText from <http://www.sublimetext.com>
-
-Install package control: <https://sublime.wbond.net>
-
-Install SublimeOnSaveBuild: Ctrl-Shift-P -> Package Control: Install Package -> SublimeOnSaveBuild
+- Install [SublimeText](http://www.sublimetext.com)
+- Install [package control](https://sublime.wbond.net)
+- Install SublimeOnSaveBuild: Ctrl-Shift-P -> Package Control: Install Package -> SublimeOnSaveBuild
 
 ### Setting it up
 
