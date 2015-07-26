@@ -26,6 +26,8 @@ script:
 - make |& tee error.log
 - for i in 1 2 3; do make handouts-presentation-example handouts-presentation-r-example handouts-presentation-latex; done &> /dev/null
 - make ppt-presentation-example ppt-presentation-r-example ppt-presentation-latex
+- mkdir old-latex && mv *-latex.tex old-latex && make regenerate-latex-templates
+- mkdir new-latex && mv *-latex.tex new-latex && diff -Nur old-latex/ new-latex/
 - "! grep -qE 'LaTeX Error|Undefined control sequence' error.log"
 after_success:
 - mkdir -p kuleuven-templates

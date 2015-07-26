@@ -321,6 +321,4 @@ Further TODOs
 - ondemand should do markdown -> tex and tex -> pdf separately, at the moment
   pdflatex is run two times
 - example sound file
-- make target to check that latex templates are unchanged, put on travis
 - restore tikz helpers
-- check the TODOs above
