@@ -264,7 +264,7 @@ Enable autobuild: Preferences -> Package Settings -> SublimeOnSaveBuild -> Setti
 ## New Markdown commands
 
 Various new Markdown commands (mostly of the form `[command=param]`) are
-available.
+provided by the Pandoc filters found in `templates/*-filters.py`.
 
 ### Markdown commands for papers/presentations/posters
 
@@ -306,33 +306,37 @@ available.
 
 ### Markdown commands for presentations
 
-most of these need to be at the end of a frame
-
-- `[notoc]` (default)
-- `[sectiontoc]`
-- `[subsectiontoc]`
-- `[largefooter]` (default)
-- `[emptyfooter]`
-- `[smallfooter]`
-- `[nosupertitle]` (default)
-- `[sectiontitle]`
-- `[subsectiontitle]`
-- `[plaincanvas]` (default)
-- `[gridcanvas]`
+- `# header1`: start a new section
+- `## header1`: start a new subjection
+- `### header3`: start a new slide
 - `[columns=...]`: start a new column set with the given number of columns
 - `[column]`: start a new column with equal width
 - `[column=...]`: start a new column with given fraction of the line width
 - `[/columns]`: end a column set
+
+The following commands need to be at the end of a frame.
+
+- `[notoc]`: no table of contents before sections/subsections (default)
+- `[sectiontoc]`: table of contents before each section
+- `[subsectiontoc]`: table of contents before each subsection
+- `[largefooter]`: large footer with KU Leuven logo (default)
+- `[emptyfooter]`: large footer with KU Leuven logo, but no page number
+- `[smallfooter]`: transparent footer with just a page number
+- `[nosupertitle]`: show only the slide title (default)
+- `[sectiontitle]`: show the slide title and current section
+- `[subsectiontitle]`: show the slide title and current section + subsection
+- `[plaincanvas]`: empty background (default)
+- `[gridcanvas]`: centimeter grid in the background
 
 ### Markdown commands for posters
 
+- `# header1`: start a new block
+- `## header1`: ignored for compatibility with the presentation template
+- `### header3`: start a new structural section (\\structure)
 - `[columns=...]`: start a new column set with the given number of columns
 - `[column]`: start a new column with equal width
 - `[column=...]`: start a new column with given fraction of the line width
 - `[/columns]`: end a column set
-- `# header1`: start a new block
-- `## header1`: ignored for compatibility with the presentation template
-- `### header3`: start a new structural section (\\structure)
 - `[ipe]`: start a new in-paragraph enumeration, use \item for the individual items
 - `[/ipe]`: end an in-paragraph enumeration
 
@@ -342,6 +346,6 @@ Further TODOs
 - ondemand should do markdown -> tex and tex -> pdf separately, at the moment
   pdflatex is run two times
 - example sound file
-- check that latex templates are unchanged on travis
+- make target to check that latex templates are unchanged, put on travis
 - restore tikz helpers
 - check the TODOs above
