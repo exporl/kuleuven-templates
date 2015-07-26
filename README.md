@@ -1,4 +1,4 @@
-# KU Leuven R/Markdown templates
+# KU Leuven R/Markdown/LaTeX templates
 
 [![Build Status](https://travis-ci.org/exporl/kuleuven-templates.svg?branch=master)](https://travis-ci.org/exporl/kuleuven-templates)
 
