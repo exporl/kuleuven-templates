@@ -7,6 +7,8 @@
 
 Latest version and bugreports on Github: <https://github.com/exporl/kuleuven-templates/>
 
+![Title Slide](https://exporl.github.io/kuleuven-templates/presentation-example-001.png) ![Example Slide](https://exporl.github.io/kuleuven-templates/presentation-example-003.png)
+
 This repository contains
 [R](https://en.wikipedia.org/wiki/R_programming_language)/[Markdown](http://rmarkdown.rstudio.com/),
 [Markdown](https://en.wikipedia.org/wiki/Markdown) and
