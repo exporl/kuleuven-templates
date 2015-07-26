@@ -68,9 +68,14 @@ your text, R/Markdown should fit the bill quite nicely.
 If you are using [RStudio](http://rstudio.com/), you can just click the `Knit`
 button to compile your R/Markdown document.
 
-- R/Markdown presentation: [presentation-r-example.Rmd](presentation-r-example.Rmd)
-- R/Markdown poster: [poster-r-example.Rmd](poster-r-example.Rmd)
-- R/Markdown paper: [paper-r-example.Rmd](paper-r-example.Rmd)
+- R/Markdown presentation: [Rmd](presentation-r-example.Rmd),
+  [pdf](//exporl.github.io/kuleuven-templates/presentation-r-example.pdf),
+  [handouts](//exporl.github.io/kuleuven-templates/presentation-r-example-handouts.pdf), 
+  [Powerpoint](//exporl.github.io/kuleuven-templates/presentation-r-example.ppt)
+- R/Markdown poster: [Rmd](poster-r-example.Rmd),
+  [pdf](//exporl.github.io/kuleuven-templates/poster-r-example.pdf)
+- R/Markdown paper: [Rmd](paper-r-example.Rmd),
+  [pdf](//exporl.github.io/kuleuven-templates/paper-r-example.pdf)
 
 ### Plain Markdown
 
@@ -78,16 +83,24 @@ If you need something that is a easier on the eyes than LaTeX and allows very
 easy customization of the templates, but don't want to go the full way to
 R/Markdown, take a look at the plain Markdown examples:
 
-- Markdown presentation: [presentation-example.markdown](presentation-example.markdown)
-- Markdown poster: [poster-example.markdown](poster-example.markdown)
+- Markdown presentation: [markdown](presentation-example.markdown),
+  [pdf](//exporl.github.io/kuleuven-templates/presentation-example.pdf),
+  [handouts](//exporl.github.io/kuleuven-templates/presentation-example-handouts.pdf), 
+  [Powerpoint](//exporl.github.io/kuleuven-templates/presentation-example.ppt)
+- Markdown poster: [markdown](poster-example.markdown),
+  [pdf](//exporl.github.io/kuleuven-templates/poster-example.pdf)
 
 ### LaTeX
 
 If you are already experienced in LaTeX, and you don't want to bother with all
 that fancy new R/Markdown stuff, you can start with the LaTeX templates:
 
-- LaTeX presentation: [presentation-latex.tex](presentation-latex.tex)
-- LaTeX poster: [poster-latex.tex](poster-latex.tex)
+- LaTeX presentation: [tex](presentation-latex.tex),
+  [pdf](//exporl.github.io/kuleuven-templates/presentation-latex.pdf),
+  [handouts](//exporl.github.io/kuleuven-templates/presentation-latex-handouts.pdf), 
+  [Powerpoint](//exporl.github.io/kuleuven-templates/presentation-latex.ppt)
+- LaTeX poster: [tex](poster-latex.tex),
+  [pdf](//exporl.github.io/kuleuven-templates/poster-latex.pdf)
 
 ## Linux
 
