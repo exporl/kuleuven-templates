@@ -26,7 +26,7 @@ Examples:
 - Poster: [poster-example.pdf](//exporl.github.io/kuleuven-templates/poster-example.pdf)
 - Paper with R figures: [paper-r-example.pdf](//exporl.github.io/kuleuven-templates/paper-r-example.pdf)
 
-Pull requests welcome!
+Comments, bug reports and pull requests welcome!
 
 ### Table of Contents
 - [R/Markdown, plain Markdown or LaTeX](#rmarkdown-plain-markdown-or-latex)
