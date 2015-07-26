@@ -50,5 +50,3 @@ Inlined lists:
 [/ipe]
 
 See *man pandoc_markdown* for more information.
-
-<!-- vi: set spell spelllang=en linebreak et nolist showbreak=>\ \ \  : -->

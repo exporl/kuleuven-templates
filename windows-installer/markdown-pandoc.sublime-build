@@ -1,4 +1,0 @@
- {
-      "cmd": ["pdflatex", "-synctex=1", "-interaction=nonstopmode", "$file"],
-      "selector": "source.tex"
-}

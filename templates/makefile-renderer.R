@@ -1,5 +1,7 @@
+win <- .Platform$OS.type == 'windows'
+ext <- tools::file_ext(input)
 input <- tools::file_path_sans_ext(basename(input))
-builddir <- system2('make', '-s builddir', stdout = TRUE)
+builddir <- if (win) './' else system2('make', '-s builddir', stdout = TRUE)
 
 fig.path <- paste0(input, '-figures/')
 
@@ -21,22 +23,32 @@ hook_pdfclean <- function (before, options, envir) {
     }
 }
 
-knitr::render_markdown()
-knitr::opts_chunk$set(tidy = FALSE,
-                      error = FALSE,
-                      pdfclean = TRUE,
-                      echo = FALSE,
-                      cache = TRUE,
-                      dev = 'pdf',
-                      fig.path = fig.path,
-                      cache.path = paste0(builddir, input, '-cache/'))
-knitr::knit_hooks$set(pdfclean = if (.Platform$OS.type == 'windows') knitr::hook_pdfcrop else hook_pdfclean)
-knitr::knit(paste0(input, '.Rmd'), paste0(input, '.markdown'), envir = new.env())
-
-for (rmd_warning in knitr::knit_meta(class = "rmd_warning")) {
-    message("Warning: ", rmd_warning)
+if (ext == 'Rmd') {
+    knitr::render_markdown()
+    knitr::opts_chunk$set(tidy = FALSE,
+                          error = FALSE,
+                          pdfclean = TRUE,
+                          echo = FALSE,
+                          cache = TRUE,
+                          dev = 'pdf',
+                          fig.path = fig.path,
+                          cache.path = paste0(builddir, input, '-cache/'))
+    knitr::knit_hooks$set(pdfclean = if (win) knitr::hook_pdfcrop else hook_pdfclean)
+    knitr::knit(paste0(input, '.Rmd'), paste0(input, '.markdown'), envir = new.env())
+    
+    for (rmd_warning in knitr::knit_meta(class = "rmd_warning")) {
+        message("Warning: ", rmd_warning)
+    }
 }
 
-if (make) {
+if (win) {
+    lines <- readLines(paste0(input, '.markdown'))
+    cat(grep('^%% ', lines, value = TRUE, invert = TRUE), file = paste0(input, '-filtered.markdown'), sep = '\n')
+    params <- sub('^%% ', '--', grep('^%% ', lines, value = TRUE))
+    system2(paste0(Sys.getenv('RSTUDIO_PANDOC'), '/pandoc'), c(paste0(input, '-filtered.markdown'), '-o', paste0(input, '.tex'), params))
+    system2('pdflatex', c('--synctex=1', '-shell-escape', '-interaction=nonstopmode', paste0(input, '.tex')))
+    file.copy('references.bib', 'parsed-references.bib', overwrite = TRUE)
+    system2('bibtex', c(input))
+} else if (make) {
     system2('make', paste0('pdflatex-', input))
 }

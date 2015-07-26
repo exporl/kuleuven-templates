@@ -36,17 +36,10 @@ Pull requests welcome!
 - [Linux](#linux)
     - [Installation](#installation)
     - [Using Make](#using-make)
-        - [Make configuration](#make-configuration)
-        - [Make targets](#make-targets)
 - [Windows](#windows)
     - [Installation](#installation-1)
-        - [R/Markdown/LaTeX build chain](#rmarkdownlatex-build-chain)
-        - [PDF viewer](#pdf-viewer)
-        - [SublimeText](#sublimetext)
-    - [Setting it up](#setting-it-up)
-        - [RStudio](#rstudio)
-        - [Texmaker](#texmaker)
-        - [SublimeText](#sublimetext-1)
+    - [Using the R/Markdown or the plain Markdown templates in RStudio](#using-the-rmarkdown-or-the-plain-markdown-templates-in-rstudio)
+    - [Using the LaTeX templates in Texmaker](#using-the-latex-templates-in-texmaker)
 - [New Pandoc variables](#new-pandoc-variables)
     - [Pandoc variables for presentations](#pandoc-variables-for-presentations)
 - [New Markdown commands](#new-markdown-commands)
@@ -68,13 +61,13 @@ your text, R/Markdown should fit the bill quite nicely.
 If you are using [RStudio](http://rstudio.com/), you can just click the `Knit`
 button to compile your R/Markdown document.
 
-- R/Markdown presentation: [Rmd](presentation-r-example.Rmd),
+- R/Markdown presentation: [Rmd](presentation-r-example.Rmd) →
   [pdf](//exporl.github.io/kuleuven-templates/presentation-r-example.pdf),
-  [handouts](//exporl.github.io/kuleuven-templates/presentation-r-example-handouts.pdf), 
+  [handouts](//exporl.github.io/kuleuven-templates/presentation-r-example-handouts.pdf),
   [Powerpoint](//exporl.github.io/kuleuven-templates/presentation-r-example.ppt)
-- R/Markdown poster: [Rmd](poster-r-example.Rmd),
+- R/Markdown poster: [Rmd](poster-r-example.Rmd) →
   [pdf](//exporl.github.io/kuleuven-templates/poster-r-example.pdf)
-- R/Markdown paper: [Rmd](paper-r-example.Rmd),
+- R/Markdown paper: [Rmd](paper-r-example.Rmd) →
   [pdf](//exporl.github.io/kuleuven-templates/paper-r-example.pdf)
 
 ### Plain Markdown
@@ -83,11 +76,11 @@ If you need something that is a easier on the eyes than LaTeX and allows very
 easy customization of the templates, but don't want to go the full way to
 R/Markdown, take a look at the plain Markdown examples:
 
-- Markdown presentation: [markdown](presentation-example.markdown),
+- Markdown presentation: [markdown](presentation-example.markdown) →
   [pdf](//exporl.github.io/kuleuven-templates/presentation-example.pdf),
-  [handouts](//exporl.github.io/kuleuven-templates/presentation-example-handouts.pdf), 
+  [handouts](//exporl.github.io/kuleuven-templates/presentation-example-handouts.pdf),
   [Powerpoint](//exporl.github.io/kuleuven-templates/presentation-example.ppt)
-- Markdown poster: [markdown](poster-example.markdown),
+- Markdown poster: [markdown](poster-example.markdown) →
   [pdf](//exporl.github.io/kuleuven-templates/poster-example.pdf)
 
 ### LaTeX
@@ -95,11 +88,11 @@ R/Markdown, take a look at the plain Markdown examples:
 If you are already experienced in LaTeX, and you don't want to bother with all
 that fancy new R/Markdown stuff, you can start with the LaTeX templates:
 
-- LaTeX presentation: [tex](presentation-latex.tex),
+- LaTeX presentation: [tex](presentation-latex.tex) →
   [pdf](//exporl.github.io/kuleuven-templates/presentation-latex.pdf),
-  [handouts](//exporl.github.io/kuleuven-templates/presentation-latex-handouts.pdf), 
+  [handouts](//exporl.github.io/kuleuven-templates/presentation-latex-handouts.pdf),
   [Powerpoint](//exporl.github.io/kuleuven-templates/presentation-latex.ppt)
-- LaTeX poster: [tex](poster-latex.tex),
+- LaTeX poster: [tex](poster-latex.tex) →
   [pdf](//exporl.github.io/kuleuven-templates/poster-latex.pdf)
 
 ## Linux
@@ -118,15 +111,11 @@ To use the included build system based on GNU Make:
 
 For the LaTeX templates:
 
-    sude apt-get install texlive texlive-latex-recommended texlive-science texlive-bibtex-extra
+    sudo apt-get install texlive texlive-latex-recommended texlive-science texlive-bibtex-extra imagemagick
 
-To be able to create a backup A4 version of posters:
+To be able to create backup versions of posters (A4) and presentations (Powerpoint):
 
-    sude apt-get install imagemagick posterazor
-
-To be able to create a backup Powerpoint version of presentations (I know, ieek):
-
-    sude apt-get install ghostscript libreoffice
+    sudo apt-get install ghostscript posterazor libreoffice
 
 For the plain Markdown templates:
 
@@ -173,9 +162,9 @@ Several Make targets are available:
 - `make <basename>.tex`: convert a plain Markdown file to LaTeX with
   [Pandoc](http://pandoc.org); any lines in the Markdown file that start with
   `%% ` are transformed into options for Pandoc
-- `pdflatex-<basename>`: convert an R/Markdown, plain Markdown or LaTeX file to 
+- `pdflatex-<basename>`: convert an R/Markdown, plain Markdown or LaTeX file to
   PDF by calling pdflatex and bibtex in addition to the appropriate steps above;
-  you might need to call this multiple times to get all references and bib entries 
+  you might need to call this multiple times to get all references and bib entries
   resolved correctly
 - `ondemand-<basename>`: watch for changes to any R/Markdown, plain Markdown or
   LaTeX files in the current directory and call `make pdflatex-<basename>` on them
@@ -189,73 +178,44 @@ Several Make targets are available:
 
 ## Windows
 
-The Windows documentation is incomplete at the moment (TODO):
-- you have to manually call Pandoc and LaTeX, and, in the case of R/Markdown,
-  the RStudio knitr callback does not do this automatically either
-
 While it is possible to use Cygwin to get the Linux setup above working quite
 well, this is not covered here as most people on Windows do not have experience
 in a Unix environment.
 
 ### Installation
 
-There is an automatic installer available in the windows-installer directory. To
-make it work, the following files need to be present:
+#### Automatic installation
 
-    pandoc-1.13.2-windows.msi
-    sublime-2-x64.exe
-    SublimeOnSaveBuild.zip
-    SumatraPDF-3.0-install.exe
-    latex-markdown-templates.zip
-    texmakerwin32_install.exe
+There is an automatic installer available in the windows-installer directory.
+Make sure to run it as administrator and to restart your session afterwards.
+You might need to change some of the download locations if newer versions
+of the dependencies have been released.
 
-Check the following sections on where to find them.
-It does not install Python or the Python support for Pandoc filters, so you need
-to do this yourself (TODO).
+#### Manual installation
 
-#### R/Markdown/LaTeX build chain
+You can also manually download them:
 
+- Install a LaTeX distribution, e.g. [MiKTeX](http://miktex.org/download)
+- Install [Texmaker](http://www.xm1math.net/texmaker/download.html)
+- Install [R](https://cran.r-project.org/bin/windows/base/)
 - Install [RStudio](https://www.rstudio.com/)
-- Install [Pandoc](http://code.google.com/p/pandoc/downloads/list)
 - Install [Python 2](https://www.python.org/downloads/windows/)
 - Install [Python filter support for Pandoc](https://pypi.python.org/pypi/pandocfilters):
   on a Windows command prompt, type `pip install pandocfilters`
-- Install a LaTeX distribution, e.g. [MiKTeX](http://miktex.org/download) or [TeX Live](https://www.tug.org/texlive/acquire-netinstall.html)
+- Install [Git](https://git-scm.com/download/win)
+- Install [SumatraPDF](http://www.sumatrapdfreader.org/download-free-pdf-viewer.html) for auto-refresh of PDF previews
 
-#### PDF viewer
+Afterwards, add the Python directory to the system PATH variable.
 
-- Install [SumatraPDF](http://blog.kowalczyk.info/software/sumatrapdf/free-pdf-reader.html) for auto-refresh of PDF previews
+### Using the R/Markdown, plain Markdown and LaTeX templates in RStudio
 
-#### SublimeText
+Before you start, switch the default document encoding to UTF-8 with `Tools` → `Global Options` → `General` → `Default Text Encoding` → `UTF-8`.
+Now you can compile any R/Markdown (`Knit`), plain Markdown (`Preview`), or LaTeX (`Compile PDF`) file with a click on the corresponding toolbar button.
+If you create a new project in the upper-right corner, you can use Git version control to keep track of your changes.
 
-- Install [SublimeText](http://www.sublimetext.com)
-- Install [package control](https://sublime.wbond.net)
-- Install SublimeOnSaveBuild: Ctrl-Shift-P -> Package Control: Install Package -> SublimeOnSaveBuild
+### Using the LaTeX templates in Texmaker
 
-### Setting it up
-
-#### RStudio
-
-TODO
-
-#### Texmaker
-
-TODO
-
-#### SublimeText
-
-Add a new build system: Tools -> Build system -> New build system
-
-    {
-        "cmd": ["pdflatex", "-synctex=1", "-interaction=nonstopmode", "$file"]
-    }
-
-Enable autobuild: Preferences -> Package Settings -> SublimeOnSaveBuild -> Settings - User
-
-    {
-      "filename_filter": "\\.(tex)$",
-      "build_on_save": 1
-    }
+Open a LaTeX file, and you are good to go.
 
 ## New Pandoc variables
 

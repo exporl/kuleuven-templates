@@ -11,6 +11,7 @@ sectiontitle: true
 captionfont: size=\scriptsize
 # customization of the templates
 header-includes: \input{presentation-example.header}
+knit: (function(input, encoding, make = TRUE) { source('templates/makefile-renderer.R', local = TRUE) })
 ---
 
 %% smart
@@ -89,5 +90,3 @@ Numbered lists:
 3.  Third paragraph
 
     Continued paragraphs
-
-<!-- vi: set spell spelllang=en linebreak et nolist showbreak=>\ \ \  : -->

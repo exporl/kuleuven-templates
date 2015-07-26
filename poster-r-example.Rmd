@@ -120,5 +120,3 @@ ggplot(iris, aes(Sepal.Length, Petal.Length)) +
 \vskip4.4cm
 
 [/columns]
-
-<!-- vi: set spell spelllang=en linebreak et nolist showbreak=>\ \ \  : -->

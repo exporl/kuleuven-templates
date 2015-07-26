@@ -13,6 +13,7 @@ titlefont: size=\veryHuge,series=\bfseries
 authorfont: size=\huge
 institutefont: size=\Large
 captionfont: size=\small
+knit: (function(input, encoding, make = TRUE) { source('templates/makefile-renderer.R', local = TRUE) })
 ---
 
 %% smart
@@ -133,5 +134,3 @@ captionfont: size=\small
 \vskip7.3cm
 
 [/columns]
-
-<!-- vi: set spell spelllang=en linebreak et nolist showbreak=>\ \ \  : -->

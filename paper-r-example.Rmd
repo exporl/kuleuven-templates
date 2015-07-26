@@ -69,5 +69,3 @@ ggplot(iris, aes(Sepal.Length, Petal.Length)) +
     geom_point(aes(color = Species)) +
     facet_wrap(~ Species)
 ```
-
-<!-- vi: set spell spelllang=en linebreak et nolist showbreak=>\ \ \  : -->

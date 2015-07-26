@@ -2,6 +2,7 @@
 title: Title
 author: [Author 1, Author 2]
 institute: Institute, Dept., University
+knit: (function(input, encoding, make = TRUE) { source('templates/makefile-renderer.R', local = TRUE) })
 ---
 
 %% smart
@@ -9,5 +10,3 @@ institute: Institute, Dept., University
 %% template=templates/abstract.tex
 
 \lipsum[1-4]
-
-<!-- vi: set spell spelllang=en linebreak et nolist showbreak=>\ \ \  : -->
