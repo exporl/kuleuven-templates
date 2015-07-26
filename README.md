@@ -160,9 +160,10 @@ Several Make targets are available:
 - `make <basename>.tex`: convert a plain Markdown file to LaTeX with
   [Pandoc](http://pandoc.org); any lines in the Markdown file that start with
   `%% ` are transformed into options for Pandoc
-- `pdflatex-<basename>`: convert a LaTeX file to PDF by calling pdflatex and
-  bibtex; you might need to call this multiple times to get all references and
-  bib entries resolved correctly
+- `pdflatex-<basename>`: convert an R/Markdown, plain Markdown or LaTeX file to 
+  PDF by calling pdflatex and bibtex in addition to the appropriate steps above;
+  you might need to call this multiple times to get all references and bib entries 
+  resolved correctly
 - `ondemand-<basename>`: watch for changes to any R/Markdown, plain Markdown or
   LaTeX files in the current directory and call `make pdflatex-<basename>` on them
 - `handouts-<basename>`: create a LaTeX/Beamer handout version of a
