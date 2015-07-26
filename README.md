@@ -36,9 +36,13 @@ Pull requests welcome!
 - [Linux](#linux)
     - [Installation](#installation)
     - [Using Make](#using-make)
+        - [Make configuration](#make-configuration)
+        - [Make targets](#make-targets)
 - [Windows](#windows)
     - [Installation](#installation-1)
-    - [Using the R/Markdown or the plain Markdown templates in RStudio](#using-the-rmarkdown-or-the-plain-markdown-templates-in-rstudio)
+        - [Automatic installation](#automatic-installation)
+        - [Manual installation](#manual-installation)
+    - [Using the R/Markdown, plain Markdown and LaTeX templates in RStudio](#using-the-rmarkdown-plain-markdown-and-latex-templates-in-rstudio)
     - [Using the LaTeX templates in Texmaker](#using-the-latex-templates-in-texmaker)
 - [New Pandoc variables](#new-pandoc-variables)
     - [Pandoc variables for presentations](#pandoc-variables-for-presentations)
@@ -47,7 +51,6 @@ Pull requests welcome!
     - [Markdown commands for papers](#markdown-commands-for-papers)
     - [Markdown commands for presentations](#markdown-commands-for-presentations)
     - [Markdown commands for posters](#markdown-commands-for-posters)
-- [Further TODOs](#further-todos)
 
 ## R/Markdown, plain Markdown or LaTeX
 
