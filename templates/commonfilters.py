@@ -110,11 +110,13 @@ class Image:
             if i == 0 and len(self._caption) > 0:
                 result.append(li('\\begin{%s}\n' % self._figtype))
             if i == 0 and len(self._caption) == 0 and not inline:
-                result.append(li('\\centering'))
+                result.append(li('{\\centering'))
             result.append(fig(f, options, anim))
             if i + 1 == len(self._filenames) and len(self._caption) > 0:
                 result.extend([li('\\caption{'), li(self._caption), li('}\n')])
                 result.append(li('\\end{%s}' % self._figtype))
+            if i + 1 == len(self._filenames) and len(self._caption) == 0 and not inline:
+                result.append(li('}'))
         if inline:
             if betweenframes:
                 return pf.Str('Unable to return paragraph when in inline mode')

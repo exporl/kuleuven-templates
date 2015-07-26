@@ -28,6 +28,7 @@ script:
 - make ppt-presentation-example ppt-presentation-r-example ppt-presentation-latex
 - mkdir old-latex && mv *-latex.tex old-latex && make regenerate-latex-templates
 - mkdir new-latex && mv *-latex.tex new-latex && diff -Nur old-latex/ new-latex/
+- gs -sDEVICE=png16m -dSAFER -dBATCH -dNOPAUSE -dTextAlphaBits=4 -dGraphicsAlphaBits=4 -sOutputFile="presentation-example-%03d.png" -r78.9 'presentation-example.pdf' && mogrify -border 1 -bordercolor black presentation-example-00[13].png
 - "! grep -qE 'LaTeX Error|Undefined control sequence' error.log"
 after_success:
 - mkdir -p kuleuven-templates
@@ -38,7 +39,7 @@ after_success:
     sed -i '/^\/ID \[/s/[0-9a-fA-F]/D/g' "$i";
     rm "$i.tmp";
   done
-- mv *.pdf *.ppt *.Rmd *.markdown *-example.tex kuleuven-templates/
+- mv *.pdf *.ppt *.Rmd *.markdown *-example.tex presentation-example-00[13].png kuleuven-templates/
 - git add -f kuleuven-templates/
 - git commit -m "$(git log --format=%B -n 1 $TRAVIS_COMMIT)"
 - if test "$TRAVIS_PULL_REQUEST" = "false" -a "$TRAVIS_BRANCH" = "master"; then
