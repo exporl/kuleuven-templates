@@ -247,12 +247,12 @@ Enable autobuild: Preferences -> Package Settings -> SublimeOnSaveBuild -> Setti
 
 ### Pandoc variables for presentations
 
-- `sectiontoc`
-- `subsectiontoc`
-- `multicolstoc`
-- `sectiontitle`
-- `subsectiontitle`
-- `gridcanvas`
+- `sectiontoc`: table of contents before each section
+- `subsectiontoc`: table of contents before each subsection
+- `multicolstoc`: two-column layout of table of contents
+- `sectiontitle`: show the slide title and current section
+- `subsectiontitle`: show the slide title and current section + subsection
+- `gridcanvas`: centimeter grid in the background
 
 ## New Markdown commands
 
