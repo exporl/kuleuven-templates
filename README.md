@@ -62,12 +62,18 @@ If you are using [RStudio](http://rstudio.com/), you can just click the `Knit`
 button to compile your R/Markdown document.
 
 - R/Markdown presentation: [Rmd](presentation-r-example.Rmd) →
+  [markdown](//exporl.github.io/kuleuven-templates/presentation-r-example.markdown) →
+  [tex](//exporl.github.io/kuleuven-templates/presentation-r-example.tex) →
   [pdf](//exporl.github.io/kuleuven-templates/presentation-r-example.pdf),
   [handouts](//exporl.github.io/kuleuven-templates/presentation-r-example-handouts.pdf),
   [Powerpoint](//exporl.github.io/kuleuven-templates/presentation-r-example.ppt)
 - R/Markdown poster: [Rmd](poster-r-example.Rmd) →
+  [markdown](//exporl.github.io/kuleuven-templates/poster-r-example.markdown) →
+  [tex](//exporl.github.io/kuleuven-templates/poster-r-example.tex) →
   [pdf](//exporl.github.io/kuleuven-templates/poster-r-example.pdf)
 - R/Markdown paper: [Rmd](paper-r-example.Rmd) →
+  [markdown](//exporl.github.io/kuleuven-templates/paper-r-example.markdown) →
+  [tex](//exporl.github.io/kuleuven-templates/paper-r-example.tex) →
   [pdf](//exporl.github.io/kuleuven-templates/paper-r-example.pdf)
 
 ### Plain Markdown
@@ -77,10 +83,12 @@ easy customization of the templates, but don't want to go the full way to
 R/Markdown, take a look at the plain Markdown examples:
 
 - Markdown presentation: [markdown](presentation-example.markdown) →
+  [tex](//exporl.github.io/kuleuven-templates/presentation-example.tex) →
   [pdf](//exporl.github.io/kuleuven-templates/presentation-example.pdf),
   [handouts](//exporl.github.io/kuleuven-templates/presentation-example-handouts.pdf),
   [Powerpoint](//exporl.github.io/kuleuven-templates/presentation-example.ppt)
 - Markdown poster: [markdown](poster-example.markdown) →
+  [tex](//exporl.github.io/kuleuven-templates/poster-example.tex) →
   [pdf](//exporl.github.io/kuleuven-templates/poster-example.pdf)
 
 ### LaTeX
