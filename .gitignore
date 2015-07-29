@@ -1,6 +1,7 @@
 *~
 *.pyc
 /.travis.key
+/.build
 /Makefile.local
 /*.pdf
 /*.aux
@@ -30,4 +31,3 @@
 .Rproj.user
 .Rhistory
 .RData
-README.html

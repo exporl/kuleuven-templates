@@ -27,7 +27,7 @@ def latexstringify(x):
         elif key == 'RawInline' and val[0] == 'tex':
             result.append(val[1])
     pf.walk(x, go, "", {})
-    return ''.join(result)
+    return ''.join(result).replace('%', '\\%')
 
 # Supported syntax:
 #   ![*<anim>{option}caption]({options}figure,{options}figure...): figures
