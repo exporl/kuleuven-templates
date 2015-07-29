@@ -44,8 +44,8 @@ Comments, bug reports and pull requests welcome!
     - [Installation](#installation-1)
         - [Automatic installation](#automatic-installation)
         - [Manual installation](#manual-installation)
-    - [Using the R/Markdown, plain Markdown and LaTeX templates in RStudio](#using-the-rmarkdown-plain-markdown-and-latex-templates-in-rstudio)
-    - [Using the LaTeX templates in Texmaker](#using-the-latex-templates-in-texmaker)
+- [Using the R/Markdown, plain Markdown and LaTeX templates in RStudio](#using-the-rmarkdown-plain-markdown-and-latex-templates-in-rstudio)
+- [Using the LaTeX templates in Texmaker](#using-the-latex-templates-in-texmaker)
 - [New Pandoc variables](#new-pandoc-variables)
     - [Pandoc variables for presentations](#pandoc-variables-for-presentations)
 - [New Markdown commands](#new-markdown-commands)
@@ -220,13 +220,13 @@ You can also manually download them:
 
 Afterwards, add the Python directory to the system PATH variable.
 
-### Using the R/Markdown, plain Markdown and LaTeX templates in RStudio
+## Using the R/Markdown, plain Markdown and LaTeX templates in RStudio
 
 Before you start, switch the default document encoding to UTF-8 with `Tools` → `Global Options` → `General` → `Default Text Encoding` → `UTF-8`.
 Now you can compile any R/Markdown (`Knit`), plain Markdown (`Preview`), or LaTeX (`Compile PDF`) file with a click on the corresponding toolbar button.
 If you create a new project in the upper-right corner, you can use Git version control to keep track of your changes.
 
-### Using the LaTeX templates in Texmaker
+## Using the LaTeX templates in Texmaker
 
 Open a LaTeX file, and you are good to go.
 
