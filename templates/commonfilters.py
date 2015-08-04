@@ -19,7 +19,7 @@ def latexstringify(x):
         elif key == 'Code':
             result.append(val[1])
         elif key == 'Math':
-            result.append(val[1])
+            result.append('$' + val[1] + '$')
         elif key == 'LineBreak':
             result.append(" ")
         elif key == 'Space':
