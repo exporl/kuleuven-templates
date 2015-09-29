@@ -46,6 +46,7 @@ Comments, bug reports and pull requests welcome!
         - [Manual installation](#manual-installation)
 - [Using the R/Markdown, plain Markdown and LaTeX templates in RStudio](#using-the-rmarkdown-plain-markdown-and-latex-templates-in-rstudio)
 - [Using the LaTeX templates in Texmaker](#using-the-latex-templates-in-texmaker)
+- [Online editors](#online-editors)
 - [New Pandoc variables](#new-pandoc-variables)
     - [Pandoc variables for presentations](#pandoc-variables-for-presentations)
 - [New Markdown commands](#new-markdown-commands)
@@ -229,6 +230,10 @@ If you create a new project in the upper-right corner, you can use Git version c
 ## Using the LaTeX templates in Texmaker
 
 Open a LaTeX file, and you are good to go.
+
+## Online editors
+
+An older version of the templates can be found on [ShareLaTeX](https://www.sharelatex.com/templates/55e9a3a23fbe52ea38a026c7).
 
 ## New Pandoc variables
 
