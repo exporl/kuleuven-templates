@@ -18,7 +18,7 @@ cache:
         - $HOME/prebuild/texlive
         - $HOME/prebuild/libreoffice
 before_install:
-- export R_LIBS_USER=$HOME/prebuild/R PATH=$PATH:$HOME/prebuild/texlive/bin/x86_64-linux:$HOME/prebuild/haskell/bin:$HOME/prebuild/libreoffice/opt/libreoffice4.4/program PYTHONUSERBASE=$HOME/prebuild/python
+- export R_LIBS_USER=$HOME/prebuild/R PATH=$PATH:$HOME/prebuild/texlive/bin/x86_64-linux:$HOME/prebuild/haskell/bin:$HOME/prebuild/libreoffice/opt/libreoffice5.0/program PYTHONUSERBASE=$HOME/prebuild/python
 - ./.travis.git
 - find $HOME/prebuild -maxdepth 1 -type d -empty -exec ./.travis.deps '{}' ';'
 script:
