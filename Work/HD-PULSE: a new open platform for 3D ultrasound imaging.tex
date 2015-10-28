@@ -25,10 +25,11 @@
 \usepackage[symbol]{footmisc}
 \usepackage[notquote]{hanging}
 \usepackage[normalem]{ulem}
+\usepackage{comment}
 %\usepackage{lua-visual-debug}
 
 \pdfstringdefDisableCommands{\renewcommand{\sout}{}}
-\graphicspath{{figures/}}
+\graphicspath{{Images/}}
 % Fix sort order in case the same file exists with multiple extensions
 \DeclareGraphicsExtensions{.pdf,.png,.jpeg,.jpg,.eps}
 \frenchspacing
@@ -86,7 +87,7 @@
     \hskip-\paperwidth%
     \hskip1.6cm%
     \vbox to \paperheight{%
-        \vskip0.5cm\hskip0.5cm\includegraphics[width=2.83cm]{templates/kuleuven}%
+        \vskip0.1cm\hskip0.1cm\includegraphics[width=2.83cm]{templates/kuleuven}%
         \vskip0.99cm\hskip0.76cm\includegraphics[width=2.84cm]{templates/key}%
         \vskip-0.57cm\hskip11.61cm\includegraphics[width=0.58cm]{templates/sedes}\hspace*{-1cm}%
         \vfill
@@ -280,14 +281,15 @@
 
 \setcounter{secnumdepth}{0}
 
-\title{Multiple Line Transmission}
-\subtitle{Radiation and Matter}
+\title{\large HD-PULSE: a new open platform for 3D ultrasound imaging}
+
 \author{\\ \href{vangjush.komini@uzleuven.be}{\textbf{\textit{Vangjush Komini}}}
 }
 
 
-\institute{{\tiny advised by}\vspace{.10cm} \href{jan.dhooge@uzleuven.be}{Jan D'hooge}}
-\date{\href{www.kul.be}{KU Leuven}\\ \vspace{.10cm}\today}
+
+\institute{\href{www.kul.be}{KU Leuven}}
+\date{\vspace{.10cm}Novermber $16^{th}$ 2015}
 
 \begin{document}
 
@@ -306,24 +308,85 @@
     \end{frame}
 \largefooter
 
-\section{First Section}\label{first-section}
+\section{System specification}\label{first-section}
 
-\begin{frame}{First slide}
+\begin{frame}{Requirements}
+
+
+
+\begin{figure}[!htb]
+\minipage{0.5\textwidth}
+Functional requirements
+\begin{itemize}
+\item \footnotesize Real time motion estimation
+\item Reliability 
+\item Scalability
+\item Flexibility
+\end{itemize}
+\endminipage
+\minipage{0.6\textwidth}
+\centering
+FPGA key-driver
+\begin{itemize}
+\item \footnotesize Fast computation, high throughput
+\item Time to Market
+\item Cost
+\item Reliability
+\item Long-Term Maintenance
+\end{itemize}
+\endminipage
+\end{figure}
+
+
+\begin{figure}[!htb]
+\minipage{0.5\textwidth}
+\includegraphics[width=.87\textwidth]{1.png}
+\endminipage
+\minipage{0.5\textwidth}
+\centering
+\includegraphics[width=.71\textwidth]{3.png}
+\endminipage
+\end{figure}
+
+
 
 \end{frame}
 
-\begin{frame}{Second slide}
+\begin{frame}{System outline}
+
+\begin{figure}[!htb]
+\minipage{0.5\textwidth}
+\includegraphics[width=1\textwidth]{2.png}
+\endminipage
+\minipage{0.5\textwidth}
+\centering
+\includegraphics[width=1.3\textwidth]{4.png}
+\endminipage
+\end{figure}
+
 
 \end{frame}
 
-\section{First Section}\label{first-section}
+\begin{frame}{Properties}
 
-\begin{frame}{First slide}
+\begin{block}{\footnotesize{High data rate acquisition the main advantage via FlexRIO with NI5752}}
+\begin{enumerate} 
+\vspace{0.05cm}
+     \item \footnotesize{} 
+     \item \footnotesize{}
+     \item \footnotesize{}
+\end{enumerate}
+\end{block}
+
 
 \end{frame}
 
-\begin{frame}{Second slide}
 
+\begin{frame}[allowframebreaks]
+        \frametitle{References}
+        \bibliography{main}
+        \bibliographystyle{plain}
 \end{frame}
+
 
 \end{document}
