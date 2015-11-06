@@ -26,6 +26,7 @@
 \usepackage[notquote]{hanging}
 \usepackage[normalem]{ulem}
 \usepackage{comment}
+\usepackage{media9}
 %\usepackage{lua-visual-debug}
 
 \pdfstringdefDisableCommands{\renewcommand{\sout}{}}
@@ -36,10 +37,8 @@
 
 \input{templates/definitions.tex}
 
-
-
 %% From pandoc default template
-%% End pandoc
+% End pandoc
 
 \mode<presentation>
 
@@ -77,6 +76,9 @@
 \setlength\leftmargini{1em}
 \setlength\leftmarginii{1em}
 \setlength\leftmarginiii{1em}
+
+
+
 
 \defbeamertemplate{background canvas}{title}
 {%
@@ -139,7 +141,7 @@
 \defbeamertemplate{footline}{small}
 {%
     \vskip.3cm% make room for the logo
-    \begin{beamercolorbox}[ht=0.37cm,dp=0.25cm,center,ignorebg]{normal text}%
+    \begin{beamercolorbox}[ht=0.5cm,dp=0.5cm,center,ignorebg]{normal text}%
     \mdseries\insertframenumber%
     \end{beamercolorbox}%
 }
@@ -308,77 +310,376 @@
     \end{frame}
 \largefooter
 
+
+
 \section{System specification}\label{first-section}
 
-\begin{frame}{Requirements}
 
-
-
-\begin{figure}[!htb]
-\minipage{0.5\textwidth}
-Functional requirements
-\begin{itemize}
-\item \footnotesize Real time motion estimation
-\item Reliability 
-\item Scalability
-\item Flexibility
-\end{itemize}
-\endminipage
-\minipage{0.6\textwidth}
-\centering
-FPGA key-driver
-\begin{itemize}
-\item \footnotesize Fast computation, high throughput
-\item Time to Market
-\item Cost
-\item Reliability
-\item Long-Term Maintenance
-\end{itemize}
-\endminipage
-\end{figure}
-
+\begin{frame}{Functional requirements}
 
 \begin{figure}[!htb]
 \minipage{0.5\textwidth}
-\includegraphics[width=.87\textwidth]{1.png}
-\endminipage
-\minipage{0.5\textwidth}
-\centering
-\includegraphics[width=.71\textwidth]{3.png}
-\endminipage
-\end{figure}
-
-
-
-\end{frame}
-
-\begin{frame}{System outline}
-
-\begin{figure}[!htb]
-\minipage{0.5\textwidth}
-\includegraphics[width=1\textwidth]{2.png}
-\endminipage
-\minipage{0.5\textwidth}
-\centering
-\includegraphics[width=1.3\textwidth]{4.png}
-\endminipage
-\end{figure}
-
-
-\end{frame}
-
-\begin{frame}{Properties}
-
-\begin{block}{\footnotesize{High data rate acquisition the main advantage via FlexRIO with NI5752}}
+\begin{block}{\footnotesize{}}\tiny{}
 \begin{enumerate} 
 \vspace{0.05cm}
-     \item \footnotesize{} 
-     \item \footnotesize{}
-     \item \footnotesize{}
+     \item \tiny{\textbf{\textit{Fast computation, high throughput}}} \tiny{hardware parallelism}
+     \item \tiny{\textbf{\textit{Time to Market small}}} \tiny{highly flexible and prototypable} 
+     \item \tiny{\textbf{\textit{Cost}}} \tiny{NRE nonrecurring engineering expense of custom}
+     \item \tiny{\textbf{\textit{Reliability}}} \tiny{"hard" implementation in circuit}
+     \item \tiny{\textbf{\textit{Long-Term Maintenance}}} \tiny{field upgradable, no time for redesigning as ASIC}
+\end{enumerate}
+\end{block}
+\endminipage
+\minipage{0.8\textwidth}
+\endminipage
+\end{figure}
+
+\end{frame}
+
+\begin{frame}{Functional requirements}
+
+\begin{figure}[!htb]
+\minipage{0.5\textwidth}
+\begin{block}{\footnotesize{}}\tiny{}
+\begin{enumerate} 
+\vspace{0.05cm}
+     \item \tiny{\textbf{\textit{Fast computation, high throughput}}} \tiny{hardware parallelism}
+     \item \tiny{\textbf{\textit{Time to Market small}}} \tiny{highly flexible and prototypable} 
+     \item \tiny{\textbf{\textit{Cost}}} \tiny{NRE nonrecurring engineering expense of custom}
+     \item \tiny{\textbf{\textit{Reliability}}} \tiny{"hard" implementation in circuit}
+     \item \tiny{\textbf{\textit{Long-Term Maintenance}}} \tiny{field upgradable, no time for redesigning as ASIC}
 \end{enumerate}
 \end{block}
 
+\includegraphics[width=.75\textwidth]{1_1.png}
+\endminipage
+\minipage{0.5\textwidth}
+\centering
+\includegraphics[width=.65\textwidth]{3.png}
+\endminipage
+\end{figure}
 
+\end{frame}
+
+\emptyfooter
+\begin{frame}{}
+\begin{figure}[!htb]
+\includegraphics[width=.91\textwidth]{6.png}
+\end{figure}
+\largefooter
+\end{frame}
+
+\begin{frame}{Mileston}
+
+\begin{block}{\footnotesize{High data rate acquisition is the \textbf{highlight} of the system}}\tiny{}
+\begin{enumerate} 
+\vspace{0.05cm}
+     \item \tiny{\textbf{\textit{Probe to FPGA}} } 
+     \item \tiny{FPGA to HOST}
+\end{enumerate}
+\end{block}
+
+\begin{figure}[!htb]
+\minipage{0.5\textwidth}
+\includegraphics[width=.81\textwidth]{2.png}
+\caption{\tiny{Probe Interface}}
+\endminipage
+\minipage{0.5\textwidth}
+\centering
+\includegraphics[width=1\textwidth]{4.png}
+\caption{\tiny{FPGA to HOST} }
+\endminipage
+\end{figure}
+
+\end{frame}
+
+\subsection{Outline of the FPGA}
+\begin{frame}{FlexRIO}
+
+High data rate acquisition is the \textbf{highlight} of the system
+
+\begin{figure}[!htb]
+\includegraphics[width=.51\textwidth]{5.png}
+\caption{\tiny{FlexRIO with module}}
+\end{figure}
+
+\end{frame}
+
+\emptyfooter
+\begin{frame}{}
+\begin{figure}[!htb]
+\includegraphics[width=.91\textwidth]{2_1.png}
+\end{figure}
+\largefooter
+\end{frame}
+
+
+\subsection{Multiplexer}
+\begin{frame}{DSL32M}
+
+
+
+\begin{figure}[!htb]
+\minipage{0.5\textwidth}
+
+\begin{block}{\footnotesize{Multiplexer module}}\footnotesize{}
+\begin{enumerate} 
+\vspace{0.05cm}
+     \item \footnotesize{32 channels}
+     \item \footnotesize{Independent high voltages}
+     \item \footnotesize{Bi-directional switches}
+     \item \footnotesize{SPI interfacing}
+     \item \footnotesize{Stackable with daisy chain}
+\end{enumerate}
+\end{block}
+
+\endminipage
+\minipage{0.5\textwidth}
+\centering
+\includegraphics[width=.85\textwidth]{9.png}
+\caption{\tiny{DSL32M module}}
+\endminipage
+\end{figure}
+
+\end{frame}
+
+\emptyfooter
+\begin{frame}{}
+\begin{figure}[!htb]
+\includegraphics[width=.91\textwidth]{2_2.png}
+\end{figure}
+\largefooter
+\end{frame}
+
+
+\subsection{Pulser}
+\begin{frame}{DSL32T}
+
+
+
+\begin{figure}[!htb]
+\minipage{0.5\textwidth}
+
+\begin{block}{\footnotesize{Pulser}}\footnotesize{}
+\begin{enumerate} 
+\vspace{0.05cm}
+     \item \footnotesize{32 channels}
+     \item \footnotesize{Independent high voltages}
+     \item \footnotesize{Programmable sequence}
+     \item \footnotesize{3-level output}
+     \item \footnotesize{External HV power}
+     \item \footnotesize{Power to muxer}
+     \item \footnotesize{SPI interfacing}
+\end{enumerate}
+\end{block}
+
+\endminipage
+\minipage{0.5\textwidth}
+\centering
+\includegraphics[width=.85\textwidth]{11.png}
+\caption{\tiny{DSL32T module}}
+\endminipage
+\end{figure}
+
+\end{frame}
+
+
+
+
+\emptyfooter
+\begin{frame}{}
+\begin{figure}[!htb]
+\includegraphics[width=.91\textwidth]{2_3.png}
+\end{figure}
+\largefooter
+\end{frame}
+
+
+\subsection{Module}
+\begin{frame}{DSL32R}
+
+\begin{figure}[!htb]
+\minipage{0.5\textwidth}
+\begin{block}{\footnotesize{Front end pulser}}\footnotesize{}
+\begin{enumerate} 
+\vspace{0.01cm}
+     \item \footnotesize{32 channels}
+     \item \footnotesize{LN pre-A}
+     \item \footnotesize{Tx/Rx protection}
+     \item \footnotesize{Power supply to muxer}
+     \item \footnotesize{External clock to digitizer}
+     \item \footnotesize{SPI interface}
+\end{enumerate}
+\end{block}
+
+\endminipage
+\minipage{0.5\textwidth}
+\centering
+\includegraphics[width=1\textwidth]{7.png}
+\caption{\tiny{DSL32R module}}
+\endminipage
+\end{figure}
+
+\end{frame}
+
+
+
+\emptyfooter
+\begin{frame}{}
+\begin{figure}[!htb]
+\includegraphics[width=.91\textwidth]{2_4.png}
+\end{figure}
+\largefooter
+\end{frame}
+
+\subsection{ADC}
+\begin{frame}{NI5752}
+
+
+
+\begin{figure}[!htb]
+\minipage{0.5\textwidth}
+
+\begin{block}{\footnotesize{Receiver}}\footnotesize{}
+\begin{enumerate} 
+\vspace{0.05cm}
+     \item \footnotesize{32 channels digitizer}
+     \item \footnotesize{Digitally controlled swept gain}
+     \item \footnotesize{Programmable filters}
+     \item \footnotesize{SPI interfacing}
+     \item \footnotesize{External clock}
+     \item \footnotesize{Digital control to the adapter}
+\end{enumerate}
+\end{block}
+
+\endminipage
+\minipage{0.5\textwidth}
+\centering
+\includegraphics[width=.95\textwidth]{8.png}
+\caption{\tiny{NI5752 module}}
+\endminipage
+\end{figure}
+\end{frame}
+
+\section{System operation}\label{second-section}
+
+
+\emptyfooter
+\begin{frame}{}
+\centering
+\vspace{3cm}
+\Huge System operation 
+
+
+
+\end{frame}
+\largefooter
+
+
+
+
+
+\emptyfooter
+\begin{frame}{}
+\begin{figure}[!htb]
+\centering
+\includegraphics[width=1.1\textwidth]{12.png}
+\end{figure}
+\end{frame}
+\largefooter
+
+\begin{frame}{Acquisition modalities}
+
+\begin{block}{\footnotesize{DSLFITfocusStream}}\footnotesize{}
+\begin{enumerate} 
+\vspace{0.05cm}
+     \item \footnotesize{Beam-forming in FPGA}
+     \item \footnotesize{Data streamed to host via DRAM buffer}
+     \item \footnotesize{Linear, Sector scans with A, B, C scans}
+\end{enumerate}
+\end{block}
+
+\begin{block}{\footnotesize{DSLFITacquire}}\footnotesize{}
+\begin{enumerate} 
+\vspace{0.05cm}
+     \item \footnotesize{Parallel channel acquisition and transfer}
+     \item \footnotesize{Batch mode acquisition}
+     \item \footnotesize{FMC, FRD and Linear Acquisition}
+\end{enumerate}
+\end{block}
+\end{frame}
+
+\begin{frame}{SW Framework}
+
+\begin{figure}[!htb]
+\minipage{0.5\textwidth}
+
+\begin{block}{\footnotesize{}}\footnotesize{}
+\begin{enumerate} 
+\vspace{0.05cm}
+     \item \footnotesize{Determine the available HW}
+     \item \footnotesize{Initialise FPGA of any $DSL32T$}
+     \item \footnotesize{Initialise FPGA of any $NIT5752$ }
+     \item \footnotesize{Initialise all variables}
+     \item \footnotesize{Queued State Machine loop}
+     \item \footnotesize{Event Handler for GUI}
+     \item \footnotesize{Close FPGA referencse on exit}
+\end{enumerate}
+\end{block}
+
+\endminipage
+\minipage{0.5\textwidth}
+\centering
+\includegraphics[width=1.1\textwidth]{13.png}
+\endminipage
+\end{figure}
+
+\end{frame}
+
+\begin{frame}{Configuration}
+
+\begin{figure}[!htb]
+\minipage{0.5\textwidth}
+
+\endminipage
+\minipage{0.5\textwidth}
+\centering
+\includegraphics[width=1\textwidth]{14.png}
+\endminipage
+\end{figure}
+
+\begin{figure}[!htb]
+\minipage{0.5\textwidth}
+\centering
+\includegraphics[width=1\textwidth]{15.png}
+\endminipage
+\minipage{0.5\textwidth}
+\centering
+\includegraphics[width=1\textwidth]{16.png}
+\endminipage
+\end{figure}
+
+\end{frame}
+
+\begin{frame}{User interface}
+
+\begin{figure}[!htb]
+\minipage{0.5\textwidth}
+
+\endminipage
+\centering
+\includegraphics[width=1\textwidth]{17.png}
+\end{figure}
+
+\end{frame}
+
+\emptyfooter
+\begin{frame}{ }
+\centering \textbf{\Large \textit{Thank you for your attention}}
+\begin{figure}[!htb]
+\includegraphics[width=.6\textwidth]{QA.jpg}
+\end{figure}
+\largefooter
 \end{frame}
 
 
