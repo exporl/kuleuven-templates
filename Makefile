@@ -66,8 +66,9 @@ builddir:
 
 .SECONDARY: $(PDFPDFPICTURES) $(EPSPNGPICTURES) $(EPSPDFPICTURES) $(TIKZPDFPICTURES) $(MDSOURCES:%=%.tex) $(MDSOURCES:%=%.markdown)
 
+# No idea why MAKEFLAGS need to be reset, but otherwise the ondemand build below fails
 %.markdown: %.Rmd
-	R -e 'input <- "$<"; make <- FALSE; source("templates/makefile-renderer.R", local=TRUE)'
+	MAKEFLAGS= R -e 'input <- "$<"; make <- FALSE; source("templates/makefile-renderer.R", local=TRUE)'
 
 %.tex: %.markdown
 	mkdir -p $(BUILDDIR)
@@ -98,6 +99,9 @@ ondemand-%:
 	    ionice -c 3 nice -n 19 make -j 4 pdflatex-$*; \
 	    [ -n "$${VIEW}" ] && make $${VIEW}; \
 	    VIEW=; \
+	    while read -t 1 filename; do \
+		echo Change detected in $$filename, ignored; \
+	    done; \
 	done
 
 handouts-%:

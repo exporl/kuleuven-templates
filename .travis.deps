@@ -22,8 +22,8 @@ texlive)
     install-tl-*/install-tl --profile=.travis.texlive
     ;;
 libreoffice)
-    wget http://download.documentfoundation.org/libreoffice/stable/5.0.2/deb/x86_64/LibreOffice_5.0.2_Linux_x86-64_deb.tar.gz
-    tar xf LibreOffice_5.0.2_Linux_x86-64_deb.tar.gz
+    wget http://download.documentfoundation.org/libreoffice/stable/5.0.3/deb/x86_64/LibreOffice_5.0.3_Linux_x86-64_deb.tar.gz
+    tar xf LibreOffice_5.0.3_Linux_x86-64_deb.tar.gz
     for i in LibreOffice*/DEBS/*.deb; do dpkg-deb -x $i $HOME/prebuild/libreoffice/; done
     ;;
 esac
