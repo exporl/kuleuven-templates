@@ -11,12 +11,12 @@ colwidthleft = 1.0
 colleft = 1
 marginnote = ''
 
-def structure_para(v, f, m):
+def structure_para(v, f, m, block):
     global marginnote
     if not len(marginnote) == 0:
         note = [li('\\m{%s}' % marginnote)]
         marginnote = ''
-        return pf.Para(note + v)
+        return block(note + v)
 
 def structure_header(v, f, m):
     global marginnote
@@ -29,7 +29,9 @@ def structure_header(v, f, m):
 
 def filter_structure(k, v, f, m):
     if k == 'Para':
-        return structure_para(v, f, m)
+        return structure_para(v, f, m, pf.Para)
+    if k == 'Plain':
+        return structure_para(v, f, m, pf.Plain)
     if k == 'Header':
         return structure_header(v, f, m)
 
