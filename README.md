@@ -328,7 +328,5 @@ The following commands need to be at the end of a frame.
 Further TODOs
 -------------
 
-- ondemand should do markdown -> tex and tex -> pdf separately, at the moment
-  pdflatex is run two times
 - example sound file
 - restore tikz helpers
