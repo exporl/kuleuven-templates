@@ -13,10 +13,10 @@ marginnote = ''
 
 def structure_para(v, f, m, block):
     global marginnote
-    if not len(marginnote) == 0:
-        note = [li('\\m{%s}' % marginnote)]
-        marginnote = ''
-        return block(note + v)
+    note = marginnote
+    marginnote = ''
+    if not len(note) == 0 and not note.startswith('*'):
+        return block([li('\\m{%s}' % note)] + v)
 
 def structure_header(v, f, m):
     global marginnote
@@ -25,7 +25,8 @@ def structure_header(v, f, m):
         return []
 
 # Supported syntax:
-#   ##### header5: margin note
+#   ##### header5: draft paragraph heading shown as margin note
+#   ##### *header5: draft paragraph heading not shown anywhere
 
 def filter_structure(k, v, f, m):
     if k == 'Para':

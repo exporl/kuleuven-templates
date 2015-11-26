@@ -285,7 +285,8 @@ provided by the Pandoc filters found in `templates/*-filters.py`.
 
 ### Markdown commands for papers
 
-- `##### header5`: margin note
+- `##### header5`: draft paragraph heading shown as margin note
+- `##### *header5`: draft paragraph heading not shown anywhere
 - `[ipe]`: start a new in-paragraph enumeration, use \item for the individual items
 - `[/ipe]`: end an in-paragraph enumeration
 

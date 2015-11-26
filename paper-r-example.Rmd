@@ -56,6 +56,8 @@ Inlined lists:
 \item Curabitur auctor semper nulla.
 [/ipe]
 
+##### *invisible heading
+
 See *man pandoc_markdown* for more information.
 
 ```{r iris, fig.cap='iris data'}
