@@ -134,6 +134,11 @@ To be able to create backup versions of posters (A4) and presentations (Powerpoi
 For the plain Markdown templates:
 
     sudo apt-get install pandoc python-pandocfilters
+    
+If you use ubuntu 14.04 or older, you need to install the python-pandocfilters package manually from a next release (http://packages.ubuntu.com/search?keywords=python-pandocfilters), e.g.:
+
+    wget http://de.archive.ubuntu.com/ubuntu/pool/universe/p/python-pandocfilters/python-pandocfilters_1.2.2-1_all.deb
+    dpkg -i python-pandocfilters*.deb
 
 To use R/Markdown:
 
