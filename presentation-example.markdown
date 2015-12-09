@@ -33,11 +33,21 @@ knit: (function(input, encoding, make = TRUE) { source('templates/makefile-rende
 <!-- Comments -->
 Default lists:
 
-- Citations [@Macherey2006] and @Macherey2006
+- Citations [@Macherey2006;@Francart2008] and @Macherey2006
 - references have a clickable link to Pubmed or Amazon
 - Standard abreviations \\eg and \\ie for \eg and \ie
 - Units like \pps{900}
 - **Highlights** and *highlights*
+
+### Indented lists
+
+- Item 1
+    - Item 1.1
+    - item 1.2
+- Item 2 \
+  Continue without bullet
+- Item 3
+
 
 # Methods
 
