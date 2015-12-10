@@ -31,7 +31,8 @@ knit: (function(input, encoding, make = TRUE) { source('templates/makefile-rende
 ![<1|handout:0><2>{h}](presentation-examplefig,presentation-examplefig-magenta)
 
 <!-- Comments -->
-Default lists:
+
+### Default lists
 
 - Citations [@Macherey2006;@Francart2008] and @Macherey2006
 - references have a clickable link to Pubmed or Amazon
@@ -48,6 +49,8 @@ Default lists:
   Continue without bullet
 - Item 3
 
+
+[includeslides=figures/pdfslide.pdf]
 
 # Methods
 
