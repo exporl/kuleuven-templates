@@ -318,6 +318,7 @@ The following commands need to be at the end of a frame.
 - `[subsectiontitle]`: show the slide title and current section + subsection
 - `[plaincanvas]`: empty background (default)
 - `[gridcanvas]`: centimeter grid in the background
+- `[includeslides=file.pdf]`: include fullpage slides from pdf file. Uses \includepdf from pdfpages.
 
 ### Markdown commands for posters
 
