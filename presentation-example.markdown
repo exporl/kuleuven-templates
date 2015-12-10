@@ -32,10 +32,9 @@ knit: (function(input, encoding, make = TRUE) { source('templates/makefile-rende
 
 <!-- Comments -->
 
-### Default lists
+Default lists:
 
-- Citations [@Macherey2006;@Francart2008] and @Macherey2006
-- references have a clickable link to Pubmed or Amazon
+- Citations [@Macherey2006;@Francart2008] and @Macherey2006, with clickable link to Pubmed/Amazon
 - Standard abreviations \\eg and \\ie for \eg and \ie
 - Units like \pps{900}
 - **Highlights** and *highlights*
