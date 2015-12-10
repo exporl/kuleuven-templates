@@ -97,6 +97,9 @@ def structure_para(v, f, m):
             else:
                 columns[-1].column(result)
             return result
+        elif content.startswith('includeslides='):
+            return afterframe('\includepdf[pages=-,fitpaper=false,frame=true,pagecommand={},scale=1]{%s}' % 
+content[14:] )
 
 def structure_header(v, f, m):
     global lastsection, lastsubsection
