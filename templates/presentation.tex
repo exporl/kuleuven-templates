@@ -375,7 +375,7 @@ $if(subtitle)$
 \subtitle{$subtitle$}
 $endif$
 $if(author)$
-\author{$for(author)$$author$$sep$ \and $endfor$}
+\author{$for(author)$\mbox{$author$}$sep$ \and $endfor$}
 $endif$
 $if(date)$
 \date{$date$}
