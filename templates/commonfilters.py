@@ -116,7 +116,7 @@ class Image:
                 result.extend([li('\\caption{'), li(self._caption), li('}\n')])
                 result.append(li('\\end{%s}' % self._figtype))
             if i + 1 == len(self._filenames) and len(self._caption) == 0 and not inline:
-                result.append(li('}'))
+                result.append(li('\par}'))
         if inline:
             if betweenframes:
                 return pf.Str('Unable to return paragraph when in inline mode')
