@@ -255,6 +255,8 @@ An older version of the templates can be found on [ShareLaTeX](https://www.share
 
 Various new Markdown commands (mostly of the form `[command=param]`) are
 provided by the Pandoc filters found in `templates/*-filters.py`.
+Most of them need to be put in their own paragraph only consisting of the 
+command itself.
 
 ### Markdown commands for papers/presentations/posters
 
