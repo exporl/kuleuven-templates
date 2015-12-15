@@ -4,7 +4,9 @@ input <- tools::file_path_sans_ext(basename(input))
 builddir <- if (win) './' else system2('make', '-s builddir', stdout = TRUE)
 
 fig.path <- paste0(input, '-figures/')
-Sys.setlocale(category = "LC_ALL", locale = "C")
+if (!win) {
+    Sys.setlocale(category = "LC_ALL", locale = "en_US.UTF-8")
+}
 
 hook_pdfclean <- function (before, options, envir) {
     if (before || options$fig.num == 0) return()
