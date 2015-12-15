@@ -4,6 +4,7 @@ input <- tools::file_path_sans_ext(basename(input))
 builddir <- if (win) './' else system2('make', '-s builddir', stdout = TRUE)
 
 fig.path <- paste0(input, '-figures/')
+Sys.setlocale(category = "LC_ALL", locale = "C")
 
 hook_pdfclean <- function (before, options, envir) {
     if (before || options$fig.num == 0) return()
@@ -35,7 +36,7 @@ if (ext == 'Rmd') {
                           cache.path = paste0(builddir, input, '-cache/'))
     knitr::knit_hooks$set(pdfclean = if (win) knitr::hook_pdfcrop else hook_pdfclean)
     knitr::knit(paste0(input, '.Rmd'), paste0(input, '.markdown'), envir = new.env())
-    
+
     for (rmd_warning in knitr::knit_meta(class = "rmd_warning")) {
         message("Warning: ", rmd_warning)
     }
