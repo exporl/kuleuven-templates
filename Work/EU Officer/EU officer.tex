@@ -25,20 +25,22 @@
 \usepackage[symbol]{footmisc}
 \usepackage[notquote]{hanging}
 \usepackage[normalem]{ulem}
+\usepackage{comment}
+\usepackage{media9}
+\usepackage[export]{adjustbox}
+
 %\usepackage{lua-visual-debug}
 
 \pdfstringdefDisableCommands{\renewcommand{\sout}{}}
-\graphicspath{{figures/}}
+\graphicspath{{Images/}}
 % Fix sort order in case the same file exists with multiple extensions
 \DeclareGraphicsExtensions{.pdf,.png,.jpeg,.jpg,.eps}
 \frenchspacing
 
 \input{templates/definitions.tex}
 
-
-
 %% From pandoc default template
-%% End pandoc
+% End pandoc
 
 \mode<presentation>
 
@@ -77,6 +79,9 @@
 \setlength\leftmarginii{1em}
 \setlength\leftmarginiii{1em}
 
+
+
+
 \defbeamertemplate{background canvas}{title}
 {%
     \pgfdeclarehorizontalshading{bgshading}{8.70cm}{color(0cm)=(kulleft); color(\the\paperwidth)=(kulright)}%
@@ -86,7 +91,7 @@
     \hskip-\paperwidth%
     \hskip1.6cm%
     \vbox to \paperheight{%
-        \vskip0.5cm\hskip0.5cm\includegraphics[width=2.83cm]{templates/kuleuven}%
+        \vskip0.1cm\hskip0.1cm\includegraphics[width=2.83cm]{templates/kuleuven}%
         \vskip0.99cm\hskip0.76cm\includegraphics[width=2.84cm]{templates/key}%
         \vskip-0.57cm\hskip11.61cm\includegraphics[width=0.58cm]{templates/sedes}\hspace*{-1cm}%
         \vfill
@@ -108,6 +113,11 @@
 }
 
 \defbeamertemplate{background canvas}{plain}{}
+
+
+\setbeamertemplate{footline}[text line]{%
+  \parbox{\linewidth}{\vspace*{-8pt}some text\hfill\insertshortauthor\hfill\insertpagenumber}}
+\setbeamertemplate{navigation symbols}{}
 
 \defbeamertemplate{footline}{large}
 {%
@@ -138,7 +148,7 @@
 \defbeamertemplate{footline}{small}
 {%
     \vskip.3cm% make room for the logo
-    \begin{beamercolorbox}[ht=0.37cm,dp=0.25cm,center,ignorebg]{normal text}%
+    \begin{beamercolorbox}[ht=0.5cm,dp=0.5cm,center,ignorebg]{normal text}%
     \mdseries\insertframenumber%
     \end{beamercolorbox}%
 }
@@ -280,14 +290,15 @@
 
 \setcounter{secnumdepth}{0}
 
-\title{Title}
-\subtitle{Radiation and Matter}
+\title{\large HD-PULSE: a new open platform for 3D ultrasound imaging}
+
 \author{\\ \href{vangjush.komini@uzleuven.be}{\textbf{\textit{Vangjush Komini}}}
 }
 
 
-\institute{{\tiny advised by}\vspace{.10cm} \href{jan.dhooge@uzleuven.be}{Jan D'hooge}}
-\date{\href{www.kul.be}{KU Leuven}\\ \vspace{.10cm}\today}
+
+\institute{\href{www.kul.be}{KU Leuven}}
+\date{\vspace{.10cm}Novermber $16^{th}$ 2015}
 
 \begin{document}
 
@@ -306,32 +317,407 @@
     \end{frame}
 \largefooter
 
-\section{First Section}\label{first-section}
 
-\begin{frame}{First slide}
 
-\end{frame}
+\section{}
 
-\begin{frame}{Second slide}
 
-\end{frame}
+\begin{frame}{Ideal ultrasound imaging system}
 
-\section{First Section}\label{first-section}
 
-\begin{frame}{First slide}
-
-\end{frame}
-
-\begin{frame}{Second slide}
+\begin{figure}[!htb]
+\includegraphics[width=1\textwidth]{1.jpg}
+\end{figure}
 
 \end{frame}
 
 
 
-\begin{frame}[allowframebreaks]
-        \frametitle{References}
-        \bibliography{main}
-        \bibliographystyle{plain}
+\begin{frame}{Possible candidates}
+
+
+\begin{figure}[!htb]
+\minipage{0.5\textwidth}
+
+\begin{block}{\footnotesize{Main drawbacks}}\tiny{}
+\begin{enumerate} 
+\vspace{0.05cm}
+     \item \tiny{\textbf{\textit{Limited number of channels}}}
+     \item \tiny{\textbf{\textit{Low level access restricted}}} 
+     \item \tiny{\textbf{\textit{.....}}}\\ 
+   
+\end{enumerate}
+\end{block}
+
+\endminipage
+\minipage{0.5\textwidth}
+\centering
+\includegraphics[width=.6\textwidth]{37.jpg}\\
+\includegraphics[width=.65\textwidth]{38.jpg}\\
+\includegraphics[width=.6\textwidth]{39.png}\\
+.................................\\  
+\tiny{None could meet the basis requirements for the ideal system}
+
+\endminipage
+\end{figure}
+
 \end{frame}
+
+
+\begin{frame}{Alternative approach}
+
+
+\begin{block}{\footnotesize{Multiplexing 4 wires into 1}}\tiny{}
+\begin{enumerate} 
+\vspace{0.05cm}
+     \item \tiny{\textbf{\textit{Lower number of independent channels}}}
+     \item \tiny{\textbf{\textit{Significant cost reduction in probe fabrication}}} 
+     \item \tiny{\textbf{\textit{Optimization of the resolution loss, needed}}} 
+\end{enumerate}
+\end{block}
+
+\begin{figure}[!htb]
+\includegraphics[width=.8\textwidth]{40.jpg}
+\end{figure}
+
+\end{frame}
+
+\section{System specification}\label{first-section}
+
+
+\begin{frame}{Overview of the system}
+
+
+\begin{figure}[!htb]
+\minipage{0.5\textwidth}
+\begin{block}{\footnotesize{}}\tiny{}
+\begin{enumerate} 
+\vspace{0.05cm}
+     \item \tiny{\textbf{\textit{Highly modular }}} 
+     \item \tiny{\textbf{\textit{Robust implementation}}} 
+     \item \tiny{\textbf{\textit{High computation power}}} 
+     \item \tiny{\textbf{\textit{Highly flexible implementation}}} 
+     \item \tiny{\textbf{\textit{Two main parts:PXI and the system interface}}} 
+\end{enumerate}
+\end{block}
+
+\includegraphics[width=.6\textwidth]{36.jpg}
+\endminipage
+\minipage{0.5\textwidth}
+\centering
+\includegraphics[width=.65\textwidth]{35.png}\\
+\includegraphics[width=.91\textwidth]{20.png}
+\endminipage
+\end{figure}
+
+\end{frame}
+
+
+
+
+
+
+\begin{frame}{Functional requirements}
+
+
+\begin{figure}[!htb]
+\minipage{0.5\textwidth}
+\begin{block}{\footnotesize{ Field-programmable gate array FPGA}}\tiny{}
+\begin{enumerate} 
+\vspace{0.05cm}
+     \item \tiny{\textbf{\textit{Fast computation, high throughput}}} \tiny{hardware parallelism}
+     \item \tiny{\textbf{\textit{Time to Market small}}} \tiny{highly flexible and prototypable} 
+     \item \tiny{\textbf{\textit{Cost}}} \tiny{NRE nonrecurring engineering expense of custom}
+     \item \tiny{\textbf{\textit{Reliability}}} \tiny{"hard" implementation in circuit}
+     \item \tiny{\textbf{\textit{Long-Term Maintenance}}} \tiny{field upgradable, no time for redesigning as ASIC}
+\end{enumerate}
+\end{block}
+
+\includegraphics[width=.75\textwidth]{1_1.png}
+\endminipage
+\minipage{0.5\textwidth}
+\centering
+\includegraphics[width=.65\textwidth]{3.png}
+\endminipage
+\end{figure}
+
+\end{frame}
+
+
+\begin{frame}{Mileston}
+
+\begin{block}{\footnotesize{High data rate acquisition is the \textbf{highlight} for this work}}\tiny{}
+\begin{enumerate} 
+\vspace{0.05cm}
+     \item \tiny{\textbf{\textit{Probe to FPGA}} } 
+     \item \tiny{FPGA to HOST}
+\end{enumerate}
+\end{block}
+
+
+
+
+\begin{figure}[!htb]
+\minipage{0.5\textwidth}
+\includegraphics[width=.81\textwidth]{2.png}
+\caption{\tiny{Probe Interface}}
+\endminipage
+\minipage{0.5\textwidth}
+\centering
+\includegraphics[width=1\textwidth]{4.png}
+\caption{\tiny{FPGA to HOST} }
+\endminipage
+\end{figure}
+
+
+\end{frame}
+
+
+\begin{frame}{Array interface}
+
+\begin{figure}[!htb]
+\minipage{.81\textwidth}
+\includegraphics[width=.95\textwidth]{2_5.png}
+\endminipage
+\minipage{0.25\textwidth}
+\includegraphics[width=1\textwidth,left]{41.jpg}
+\endminipage
+\end{figure}
+
+\end{frame}
+
+\begin{frame}{Multiplexer}
+
+\begin{figure}[!htb]
+\minipage{.81\textwidth}
+\includegraphics[width=.95\textwidth]{2_1.png}
+\endminipage
+\minipage{0.25\textwidth}
+\includegraphics[width=1\textwidth,left]{41.jpg}
+\endminipage
+\end{figure}
+
+\end{frame}
+
+\begin{frame}{FlexRIO FPGA}
+
+\begin{figure}[!htb]
+\minipage{.81\textwidth}
+\includegraphics[width=.95\textwidth]{2_7.png}
+\endminipage
+\minipage{0.25\textwidth}
+\includegraphics[width=1\textwidth,left]{54.jpg}
+\endminipage
+\end{figure}
+
+\end{frame}
+
+\begin{frame}{Pulser}
+
+\begin{figure}[!htb]
+\minipage{.81\textwidth}
+\includegraphics[width=.95\textwidth]{2_2.png}
+\endminipage
+\minipage{0.25\textwidth}
+\includegraphics[width=1\textwidth,left]{43.jpg}
+\endminipage
+\end{figure}
+
+\end{frame}
+
+
+\begin{frame}{Transmiter}
+
+\begin{figure}[!htb]
+\minipage{.81\textwidth}
+\includegraphics[width=.95\textwidth]{2_3.png}
+\endminipage
+\minipage{0.25\textwidth}
+\includegraphics[width=1\textwidth,left]{42.jpg}
+\endminipage
+\end{figure}
+
+\end{frame}
+
+\begin{frame}{HV power supplier}
+
+\begin{figure}[!htb]
+\minipage{.81\textwidth}
+\includegraphics[width=.95\textwidth]{2_6.png}
+\endminipage
+\minipage{0.25\textwidth}
+\includegraphics[width=1\textwidth,left]{45.jpg}
+\endminipage
+\end{figure}
+
+\end{frame}
+
+\begin{frame}{ADC}
+
+\begin{figure}[!htb]
+\minipage{.81\textwidth}
+\includegraphics[width=.95\textwidth]{2_4.png}
+\endminipage
+\minipage{0.25\textwidth}
+\includegraphics[width=1\textwidth,left]{44.jpg}
+\endminipage
+\end{figure}
+
+\end{frame}
+
+
+
+\begin{frame}{System Connectivity}
+
+\begin{figure}[!htb]
+\minipage{0.5\textwidth}
+\includegraphics[width=.33\textwidth, angle =90]{21.png}
+\caption{\tiny{DSLWI: Digital control to/from DSL32R from/to NI5752 (or DSL32T)}}
+\endminipage
+\minipage{0.5\textwidth}
+\centering
+\includegraphics[width=.33\textwidth, angle =90 ]{22.png}
+\caption{\tiny{DSLWWI:Analogue signals from DSL32R to NI5752}}
+\endminipage
+\end{figure}
+
+
+\begin{figure}[!htb]
+\minipage{0.5\textwidth}
+\includegraphics[width=.3\textwidth, angle =90 ]{23.png}
+\caption{\tiny{DSLSSI:CLK sampling signal externally from DSL32R to NI5752}}
+\endminipage
+\minipage{0.5\textwidth}
+\centering
+\includegraphics[width=.15\textwidth, angle =90 ]{24.png}
+\caption{\tiny{DSLE26:SPIT muxer control, DSL32R to DSL32T link cable}}
+\endminipage
+\end{figure}
+\end{frame}
+
+
+\emptyfooter
+\begin{frame}{}
+\begin{figure}[!htb]
+\includegraphics[width=.91\textwidth]{6.png}
+\end{figure}
+\largefooter
+\end{frame}
+
+
+\section{Front-end approach}
+
+
+\begin{frame}{Front-end approach}
+
+\begin{figure}[!htb]
+\minipage{0.5\textwidth}
+\includegraphics[width=.81\textwidth]{31.png}\\
+\includegraphics[width=.81\textwidth]{33.png}
+%\caption{\tiny{Linear array}}
+\endminipage
+\minipage{0.5\textwidth}
+\centering
+\includegraphics[width=1\textwidth]{32.png}\\
+\includegraphics[width=.65\textwidth]{34.png}
+%\caption{\tiny{2D array} }
+\endminipage
+\end{figure}
+
+\end{frame}
+
+\section{System operation}\label{second-section}
+
+
+\emptyfooter
+\begin{frame}{\centering \Huge System operation}
+\begin{figure}[!htb]
+\centering
+\includegraphics[width=1.1\textwidth]{12.png}
+\end{figure}
+\end{frame}
+\largefooter
+
+\begin{frame}{Acquisition modalities}
+
+\begin{block}{\footnotesize{DSLFITfocusStream}}\footnotesize{}
+\begin{enumerate} 
+\vspace{0.05cm}
+     \item \footnotesize{Beam-forming in FPGA}
+     \item \footnotesize{Data streamed to host via DRAM buffer}
+     \item \footnotesize{Linear, Sector scans with A, B, C scans}
+\end{enumerate}
+\end{block}
+
+\begin{block}{\footnotesize{DSLFITacquire}}\footnotesize{}
+\begin{enumerate} 
+\vspace{0.05cm}
+     \item \footnotesize{Parallel channel acquisition and transfer}
+     \item \footnotesize{Batch mode acquisition}
+     \item \footnotesize{FMC, FRD and Linear Acquisition}
+\end{enumerate}
+\end{block}
+\end{frame}
+
+\begin{frame}{SW Framework}
+
+\begin{figure}[!htb]
+\minipage{0.5\textwidth}
+
+\begin{block}{\footnotesize{}}\footnotesize{}
+\begin{enumerate} 
+\vspace{0.05cm}
+     \item \footnotesize{Determine the available HW}
+     \item \footnotesize{Initialise FPGA of any $DSL32T$}
+     \item \footnotesize{Initialise FPGA of any $NIT5752$ }
+     \item \footnotesize{Initialise all variables}
+     \item \footnotesize{Queued State Machine loop}
+     \item \footnotesize{Event Handler for GUI}
+     \item \footnotesize{Close FPGA referencse on exit}
+\end{enumerate}
+\end{block}
+
+\endminipage
+\minipage{0.5\textwidth}
+\centering
+\includegraphics[width=1.1\textwidth]{13.png}
+\endminipage
+\end{figure}
+
+\end{frame}
+
+
+\section{Demo}
+
+\begin{frame}{Demo}
+
+\begin{block}{\footnotesize{}}\tiny{}
+\begin{enumerate} 
+\vspace{0.05cm}
+     \item \tiny{\textbf{\textit{A-mode}}} 
+     \item \tiny{\textbf{\textit{B-mode}}} 
+     \item \tiny{\textbf{\textit{FRD}}} 
+     \item \tiny{\textbf{\textit{....}}}
+\end{enumerate}
+\end{block}
+
+\begin{center}
+\textbf{\textit{At the lab}}
+\end{center}
+
+\end{frame}
+
+
+
+\emptyfooter
+\begin{frame}{ }
+\centering \textbf{\Large \textit{Thank you for your attention}}
+\begin{figure}[!htb]
+\includegraphics[width=.6\textwidth]{QA.jpg}
+\end{figure}
+\largefooter
+\end{frame}
+
+
 
 \end{document}
