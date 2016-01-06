@@ -28,7 +28,7 @@
 %\usepackage{lua-visual-debug}
 
 \pdfstringdefDisableCommands{\renewcommand{\sout}{}}
-\graphicspath{{Session4/}}
+\graphicspath{{Images3/}}
 % Fix sort order in case the same file exists with multiple extensions
 \DeclareGraphicsExtensions{.pdf,.png,.jpeg,.jpg,.eps}
 \frenchspacing
@@ -226,7 +226,7 @@
 \newcommand{\subsectiontitle}{\renewcommand{\insertsupertitle}{\insertsectionhead\ifx\insertsubsectionhead\empty\else{} -- \insertsubsectionhead\fi}}
 
 % animations do not work atm as figures are set on independent frames
-\newcommand{\slidefig}[2]{\usebackgroundtemplate{\parbox[c][\paperheight][c]{\paperwidth}{\centering\includegraphics#1[height=\paperheight,width=\paperwidth,keepaspectratio]{#2}}}\begin{frame}[plain]\end{frame}\usedefaultcanvas}
+\newcommand{\slidefig}[2]{\usebackgroundtemplate{\parbox[c][\paperheight][c]{\paperwidth}{\tiny\centering\includegraphics#1[height=\paperheight,width=\paperwidth,keepaspectratio]{#2}}}\begin{frame}[plain]\end{frame}\usedefaultcanvas}
 
 \newcommand{\usedefaultcanvas}{\setbeamertemplate{background canvas}[\defaultcanvas]}
 \newcommand{\gridcanvas}{\renewcommand{\defaultcanvas}{grid}\usedefaultcanvas}
@@ -280,8 +280,8 @@
 
 \setcounter{secnumdepth}{0}
 
-\title{Biomedical Data Procession}
-\subtitle{\tiny Biomedical Data Imaging}
+\title{Blind source separation}
+\subtitle{\tiny Biomedical Data Procession part II}
 \author{\\ \href{vangjush.komini@uzleuven.be}{\textbf{\textit{Vangjush Komini}}}
 }
 
@@ -306,31 +306,77 @@
     \end{frame}
 \largefooter
 
-\section{Heart}\label{first-section}
 
 
 
-\begin{frame}{Heart}
 
+\section{Q1}
+
+\begin{frame}{Cumulative tensor}
 
 \begin{figure}[!htb]
 \minipage{0.5\textwidth}
 
-\begin{block}{\footnotesize{Facts}}\tiny{}
-\begin{enumerate} 
-\vspace{0.05cm}
-     \item \tiny{\textbf{\textit{}}} 
-
-     
-\end{enumerate}
-\end{block}
-     
+\begin{table}[!htbp]
+\tiny\centering
+\tiny{\textbf{\textit{U1:}}Fist component for the covariance matrix}\\
+\begin{tabular}{c c c c c c c c c c c c c c c c c} 
+  \hline  
+   $-0.5097$&$-0.3062$&$-0.2538$\\
+   $-0.5097$&$-0.3062$&$-0.2538$\\
+ \hline
+\end{tabular}
+\end{table}
 
 
 \endminipage
 \minipage{0.5\textwidth}
 \centering
-\includegraphics[width=.6\textwidth]{1.jpg}\\
+  \begin{table}[!htbp]
+\tiny\centering
+\tiny{\textbf{\textit{U2:}}Fist component for the covariance matrix}\\
+\begin{tabular}{c c c c c c c c c c c c c c c c c} 
+  \hline  
+
+   $-0.3550$&$-0.5502$&$-0.4852$\\
+   $-0.3550$&$-0.5502$&$-0.4852$\\
+ \hline
+\end{tabular}
+\end{table}
+
+
+\endminipage
+\end{figure}
+
+\begin{figure}[!htb]
+\minipage{0.5\textwidth}
+
+  \begin{table}[!htbp]
+\tiny\centering
+\tiny{\textbf{\textit{U11:}}Fist component for the fourth order cumulant tensor}\\
+\begin{tabular}{c c c c c c c c c c c c c c c c c} 
+  \hline  
+   $-0.8076$&$-0.5068$&$-0.4219$\\
+   $-0.8076$&$-0.5068$&$-0.4219$\\
+ \hline
+\end{tabular}
+\end{table}
+
+
+\endminipage
+\minipage{0.5\textwidth}
+\centering
+  \begin{table}[!htbp]
+\tiny\centering
+\tiny{\textbf{\textit{U22:}}Fist component for the fourth order cumulant tensor}\\
+\begin{tabular}{c c c c c c c c c c c c c c c c c} 
+  \hline  
+   $-0.2110$&$-0.5341$&$-0.4780$\\
+   $-0.2110$&$-0.5341$&$-0.4780$\\
+   
+ \hline
+\end{tabular}
+\end{table}
 
 
 \endminipage
@@ -338,12 +384,233 @@
 
 \end{frame}
 
+\section{Q2}
+
+\begin{frame}{ICA implementation}
+
+\begin{figure}[!htbp]
+\minipage{.47\textwidth}%
+\centering
+\includegraphics[width=1\textwidth]{1.jpg}\\
+\tiny{First mixing matrix}\label{a1}
+\endminipage\hfill
+\minipage{.47\textwidth}%
+\centering
+\includegraphics[width=1\textwidth]{2.jpg}\\
+\tiny{Second mixing matrix}\label{a2}
+\endminipage\hfill
+\caption{\tiny Signal to Interference for the ICA Implementation}
+\end{figure}
+
+\end{frame}
+
+\begin{frame}{PCA implementation}
+
+\begin{figure}[!htbp]
+\minipage{.47\textwidth}%
+\centering
+\includegraphics[width=1\textwidth]{3.jpg}\\
+\tiny{First mixing matrix}\label{a3}
+\endminipage\hfill
+\minipage{.47\textwidth}%
+\centering
+\includegraphics[width=1\textwidth]{4.jpg}\\
+\tiny{Second mixing matrix}\label{a4}
+\endminipage\hfill
+\caption{\tiny Signal to Interference for the PCA Implementation}
+\end{figure}
+
+    
+\end{frame}
+
+\section{Q3}
+\begin{frame}{COM2}
+
+\begin{figure}[!htbp]
+\minipage{.47\textwidth}%
+\centering
+\includegraphics[width=1\textwidth]{6.jpg}\\
+\tiny{Channel data before ICA}\label{a9}
+\endminipage\hfill
+\minipage{.47\textwidth}%
+\centering
+\includegraphics[width=1\textwidth]{5.jpg}\\
+\tiny{Channel after before ICA}\label{a10}
+\endminipage\hfill
+\caption{\tiny ICA separation via COM2 method}
+\end{figure}
+  
+\end{frame}
+
+
+\section{Q4}
+
+\begin{frame}{CPD}
+\begin{figure}[!htbp]
+\minipage{.3\textwidth}%
+\centering
+\includegraphics[width=1\textwidth]{11.jpg}
+\endminipage\hfill
+\minipage{.3\textwidth}%
+\centering
+\includegraphics[width=1\textwidth]{12.jpg}
+\endminipage\hfill
+\minipage{.3\textwidth}%
+\centering
+\includegraphics[width=1\textwidth]{13.jpg}
+\endminipage\hfill
+\caption{\tiny CPD components}\label{a15}
+\end{figure}
+\end{frame}
+
+\begin{frame}{SVD}
+
+ \begin{figure}[!htbp]
+\minipage{.3\textwidth}%
+\centering
+\includegraphics[width=1\textwidth]{26.jpg}
+\endminipage\hfill
+\minipage{.3\textwidth}%
+\centering
+\includegraphics[width=1\textwidth]{25.jpg}
+\endminipage\hfill
+\minipage{.3\textwidth}%
+\centering
+\includegraphics[width=1\textwidth]{24.jpg}
+\endminipage\hfill
+\caption{\tiny Components via SVD}\label{A1}
+\end{figure}
+
+\end{frame}
+
+
+
+\begin{frame}{Iterative rank estimation}
+
+\begin{figure}[!htbp]
+\minipage{.47\textwidth}%
+\centering
+\includegraphics[width=1\textwidth]{7.jpg}\\
+\tiny{Freb norm over different iteration}\label{a13}
+\endminipage\hfill
+\minipage{.47\textwidth}%
+\centering
+\includegraphics[width=1\textwidth]{8.jpg}\\
+\tiny{Relative error of estimation}\label{a14}
+\endminipage\hfill
+\end{figure}
+
+
+\end{frame}
 
 
 
 
 
+\begin{frame}{Multilinar SVD}
 
+\begin{figure}[!htbp]
+\minipage{.47\textwidth}%
+\centering
+\includegraphics[width=1\textwidth]{10.jpg}\\
+\tiny{Multilinear singular values in the noisy case}\label{a11}
+\endminipage\hfill
+\minipage{.47\textwidth}%
+\centering
+\includegraphics[width=1\textwidth]{9.jpg}\\
+\tiny{Multilinear singular values in the noiseless case}\label{a12}
+\endminipage\hfill
+\caption{\tiny Multilinear singular values}
+\end{figure}
+
+
+\end{frame}
+
+
+
+\section{Q5}
+
+\begin{frame}{Tensorization of the EEG signals}
+
+\begin{figure}[!htbp]
+\minipage{.3\textwidth}%
+\centering
+\includegraphics[width=1\textwidth]{15.jpg}
+\endminipage\hfill
+\minipage{.3\textwidth}%
+\centering
+\includegraphics[width=1\textwidth]{16.jpg}
+\endminipage\hfill
+\minipage{.3\textwidth}%
+\centering
+\includegraphics[width=1\textwidth]{17.jpg}
+\endminipage\hfill
+\end{figure}
+
+\begin{figure}[!htbp]
+\centering
+\includegraphics[width=.4\textwidth]{14.jpg}\\
+\tiny {Channel data}\label{a17}
+\end{figure}
+
+\end{frame}
+
+
+
+\begin{frame}{Parameter estimation}
+ 
+ \begin{figure}[!htbp]
+\minipage{.47\textwidth}%
+\centering
+\includegraphics[width=1\textwidth]{18.jpg}\\
+\tiny{Time resoltution}\label{a18}
+\endminipage\hfill
+\minipage{.47\textwidth}%
+\centering
+\includegraphics[width=1\textwidth]{19.jpg}\\
+\tiny{Frequency resolution}\label{a19}
+\endminipage\hfill
+\end{figure}
+
+\end{frame}
+
+
+
+\begin{frame}{Voltage profile for the normal brain activity }
+
+\begin{figure}[!htbp]
+\minipage{.4\textwidth}%
+\centering
+\includegraphics[width=1\textwidth]{20.jpg}\\
+\tiny{Normal event}\label{a20}
+\endminipage\hfill
+\minipage{.4\textwidth}%
+\centering
+\includegraphics[width=1\textwidth]{21.jpg}\\
+\tiny{Epilepsy}\label{a21}
+\endminipage\hfill
+\minipage{.4\textwidth}%
+\centering
+\includegraphics[width=1\textwidth]{22.jpg}\\
+\tiny{Epilepsy}\label{a22}
+\endminipage\hfill
+\minipage{.4\textwidth}%
+\centering
+\includegraphics[width=1\textwidth]{23.jpg}\\
+\tiny{Epilepsy}\label{a23}
+\endminipage\hfill
+\end{figure}
+
+\end{frame}
+
+\begin{frame}{Iterative rank estimation}
+\begin{figure}[!htbp]
+\centering
+\includegraphics[width=.6\textwidth]{27.jpg}
+\caption{Rank estimation}\label{A2}
+
+\end{figure}   
+\end{frame}
 
 
 \emptyfooter
@@ -357,11 +624,7 @@
 
 
 
-\begin{frame}[allowframebreaks]
-        \frametitle{References}
-        \nocite{*}
-        \bibliography{references}
-        \bibliographystyle{plain}
-\end{frame}
+
+
 
 \end{document}

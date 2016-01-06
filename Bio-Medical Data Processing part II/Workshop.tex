@@ -1,0 +1,120 @@
+\documentclass[a4paper]{article}
+\usepackage{fancyhdr}
+\usepackage[pdftex]{graphicx}
+\usepackage{sidecap}
+\usepackage{listings}
+\usepackage{color}
+\usepackage[export]{adjustbox}
+\usepackage{subcaption}
+
+\usepackage{hyperref}
+\hypersetup{
+    colorlinks=true,
+    linkcolor=blue,
+    filecolor=magenta, 
+    urlcolor=cyan,
+    bookmarks=true,
+    pdfpagemode=FullScreen,
+}
+\usepackage{geometry}
+ \geometry{
+ a4paper,
+ total={210mm,297mm},
+ left=20mm,
+ right=20mm,
+ top=20mm,
+ bottom=20mm,
+ }
+
+\usepackage{glossaries}
+
+
+\makeglossaries
+\newglossaryentry{FSM}
+{
+    name=FSM,
+    description={Finite State Machine}
+}
+
+\definecolor{mygreen}{RGB}{25,172,0} % color values Red, Green, Blue
+\definecolor{mylilas}{RGB}{170,55,241}
+\definecolor{dkgreen}{rgb}{0,0.6,0}
+\definecolor{gray}{rgb}{0.5,0.5,0.5}
+\definecolor{mauve}{rgb}{0.58,0,0.82}
+
+\pagestyle{fancy}
+\fancyhf{}
+\rhead{Vangjush Komini}
+\lhead{KU Leuven}
+\rfoot{Page \thepage}
+\lfoot{Biomedical Data Processing part 2}
+
+
+\graphicspath{{ImagesWorkshop/}}
+
+\include{Glossary}
+
+
+\begin{titlepage}
+
+\title{\centerline{\textit{Worshop report}} }
+
+\author{\textbf{\textit{Multimodel Signal Processing}}\\
+\href{mailto:vangjush.komini@uzleuven.be}{Vangjush Komini}\\  \textit{r0612470} \\
+\href{mailto:vangjush.komini@uzleuven.be}{vangjush.komini@uzleuven.be}\\
+}
+
+
+
+
+
+\end{titlepage}
+
+
+
+
+\begin{document}
+
+
+
+\maketitle
+\begin{center}
+\Large \href{https://onderwijsaanbod.kuleuven.be/syllabi/e/H06W1AE.htm#activetab=doelstellingen_idp41200}{Biomedical Data Processing, Part II Course}
+\end{center}
+
+\begin{figure}[!htbp]
+\centering
+\includegraphics[width=0.4\textwidth]{icon1.png}
+\end{figure}
+
+
+
+\newpage
+
+
+
+Multimodal signal processing is a very exciting methodology in extraction of important information in biomedical event occurring inside the organs. The most attractive part this approach is the very high accuracy in enhancement of the signal of interested by combining information from different types of modalities. The main strength of this approach is the capability of extracting the wanted information via the linear combination of the sub information coming from different modalities when the target event is the same. This allows to see the the measurement into multiple angles meaning utilizing different domains of measurement. Thereby different potential information are extracted respectively to the modality associated with it. The throughout after processing this distinct types of signals will extract from them the information of interested with high redundancy and therefore canceling out significant level of artifacts. 
+
+Particularly speaking in case MRI could be combined with other types of modalities such as X-Ray the drawbacks the drawbacks they and the noise sources they have are theoretically independent. However both this techniques tries to image the same target tissue. Moreover the advantages they offer are theoretically different. In case of cleaver combination between these both the advantages are combined resulting in a very competitive approach compare to the single modality. However the limitation in this case are different, including here frame are segmentation of the images etc. Therefore in case of a very well investigated multimodal approach the middle is efficiency is rarely touched meaning that outcome is aimed to have a much higher accuracy.
+
+Even though sounds very exciting approach for ongoing challenges in noise reduction and information extraction in current signal processing task this approach has worrisome limitation. In order to perform the multimodal signal processing there is a need for a very understandable correlation between different types of modalities involved in processing. Whereby it will allow the programmer to consistently construct the algorithm for processing this signals without any leakage of information from the desired output. Furthermore misunderstood the correlation between modalities could lead to the higher noise level induced into the signal of interest. Consequently decays the SNR which is the main goal of this processing. Multimodal signal processing is not a standard for all the types of modalities involved in the processing. It computational and logical path strictly depends on the types of domain signals involved and what kind of modalities are combined moreover the number of modalities proceeded. Since in biological world there are big number of signals to be measured indicating different metabolites. Therefore in different strategies a very controlled manner and very comprehensible modalities have to be involved in order to scale up the accuracy of this estimation. Therefore the number of multimodal approaches that could practically be implemented is theoretically huge. In addition the technology needed to exctract different modalities measurement from different parts of the body is not always available or practically speaking always possible. In case acoustic spectroscopy could be utilized for different tissue characterisation with other modalities it will not however be possible to see any pressure field in the brain case that is significantly rigid in human being.  
+
+Personally speaking I see multimodal signal processing a very promising approach for the future. In case of very understandable steps precision of estimation is significantly close to the real value to be target. It is important to target very important metabolites, component to be measured, or sources to be located and developing for this very accurate logical processing path. Moreover as far as the modalities involved in these processing are very well understood including the underlying signal, the noise possible shape a via a very strong logical connection among modalities the accuracy in this case could be a upper bound. In case of employing multimodal processing in organism activities with inferior interest it would not be advised to spend huge resources in designing multimodal processing techniques. In these cases the accuracy is less of an important and therefore investment could be rerouted in other processing topics. This included important biomedical measurement from brain, heart, blood tumor cells where the accuracy defines the life of the patients. In case of the target people are millions multimodal processing could cover very big market in this case.  
+
+One of the resent examples of multimodal signal processing that came in the market recently is a start up company in Norway where non invasive glucose measurement is done in real time with a very high accuracy. Herein Near Infrared Spectroscopy is used as the first modality where the spectrum coming from the LED will penetrate to the tissue and therefore its spectrum is shaped consistently to the concentration of glucose. Since multiple artifacts and noise are associated with FTIR including white, thermal noise the outcome from this single domain could not ensure the accuracy. In order to overcome this other modalities for glucose measurement were explored. Herein acoustics spectroscopy was considered as a candidate for the multimodal approach however it was not possible to incorporate these two signals together due to their completely different nature of interaction. FTIR is an wave whereas acoustic is more a pressure. Therefore bio-impedance was the closest and the easiest modality to be incorporated into this approach. In addition from the technology point of view both measurement requires very simple hardware. FTIR is a simple LED in transmit and a simple photo-diode in receive whereas for the bio impedance two different electrodes are placed in the body without much consideration regarding the place. This product is expected to come in the market with targeting a lot of diabetes people. Hereby the glucos measurement is indicated simple watch. How the real processing of this two modalities works has been patent and restricted to be used only by the company and nothing has been published so far. In case of further information for the product specification please consult with \cite{20}. 
+
+\clearpage
+\appendix
+
+
+\newpage
+\bibliographystyle{unsrt}
+\bibliography{Bibliography}
+
+\section{Additional figure}
+
+
+
+
+\end{document}
+

@@ -1,0 +1,147 @@
+\documentclass[a4paper]{article}
+\usepackage{fancyhdr}
+\usepackage[pdftex]{graphicx}
+\usepackage{sidecap}
+\usepackage{listings}
+\usepackage{color}
+\usepackage[export]{adjustbox}
+\usepackage{subcaption}
+\usepackage{graphicx}
+
+\usepackage{hyperref}
+\hypersetup{
+    colorlinks=true,
+    linkcolor=blue,
+    filecolor=magenta, 
+    urlcolor=cyan,
+    bookmarks=true,
+    pdfpagemode=FullScreen,
+}
+\usepackage{geometry}
+ \geometry{
+ a4paper,
+ total={210mm,297mm},
+ left=15mm,
+ right=15mm,
+ top=15mm,
+ bottom=15mm,
+ }
+
+\usepackage{glossaries}
+
+
+\makeglossaries
+\newglossaryentry{FSM}
+{
+    name=FSM,
+    description={Finite State Machine}
+}
+
+\definecolor{mygreen}{RGB}{25,172,0} % color values Red, Green, Blue
+\definecolor{mylilas}{RGB}{170,55,241}
+\definecolor{dkgreen}{rgb}{0,0.6,0}
+\definecolor{gray}{rgb}{0.5,0.5,0.5}
+\definecolor{mauve}{rgb}{0.58,0,0.82}
+
+\pagestyle{fancy}
+\fancyhf{}
+\rhead{Vangjush Komini}
+\lhead{KU Leuven}
+\rfoot{Page \thepage}
+\lfoot{Biomedical Data Processing part 2}
+
+
+\lstset{inputpath=Code1}
+\graphicspath{{Images1/}}
+
+\include{Glossary}
+
+
+\begin{titlepage}
+
+\title{Assignment1\\\centerline{\textit{Subspace Signal Processing}} }
+
+\author{
+\href{mailto:vangjush.komini@uzleuven.be}{\textbf{Author:}Vangjush Komini}\\  \textit{r0612470} \\
+\href{mailto:vangjush.komini@uzleuven.be}{vangjush.komini@uzleuven.be}\\
+}
+
+
+
+
+
+\end{titlepage}
+
+
+
+
+\begin{document}
+
+
+
+\maketitle
+\begin{center}
+\Large \href{https://onderwijsaanbod.kuleuven.be/syllabi/e/H06W1AE.htm#activetab=doelstellingen_idp41200}{Biomedical Data Processing, Part II Course}
+\end{center}
+
+\begin{figure}[!htbp]
+\centering
+\includegraphics[width=0.4\textwidth]{icon1.png}
+\end{figure}
+
+
+
+%\textbf{\Large Abstract:}
+%Singular value decomposition SVD is a very powerful in linear signal processing. It offers an very accurate decomposition of the individual signals into orthogonal subspace where the mutual information is at the minimum level possible. Whereby any operation over distinct signals will eventually outcome promising results in terms of SNR and original signal distortion. Estimation of each parameters for each signal is another important benchmark for this modality. This is a rather optimisation problem where with a minimum variability bounded. Prior knowledge of any parameters contributes improves significantly this task. Moreover different types of reconstruction/enhancement aiming better signal-to-noise-ration proportionally to the alter of individual singular values. Multichannel data on the other hand are a very important hot topic 
+
+
+%\footnote{This assignment contains 10 pages }
+
+\include{Session1Q1}
+\include{Session1Q2}
+\include{Session1Q3}
+%\include{Q4}
+
+
+\clearpage
+
+\bibliographystyle{unsrt}
+\bibliography{Bibliography}
+
+\clearpage
+\appendix
+
+\include{Session1A1}
+\include{Session1A2}
+\include{Session1A3}
+
+
+\lstset{language=Matlab,%
+    %basicstyle=\color{red},
+    breaklines=true,%
+    morekeywords={matlab2tikz},
+    keywordstyle=\color{blue},%
+    morekeywords=[2]{1}, keywordstyle=[2]{\color{black}},
+    identifierstyle=\color{black},%
+    stringstyle=\color{mylilas},
+    commentstyle=\color{mygreen},%
+    showstringspaces=false,%without this there will be a symbol in the places where there is a space
+    numbers=left,%
+    numberstyle={\tiny \color{black}},% size of the numbers
+    numbersep=9pt, % this defines how far the numbers are from the text
+    emph=[1]{for,end,break},emphstyle=[1]\color{red}, %some words to emphasise
+    %emph=[2]{word1,word2}, emphstyle=[2]{style},    
+}
+
+\newpage
+\section{Main code}
+\lstinputlisting{Main_exercise_session.m}
+
+%\subsection{Aid functions}
+%\lstinputlisting{SignalDisplay.m}
+
+
+
+
+\end{document}
+

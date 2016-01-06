@@ -12,7 +12,7 @@
 ]{beamer}
 %\setbeameroption{show notes}
 %\setbeameroption{show only notes}
-
+%\usepackage{caption}
 \usepackage[utf8]{inputenc}
 \usepackage[T1]{fontenc}
 \usepackage{amsmath}
@@ -28,7 +28,7 @@
 %\usepackage{lua-visual-debug}
 
 \pdfstringdefDisableCommands{\renewcommand{\sout}{}}
-\graphicspath{{Session3/}}
+\graphicspath{{Images1/}}
 % Fix sort order in case the same file exists with multiple extensions
 \DeclareGraphicsExtensions{.pdf,.png,.jpeg,.jpg,.eps}
 \frenchspacing
@@ -280,8 +280,8 @@
 
 \setcounter{secnumdepth}{0}
 
-\title{Biomedical Data Procession}
-\subtitle{\tiny Biomedical Data Imaging}
+\title{Subspace Signal Processing}
+\subtitle{\tiny Biomedical Data Procession part II}
 \author{\\ \href{vangjush.komini@uzleuven.be}{\textbf{\textit{Vangjush Komini}}}
 }
 
@@ -306,40 +306,343 @@
     \end{frame}
 \largefooter
 
-\section{Heart}\label{first-section}
+\section{Artifact removal}\label{first-section}
+
+\begin{frame}{Artifact removal}
+   
+   
+
+\begin{figure}[!htbp]
+\minipage{.5\textwidth}%
+\centering
+\includegraphics[width=.8\textwidth]{1.jpg}
+\caption{\tiny Acquire signal in time domain}\label{1}
+\endminipage\hfill
+\minipage{.5\textwidth}%
+\centering
+\includegraphics[width=.8\textwidth]{2.jpg}
+\tiny\caption{\tiny Spectrum of the signal in ppm}\label{2}
+\endminipage\hfill
+\end{figure}
+
+ 
+
+\begin{equation}
+ppm=\frac{f_{Hz}*10^6}{f_{s}}-ppm_{Ref}
+\end{equation}
+    
+
+\begin{equation}\label{eq1}
+y(t)=\sum_{k=1}^{K} a_{k}exp(j\phi_{k})exp(-d_{k}t+2\pi f_{k}t)\delta t
+\end{equation}
+   
+\end{frame}
+
+\begin{frame}{Decomposition of the component}
+
+\begin{figure}[!htbp]
+\centering
+\includegraphics[width=1\textwidth]{5.jpg}
+\caption{\tiny{Spectrum of decomposed components }}
+\end{figure}
+
+\end{frame}
+
+\begin{frame}{Decomposition of the component}
+
+\begin{figure}[!htbp]
+\centering
+\includegraphics[width=1\textwidth]{6.jpg}
+\caption{\tiny{Components in time domain}}
+\end{figure}
+    
+\end{frame}
+
+\begin{frame}{Filtering of the signal}
+\begin{figure}[!htbp]
+\centering
+\includegraphics[width=1\textwidth]{8_2.jpg}
+\caption{\tiny{Filtering of the MRS spectrum for different model order}}
+\end{figure}   
+\end{frame}
+
+\begin{frame}{Filtering of the signal}
+\begin{figure}[!htbp]
+\centering
+\includegraphics[width=1\textwidth]{8.jpg}
+\caption{\tiny{Filtering of the MRS spectrum for different model order}}
+\end{figure}   
+\end{frame}
+
+\begin{frame}{Over view of the performance}
+
+\begin{figure}[!htbp]
+\minipage{.5\textwidth}%
+\centering
+\includegraphics[width=1\textwidth]{8_1.jpg}\\
+\tiny{Spectrum Water filtered signal for model order 30}\label{fig2}
+\endminipage\hfill
+\minipage{.5\textwidth}%
+\centering
+\includegraphics[width=1\textwidth]{11.jpg}\\
+\tiny{Signal-to-noise ration for different model order estimation}\\
+\endminipage\hfill
+\end{figure}
+
+\begin{equation}
+SNR=20*\log\bigg\{\frac{OriginalSignal}{FilteredSignal-OriginalSignal}\bigg\}
+\end{equation} 
+
+\end{frame}
 
 
+\begin{frame}{Comparison with classical filters}
 
-\begin{frame}{Heart}
-
-
-\begin{figure}[!htb]
-\minipage{0.5\textwidth}
-
-\begin{block}{\footnotesize{Facts}}\tiny{}
+\begin{block}{\footnotesize{}}\tiny{}
 \begin{enumerate} 
 \vspace{0.05cm}
-     \item \tiny{\textbf{\textit{}}} 
+     \item \tiny{\textbf{\textit{Spectral method are FFT based $O(nlog(n))$ vs SVD based $O(nm^2)$}}}
+     \item \tiny{\textbf{\textit{Minimal distortion of the wanted signal and better noise reduction}}}
+     \item \tiny{\textbf{\textit{A clear analytical formulation of the problem is needed for the subspace case}}} 
+     \item \tiny{\textbf{\textit{Difficult but still possible incorporation of prior knowledge in subspace}}} 
+%     \item \tiny{\textbf{\textit{DCT is another competitive apart from FFt yet, far inferior compare to subspace filtering}}} 
 
      
 \end{enumerate}
 \end{block}
-     
+  
+\end{frame}
 
+\section{Parameter estimation}\label{second-section}
 
-\endminipage
-\minipage{0.5\textwidth}
+\begin{frame}{Parameter estimation}
+    
+\begin{figure}[!htbp]
+\minipage{.47\textwidth}%
 \centering
-\includegraphics[width=.6\textwidth]{1.jpg}\\
-\includegraphics[width=.65\textwidth]{2.jpg}\\
+\includegraphics[width=1\textwidth]{35.jpg}
+\caption{\tiny Spectrum of signals to be processed}
+\endminipage\hfill
+\minipage{.47\textwidth}%
+\centering
+\includegraphics[width=1\textwidth]{36.jpg}
+\caption{\tiny The signals to be processed in time domain}
+\endminipage\hfill
+\centering
+\end{figure}
+
+\tiny{The pure water filtered signal at model order 30 and the noisy signal coming from the superposition of the white Gaussian noise with mean zeros and the variance equal last 300 points of the water filtered signal}  
+
+\end{frame}
 
 
-\endminipage
+\begin{frame}{Reconstructed signal}
+
+\begin{figure}[!htbp]
+\minipage{.47\textwidth}%
+\centering
+\includegraphics[width=1\textwidth]{22.jpg}
+\caption{\tiny Reconstruction of noise free signal after hsvD, htls, htlspk estimation}\label{today1}
+\endminipage\hfill
+\minipage{.47\textwidth}%
+\centering
+\includegraphics[width=1\textwidth]{23.jpg}
+\caption{\tiny Reconstruction of noisy signal after hsvD, htls, htlspk estimation}\label{today2}
+\endminipage\hfill
+\end{figure}
+\tiny{Plot of the reconstructed spectrum for both the  pure and noisy signal}
+    
+\end{frame}
+
+\begin{frame}{Fitting error}
+
+
+\begin{figure}[!htbp]
+\minipage{.47\textwidth}%
+\centering
+\includegraphics[width=1\textwidth]{24.jpg}
+\caption{\tiny Residue of noise free signal after hsvD, htls, htlspk estimation}
+\endminipage\hfill
+\minipage{.47\textwidth}%
+\centering
+\includegraphics[width=1\textwidth]{25.jpg}
+\caption{\tiny Residue of noisy signal after hsvD, htls, htlspk estimation}
+\endminipage\hfill
+\centering
+\end{figure}
+
+\tiny{The residue of both pure and noisy signals are included. This is computed as the difference between the input signal \textit{(pure or noisy)} and the outcome signal for respective method.}
+
+\end{frame}
+
+\begin{frame}{Parameter estimation}
+
+
+\begin{figure}[!htbp]
+\minipage{.5\textwidth}%
+\centering
+\includegraphics[width=.8\textwidth]{12.jpg}
+
+\endminipage\hfill
+\minipage{.5\textwidth}%
+\centering
+\includegraphics[width=.8\textwidth]{13.jpg}
+\endminipage\hfill
+\minipage{.5\textwidth}%
+\centering
+\includegraphics[width=.8\textwidth]{14.jpg}
+\endminipage\hfill
+\minipage{.5\textwidth}%
+\centering
+\includegraphics[width=.8\textwidth]{15.jpg}
+\endminipage\hfill
+\end{figure}
+    
+\end{frame}
+
+
+\begin{frame}{Subspaces method for parameter estimation}
+ 
+
+\begin{block}{\footnotesize{}}\tiny{}
+\begin{enumerate} 
+\vspace{0.05cm}
+      
+     \item \tiny{\textbf{\textit{Bias method for estimation of parameters}}} 
+     \item \tiny{\textbf{\textit{CR lower bound is reduced by incorporating prior knowledge}}} 
+     \item \tiny{\textbf{\textit{Robust estimation of the parameters}}}
+     \item \tiny{\textbf{\textit{Subspace methods are very good candidate for the parameter estimation of closely spaced sinusoid}}} 
+     \item \tiny{\textbf{\textit{The user capability to initialize the parameters of the subspace methods is very important}}} 
+     \item \tiny{\textbf{\textit{It ensures the best estimation outside the local minimum}}} 
+     \item \tiny{\textbf{\textit{Capable of estimation multiple parameter at the same time instead of ALS solution}}} 
+     \item \tiny{\textbf{\textit{Does not ensure the reproducibility of the parameters}}} 
+     
+\end{enumerate}
+\end{block}
+    
+\end{frame}
+
+
+\section{Noise reduction}\label{third-section}
+
+\begin{frame}{Noise reduction}
+   
+\begin{figure}[!htbp]
+\minipage{.47\textwidth}%
+\centering
+\includegraphics[width=1\textwidth]{27.jpg}
+\caption{\tiny Original signal and its respective enhancement after Cadzow, Minimum variance, Multichannel Cadzow, and Enhanced Multichannel Cadzow}
+\endminipage\hfill
+\minipage{.47\textwidth}%
+\centering
+\includegraphics[width=1\textwidth]{28.jpg}
+\caption{\tiny Original signal and its respective estimation after Cadzow, Minimum variance, Multichannel Cadzow, and Enhanced Multichannel Cadzow enhancement}
+\endminipage\hfill
+\end{figure}
+
+\end{frame}
+
+\begin{frame}{Performance evaluation}
+
+\begin{table}[!htbp]
+\centering
+\label{table:55}
+\begin{tabular}{c c c c c c c c c c c c c c c c c}
+$Method$&$SNR(dB)$\\
+  \hline  
+$Filtered signal$&$-25.2546$\\
+$Cadzow$&$3.7264$\\
+$MinimVariance$&$3.7270$\\
+$MultiChannel$&$39.5513$\\
+$OptimMultiChannel$&$40.1137$\\
+  \hline  
+\end{tabular}
+\end{table}  
+
+{The best performance is achieved with vertically and horizontally neighbours at order of 22 with 3x3 voxels} 
+     
+\end{frame}
+
+\begin{frame}{Multichannel voxels}
+    
+\begin{figure}[!htbp]
+\centering
+\includegraphics[width=1\textwidth]{37.jpg}
+\caption{\tiny 9x9 voxel neighbourhood with the voxel of interest in the middle}\label{figtoda1}
 \end{figure}
 
 \end{frame}
 
 
+\begin{frame}{Parameter estimation via HTLS method}
+
+\begin{figure}[!htbp]
+\minipage{.5\textwidth}%
+\centering
+\includegraphics[width=.8\textwidth]{31.jpg}
+\endminipage\hfill
+\minipage{.5\textwidth}%
+\centering
+\includegraphics[width=.8\textwidth]{32.jpg}
+\endminipage\hfill
+\minipage{.5\textwidth}%
+\centering
+\includegraphics[width=.8\textwidth]{33.jpg}
+\endminipage\hfill
+\minipage{.5\textwidth}%
+\centering
+\includegraphics[width=.8\textwidth]{34.jpg}
+\endminipage\hfill
+\end{figure}
+
+\end{frame}
+
+\begin{frame}{Cadzow vs Minimum Variance}
+
+\begin{block}{\footnotesize{}}\tiny{}
+\begin{enumerate} 
+\vspace{0.05cm}
+     
+    \item \tiny{\textbf{\textit{Minimum Variance algorithm significantly improves the frequency resolution.}}}
+    \item \tiny{\textbf{\textit{Differences of estimation of the parameters for the peaks are relatively small.}}}
+    \item \tiny{\textbf{\textit{An overestimate model will not increase the accuracy.}}}
+    \item \tiny{\textbf{\textit{MV aims to minimize the variance it will outcome an overall improved performance.}}}
+    \item \tiny{\textbf{\textit{Algorithm is not limited into white noise contamination}}}
+    \item \tiny{\textbf{\textit{Proportionally to the number of data points and model order it is possible to double the resolution irrespectively to the noise variance. }}}
+     
+\end{enumerate}
+\end{block}
+
+\end{frame}
+
+\begin{frame}{Cadzow vs Multi-Channel Cadzow}
+
+\begin{block}{\footnotesize{Cadzow vs Multi-Channel Cadzow}}\tiny{}
+\begin{enumerate} 
+\vspace{0.05cm}
+    \item \tiny{\textbf{\textit{Cadzow perform blindly from the further voxels.}}}
+    \item \tiny{\textbf{\textit{Correlation between the channels can be fully exploited.}}}
+    \item \tiny{\textbf{\textit{Better interpolation of information from the surrounding is performed.}}}
+    \item \tiny{\textbf{\textit{Unwanted signals are suppressed quite efficiently.}}}
+
+     
+\end{enumerate}
+\end{block}
+
+\begin{block}{\footnotesize{Cadzow vs Optimized Multi-Channel Cadzow}}\tiny{}
+\begin{enumerate} 
+\vspace{0.05cm}
+     
+    \item \tiny{\textbf{\textit{Investigates all different direction of its neighbour voxels}}}
+    \item \tiny{\textbf{\textit{Different scale of neighbouring is also investigated}}}
+    \item \tiny{\textbf{\textit{Different model order is also investigated}}}
+    \item \tiny{\textbf{\textit{Its parameters are trial upon application}}}
+    \item \tiny{\textbf{\textit{Horizontal voxels due to their proximity to the VOI share much higher mutual information regarding the metabolite.}}}
+     
+\end{enumerate}
+\end{block}
+
+\end{frame}
 
 
 
@@ -361,7 +664,7 @@
 \begin{frame}[allowframebreaks]
         \frametitle{References}
         \nocite{*}
-        \bibliography{references}
+        \bibliography{Bibliography}
         \bibliographystyle{plain}
 \end{frame}
 
