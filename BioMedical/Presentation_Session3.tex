@@ -12,7 +12,7 @@
 ]{beamer}
 %\setbeameroption{show notes}
 %\setbeameroption{show only notes}
-%\usepackage{caption}
+
 \usepackage[utf8]{inputenc}
 \usepackage[T1]{fontenc}
 \usepackage{amsmath}
@@ -28,7 +28,7 @@
 %\usepackage{lua-visual-debug}
 
 \pdfstringdefDisableCommands{\renewcommand{\sout}{}}
-\graphicspath{{Session1/}}
+\graphicspath{{Session3/}}
 % Fix sort order in case the same file exists with multiple extensions
 \DeclareGraphicsExtensions{.pdf,.png,.jpeg,.jpg,.eps}
 \frenchspacing
@@ -280,8 +280,8 @@
 
 \setcounter{secnumdepth}{0}
 
-\title{Subspace Signal Processing}
-\subtitle{\tiny Biomedical Data Procession part II}
+\title{Biomedical Data Procession}
+\subtitle{\tiny Biomedical Data Imaging}
 \author{\\ \href{vangjush.komini@uzleuven.be}{\textbf{\textit{Vangjush Komini}}}
 }
 
@@ -306,215 +306,7 @@
     \end{frame}
 \largefooter
 
-\section{Artifact removal}\label{first-section}
-
-\begin{frame}{Artifact removal}
-   
-   
-
-\begin{figure}[!htbp]
-\minipage{.5\textwidth}%
-\centering
-\includegraphics[width=.8\textwidth]{1.jpg}
-\caption{\tiny Acquire signal in time domain}\label{1}
-\endminipage\hfill
-\minipage{.5\textwidth}%
-\centering
-\includegraphics[width=.8\textwidth]{2.jpg}
-\tiny\caption{\tiny Spectrum of the signal in ppm}\label{2}
-\endminipage\hfill
-\end{figure}
-
- 
-
-\begin{equation}
-ppm=\frac{f_{Hz}*10^6}{f_{s}}-ppm_{Ref}
-\end{equation}
-    
-
-\begin{equation}\label{eq1}
-y(t)=\sum_{k=1}^{K} a_{k}exp(j\phi_{k})exp(-d_{k}t+2\pi f_{k}t)\delta t
-\end{equation}
-   
-\end{frame}
-
-\begin{frame}{Decomposition of the component}
-
-\begin{figure}[!htbp]
-\centering
-\includegraphics[width=1\textwidth]{5.jpg}
-\caption{\tiny{Spectrum of decomposed components }}
-\end{figure}
-
-\end{frame}
-
-\begin{frame}{Decomposition of the component}
-
-\begin{figure}[!htbp]
-\centering
-\includegraphics[width=1\textwidth]{6.jpg}
-\caption{\tiny{Components in time domain}}
-\end{figure}
-    
-\end{frame}
-
-\begin{frame}{Filtering of the signal}
-\begin{figure}[!htbp]
-\centering
-\includegraphics[width=1\textwidth]{8_2.jpg}
-\caption{\tiny{Filtering of the MRS spectrum for different model order}}
-\end{figure}   
-\end{frame}
-
-\begin{frame}{Filtering of the signal}
-\begin{figure}[!htbp]
-\centering
-\includegraphics[width=1\textwidth]{8.jpg}
-\caption{\tiny{Filtering of the MRS spectrum for different model order}}
-\end{figure}   
-\end{frame}
-
-\begin{frame}{Over view of the performance}
-
-\begin{figure}[!htbp]
-\minipage{.5\textwidth}%
-\centering
-\includegraphics[width=1\textwidth]{8_1.jpg}
-\caption{\tiny Spectrum Water filtered signal for model order 30}\label{fig2}
-\endminipage\hfill
-\minipage{.5\textwidth}%
-\centering
-\includegraphics[width=1\textwidth]{11.jpg}
-\caption{\tiny Signal-to-noise ration for different model order estimation}\label{Nad1}
-\endminipage\hfill
-\end{figure}
-
-\begin{equation}
-SNR=20*\log\bigg\{\frac{OriginalSignal}{FilteredSignal-OriginalSignal}\bigg\}
-\end{equation} 
-
-\end{frame}
-
-
-\begin{frame}{Comparison with classical filters}
-
-\begin{block}{\footnotesize{}}\tiny{}
-\begin{enumerate} 
-\vspace{0.05cm}
-     \item \tiny{\textbf{\textit{Spectral method are FFT based $O(nlog(n))$ vs SVD based $O(nm^2)$}}}
-     \item \tiny{\textbf{\textit{Minimal distortion of the wanted signal and better noise reduction}}}
-     \item \tiny{\textbf{\textit{A clear analytical formulation of the problem is needed for the subspace case}}} 
-     \item \tiny{\textbf{\textit{Difficult but still possible incorporation of prior knowledge in subspace}}} 
-%     \item \tiny{\textbf{\textit{DCT is another competitive apart from FFt yet, far inferior compare to subspace filtering}}} 
-
-     
-\end{enumerate}
-\end{block}
-  
-\end{frame}
-
-\section{Parameter estimation}\label{second-section}
-
-\begin{frame}{Signal for parameter estimation}
-    
-\begin{figure}[!htbp]
-\minipage{.47\textwidth}%
-\centering
-\includegraphics[width=1\textwidth]{35.jpg}
-\caption{\tiny Spectrum of signals to be processed}
-\endminipage\hfill
-\minipage{.47\textwidth}%
-\centering
-\includegraphics[width=1\textwidth]{36.jpg}
-\caption{\tiny The signals to be processed in time domain}
-\endminipage\hfill
-\centering
-\end{figure}
-
-\tiny{The pure water filtered signal at model order 30 and the noisy signal coming from the superposition of the white Gaussian noise with mean zeros and the variance equal last 300 points of the water filtered signal}  
-
-\end{frame}
-
-
-\begin{frame}{Reconstructed signal}
-
-\begin{figure}[!htbp]
-\minipage{.47\textwidth}%
-\centering
-\includegraphics[width=1\textwidth]{22.jpg}
-\caption{\tiny Reconstruction of noise free signal after hsvD, htls, htlspk estimation}\label{today1}
-\endminipage\hfill
-\minipage{.47\textwidth}%
-\centering
-\includegraphics[width=1\textwidth]{23.jpg}
-\caption{\tiny Reconstruction of noisy signal after hsvD, htls, htlspk estimation}\label{today2}
-\endminipage\hfill
-\end{figure}
-\tiny{Plot of the reconstructed spectrum for both the  pure and noisy signal}
-    
-\end{frame}
-
-\begin{frame}{Fitting error}
-
-
-\begin{figure}[!htbp]
-\minipage{.47\textwidth}%
-\centering
-\includegraphics[width=1\textwidth]{24.jpg}
-\caption{\tiny Residue of noise free signal after hsvD, htls, htlspk estimation}
-\endminipage\hfill
-\minipage{.47\textwidth}%
-\centering
-\includegraphics[width=1\textwidth]{25.jpg}
-\caption{\tiny Residue of noisy signal after hsvD, htls, htlspk estimation}
-\endminipage\hfill
-\centering
-\end{figure}
-
-\tiny{The residue of both pure and noisy signals are included. This is computed as the difference between the input signal \textit{(pure or noisy)} and the outcome signal for respective method.}
-
-\end{frame}
-
-\begin{frame}{Parameter estimation}
-
-
-\begin{figure}[!htbp]
-\minipage{.5\textwidth}%
-\centering
-\includegraphics[width=.8\textwidth]{12.jpg}
-
-\endminipage\hfill
-\minipage{.5\textwidth}%
-\centering
-\includegraphics[width=.8\textwidth]{13.jpg}
-\endminipage\hfill
-\minipage{.5\textwidth}%
-\centering
-\includegraphics[width=.8\textwidth]{14.jpg}
-\endminipage\hfill
-\minipage{.5\textwidth}%
-\centering
-\includegraphics[width=.8\textwidth]{15.jpg}
-\endminipage\hfill
-\end{figure}
-    
-\end{frame}
-
-
-\begin{frame}{Subspaces method for parameter estimation}
- 
-
-\begin{block}{\footnotesize{}}\tiny{}
-\begin{enumerate} 
-\vspace{0.05cm}
-     \item \tiny{\textbf{\textit{}}} 
-
-     
-\end{enumerate}
-\end{block}
-    
-\end{frame}
-
+\section{Heart}\label{first-section}
 
 
 
@@ -538,6 +330,8 @@ SNR=20*\log\bigg\{\frac{OriginalSignal}{FilteredSignal-OriginalSignal}\bigg\}
 \endminipage
 \minipage{0.5\textwidth}
 \centering
+\includegraphics[width=.6\textwidth]{1.jpg}\\
+\includegraphics[width=.65\textwidth]{2.jpg}\\
 
 
 \endminipage
@@ -552,6 +346,14 @@ SNR=20*\log\bigg\{\frac{OriginalSignal}{FilteredSignal-OriginalSignal}\bigg\}
 
 
 
+\emptyfooter
+\begin{frame}{ }
+\centering \textbf{\Large \textit{Thank you for your attention!}}
+\begin{figure}[!htb]
+\includegraphics[width=.3\textwidth]{QA.jpg}
+\end{figure}
+\largefooter
+\end{frame}
 
 
 

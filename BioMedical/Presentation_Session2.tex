@@ -280,8 +280,8 @@
 
 \setcounter{secnumdepth}{0}
 
-\title{Biomedical Data Procession }
-\subtitle{\tiny Biomedical Data Imaging}
+\title{Nonlinear signal processing}
+\subtitle{\tiny Biomedical Data Procession part II }
 \author{\\ \href{vangjush.komini@uzleuven.be}{\textbf{\textit{Vangjush Komini}}}
 }
 
@@ -306,24 +306,227 @@
     \end{frame}
 \largefooter
 
-\section{Heart}\label{first-section}
+\section{Artifact removal for EEG data}\label{first-section}
 
 
 
-\begin{frame}{Heart}
 
 
-\begin{figure}[!htb]
-\minipage{0.5\textwidth}
 
-\begin{block}{\footnotesize{Facts}}\tiny{}
+
+
+
+\begin{frame}{Artifact removal for EEG data}
+
+\begin{figure}[!htbp]
+\minipage{.5\textwidth}%
+\centering
+\includegraphics[width=.8\textwidth]{1.jpg}\\
+\tiny{\tiny EEG signal of the first set}
+\endminipage\hfill
+\minipage{.5\textwidth}%
+\centering
+\includegraphics[width=.8\textwidth]{2.jpg}\\
+\tiny{\tiny EEG signal of the second set}
+\endminipage\hfill
+\end{figure}
+
+\tiny{Original EEG signals where in addition the most affected channels by the muscles artifacts are pointed out}
+
+\end{frame}
+
+\begin{frame}{CCA of the first set}
+
+\begin{figure}[!htbp]
+\minipage{.3\textwidth}%
+\centering
+\includegraphics[width=1\textwidth]{3.jpg}\\
+\tiny{\tiny EEG reconstructed signals after CCA}
+\endminipage\hfill
+\minipage{.3\textwidth}%
+\centering
+\includegraphics[width=1\textwidth]{4.jpg}\\
+\tiny{\tiny The CCA source channel}
+\endminipage\hfill
+\minipage{.3\textwidth}%
+\centering
+\includegraphics[width=1\textwidth]{5.jpg}\\
+\tiny{\tiny Correlation values for respective channel}
+\endminipage\hfill
+\end{figure}
+    
+\end{frame} 
+      
+    
+\begin{frame}{CCA of the second set}
+
+\begin{figure}[!htbp]
+\minipage{.3\textwidth}%
+\centering
+\includegraphics[width=1\textwidth]{6.jpg}\\
+\tiny{EEG reconstructed signals after CCA}
+\endminipage\hfill
+\minipage{.3\textwidth}%
+\centering
+\includegraphics[width=1\textwidth]{7.jpg}\\
+\tiny{The CCA source channel}
+\endminipage\hfill
+\minipage{.3\textwidth}%
+\centering
+\includegraphics[width=1\textwidth]{8.jpg}\\
+\tiny{Correlation values for respective channel}
+\endminipage\hfill
+\end{figure}
+
+\end{frame} 
+    
+    
+\begin{frame}{Manual processing  for the first set}
+
+\begin{figure}[!htbp]
+\minipage{.3\textwidth}%
+\centering
+\includegraphics[width=1\textwidth]{9.jpg}\\
+\includegraphics[width=1\textwidth]{10.jpg}
+\endminipage\hfill
+\minipage{.3\textwidth}%
+\centering
+\includegraphics[width=1\textwidth]{11.jpg}\\
+\includegraphics[width=1\textwidth]{12.jpg}
+\endminipage\hfill
+\minipage{.3\textwidth}%
+\centering
+\includegraphics[width=1\textwidth]{13.jpg}\\
+\includegraphics[width=1\textwidth]{14.jpg}
+\endminipage\hfill
+\end{figure}
+  
+\end{frame}  
+    
+\begin{frame}{Manual processing  for the second set}
+
+\begin{figure}[!htbp]
+\minipage{.3\textwidth}%
+\centering
+\includegraphics[width=1\textwidth]{16.jpg}\\
+\includegraphics[width=1\textwidth]{16.jpg}
+\endminipage\hfill
+\minipage{.3\textwidth}%
+\centering
+\includegraphics[width=1\textwidth]{19.jpg}\\
+\includegraphics[width=1\textwidth]{20.jpg}
+\endminipage\hfill
+\minipage{.3\textwidth}%
+\centering
+\includegraphics[width=1\textwidth]{23.jpg}\\
+\includegraphics[width=1\textwidth]{24.jpg}
+\endminipage\hfill
+\end{figure}
+
+ 
+\end{frame}  
+
+\begin{frame}{Manual processing  for the second set \textit{.cont}}
+
+\begin{figure}[!htbp]
+\minipage{.3\textwidth}%
+\centering
+\includegraphics[width=1\textwidth]{17.jpg}\\
+\includegraphics[width=1\textwidth]{18.jpg}
+\endminipage\hfill
+\minipage{.3\textwidth}%
+\centering
+\includegraphics[width=1\textwidth]{21.jpg}\\
+\includegraphics[width=1\textwidth]{22.jpg}
+\endminipage\hfill
+\minipage{.3\textwidth}%
+\centering
+\includegraphics[width=1\textwidth]{25.jpg}\\
+\includegraphics[width=1\textwidth]{26.jpg}
+\endminipage\hfill
+\end{figure}
+
+ 
+\end{frame}  
+ 
+ 
+ 
+\begin{frame}{Automated processing for the second set }
+
+
+\begin{figure}[!htbp]
+\minipage{.5\textwidth}%
+\centering
+\includegraphics[width=1\textwidth]{27.jpg}\\
+\tiny{CCA results of the first data set}\label{toda1}
+\endminipage\hfill
+\minipage{.5\textwidth}%
+\centering
+\includegraphics[width=1\textwidth]{28.jpg}\\
+\tiny{CCA results of the second data set}\label{toda2}
+\endminipage\hfill
+\end{figure}    
+    
+\end{frame}      
+    
+    
+\begin{frame}{Outline}
+
+\begin{block}{\footnotesize{Comparison of the data-set}}\tiny{}
 \begin{enumerate} 
 \vspace{0.05cm}
+     \item \tiny{\textbf{\textit{}}}
+     \item \tiny{\textbf{\textit{}}}
+     \item \tiny{\textbf{\textit{}}}
+     \item \tiny{\textbf{\textit{}}}
      \item \tiny{\textbf{\textit{}}} 
 
      
 \end{enumerate}
 \end{block}
+
+     
+   
+\end{frame} 
+    
+\begin{frame}{Outline}
+
+
+\begin{block}{\footnotesize{Differences between CCA and ICA}}\tiny{}
+\begin{enumerate} 
+\vspace{0.05cm}
+     \item \tiny{\textbf{\textit{CCA is an straight forward implementation, ICA need to iteratively solve or optimize any parameter}}} 
+     \item \tiny{\textbf{\textit{In the ICA implementation there is no guarantee on the same output for identical data contrary to the CCA.}}} 
+     \item \tiny{\textbf{\textit{CCA tries to uncorrelate  whereas ICA tries to independent the sources.}}} 
+     \item \tiny{\textbf{\textit{ICA assumes the input data set to be full non-Gaussian CCA has no assumption}}} 
+     \item \tiny{\textbf{\textit{ICA could be seen from different prospective.}}} 
+     \item \tiny{\textbf{\textit{ICA in addition requires pre-processing  of the data, including here centering and whitening of the data.}}} 
+     \item \tiny{\textbf{\textit{Auto-correlation is a well defined method thereby the correlation coefficient between the sources to be proceeded are defined very accurately in a very robust manner.}}} 
+
+     
+\end{enumerate}
+\end{block}
+     
+   
+\end{frame} 
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+
+\begin{frame}{Artifact removal for EEG data}
+
+
+\begin{figure}[!htb]
+\minipage{0.5\textwidth}
+
+
      
 
 
@@ -347,6 +550,14 @@
 
 
 
+\emptyfooter
+\begin{frame}{ }
+\centering \textbf{\Large \textit{Thank you for your attention!}}
+\begin{figure}[!htb]
+\includegraphics[width=.3\textwidth]{QA.jpg}
+\end{figure}
+\largefooter
+\end{frame}
 
 
 
