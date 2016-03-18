@@ -275,19 +275,20 @@ command itself.
 
     Examples:
 
-    - `![]{figure}`: basic figure, no float
-    - `![caption]{figure}`: basic figure, put into a float
-    - `![*caption]{figure}`: basic figure, put into a column-spanning float
-    - `![{options}caption]{figure}`: basic figure in float, custom options
-    - `![{options}caption]{figure1,figure2}`: two figures in one float, custom
+    - `![](figure)`: basic figure, no float
+    - `![{h}](figure)`: basic figure, no float, scaled to fit slide width
+    - `![caption](figure)`: basic figure, put into a float
+    - `![*caption](figure)`: basic figure, put into a column-spanning float
+    - `![{options}caption](figure)`: basic figure in float, custom options
+    - `![{options}caption](figure1,figure2)`: two figures in one float, custom
       options for all
-    - `![{options1}{options2}caption]{figure1,figure2}`: two figures in one
+    - `![{options1}{options2}caption](figure1,figure2)`: two figures in one
       float, custom options per figure
-    - `![caption]{{options1}figure1,{options2}figure2}`: two figures in one
+    - `![caption]({options1}figure1,{options2}figure2)`: two figures in one
       float, custom options per figure
-    - `![<1><2>caption]{figure1,figure2}`: two figures in one float, with
+    - `![<1><2>caption](figure1,figure2)`: two figures in one float, with
       animation
-    - `![<1><2>caption]{figure1}![<1><2>caption]{figure2}`: two figures with
+    - `![<1><2>caption](figure1)![<1><2>caption](figure2)`: two figures with
       same caption in one paragraph get collapsed into one float
 
 ### Markdown commands for papers
