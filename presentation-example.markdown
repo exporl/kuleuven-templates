@@ -7,8 +7,10 @@ institute: Institute, Dept., University
 biblio-files: parsed-references.bib
 toc: true
 sectiontoc: true
+subsectiontoc: true
 sectiontitle: true
 captionfont: size=\scriptsize
+show-total-number-of-slides: true
 # customization of the templates
 header-includes: \input{presentation-example.header}
 knit: (function(input, encoding, make = TRUE) { source('templates/makefile-renderer.R', local = TRUE) })
@@ -102,3 +104,12 @@ Numbered lists:
 3.  Third paragraph
 
     Continued paragraphs
+
+# Appendix
+
+\appendix
+
+### Appendix slide
+
+This is an appendix slide. The page numbering has restarted.
+
