@@ -21,6 +21,9 @@ $endif$
 \usepackage{amsmath}
 \usepackage[nohyperlinks]{acronym}
 \usepackage{babel,lmodern,graphicx,mathptmx,xspace,wasysym,microtype,booktabs,tabularx,relsize,textcomp,longtable,lipsum,colortbl,eurosym,url,multicol,etoolbox,multimedia,pdfpages,fixltx2e,ifluatex,epstopdf}
+$if(show-total-number-of-slides)$
+\usepackage{appendixnumberbeamer}  % don't include appendix slides in slide count, restart numbering for appendix
+$endif$
 \usepackage[olditem,oldenum]{paralist}
 \usepackage[babel=true]{csquotes}
 \usepackage[thinqspace,amssymb,textstyle]{SIunits}
@@ -188,7 +191,7 @@ $endif$
     \parbox[t][0.62cm]{\paperwidth}{\pgfuseshading{bgshading}}\par%
     \vskip-0.62cm%
     \begin{beamercolorbox}[ht=0.37cm,dp=0.25cm,center]{page number in head/foot}%
-    \insertframenumber%
+    \insertframenumber$if(show-total-number-of-slides)$~/ \inserttotalframenumber$endif$%
     \end{beamercolorbox}%
     \vskip-0.92cm%
     \parbox[t][0.92cm]{\paperwidth}{\hskip10.33cm\includegraphics[width=2.10cm]{templates/kuleuven}}\par%
