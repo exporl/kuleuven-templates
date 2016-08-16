@@ -82,6 +82,8 @@ class ImageWalker:
 
 class Image:
     def __init__(self, v, f, m):
+        if len(v) > 2: # pandoc >=1.16
+            v = v[1:]
         self._figtype = 'figure'
         self._rawcaption = latexstringify(v[0])
         self._caption = ''
