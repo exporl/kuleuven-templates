@@ -2,7 +2,7 @@ sudo: true
 dist: trusty
 language: c
 before_install:
-- sudo add-apt-repository 'deb http://archive.ubuntu.com/ubuntu/ vivid main universe'
+- sudo add-apt-repository 'deb http://archive.ubuntu.com/ubuntu/ wily main universe'
 - sudo apt-key adv --keyserver keyserver.ubuntu.com --recv-keys C0B21F32
 - echo 'APT::Default-Release "trusty";' | sudo tee /etc/apt/apt.conf.d/default-release
 - sudo add-apt-repository "deb http://cran.rstudio.com/bin/linux/ubuntu $(lsb_release -cs)/"
@@ -16,10 +16,10 @@ before_install:
   r-cran-dplyr
   r-cran-ggplot2
   r-cran-knitr
-- sudo apt-get install -t vivid -qq
+- sudo apt-get install -t wily -qq
   pandoc
   python-pandocfilters
-- sudo apt-get install -t vivid -qq --no-install-recommends
+- sudo apt-get install -t wily -qq --no-install-recommends
   texlive-latex-base
   texlive-latex-recommended
   texlive-latex-extra
@@ -32,7 +32,7 @@ before_install:
   texlive-extra-utils
   lmodern
   pdftk
-- sudo apt-get install -qq  --no-install-recommends
+- sudo apt-get install -t wily -qq --no-install-recommends
   libreoffice-impress
 - export PATH=/usr/bin:$PATH
 - ./.travis.git
