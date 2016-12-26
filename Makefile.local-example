@@ -7,5 +7,8 @@
 # Leave the pdf file in the temp directory and don't copy it to the source directory
 # COPYPDF=no
 
+# Downsample figures to 256 pixels in the largest dimension to speed up compilation
+# DRAFT=yes
+
 # Use lualatex instead of pdflatex
 # LATEX=lualatex

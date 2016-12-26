@@ -6,6 +6,7 @@ BUILDDIR=/tmp/latex-build$(subst /,-,$(abspath .))
 BIBSOURCE=
 COPYPDF=yes
 LATEX=pdflatex
+DRAFT=no
 
 # To customize, copy Makefile.local-example to Makefile.local
 -include Makefile.local
@@ -15,6 +16,11 @@ LATEXCMD=TEXINPUTS=$(BUILDDIR):figures: $(LATEX) $(LATEXOPTIONS)
 BIBTEXCMD=BIBINPUTS=$(BUILDDIR): openout_any=a bibtex
 EPSTOPDFCMD=mkdir -p $(BUILDDIR) && epstopdf $< --outfile $@
 EPSTOPNGCMD=mkdir -p $(BUILDDIR) && convert $< $@
+ifeq ($(DRAFT),yes)
+BITMAPCMD=mkdir -p $(BUILDDIR) && convert $< -resize 512x512\> $@
+else
+BITMAPCMD=
+endif
 TIKZTOTEXCMD=( \
 	echo '\documentclass[9pt]{scrartcl}'; \
 	echo '\usepackage{color}'; \
@@ -45,6 +51,7 @@ TIKZTOTEXCMD=( \
 	echo '\end{document}'; \
     ) > $@
 PDFPDFPICTURES=$(wildcard *.pdf figures/*.pdf)
+BITMAPPICTURES=$(patsubst %.png,$(BUILDDIR)/%.png,$(notdir $(wildcard *.png figures/*.png)))
 EPSPDFPICTURES=$(patsubst %.eps,$(BUILDDIR)/%.pdf,$(notdir $(wildcard *.eps figures/*.eps)))
 EPSPNGPICTURES=$(patsubst %.eps,$(BUILDDIR)/%-png.png,$(notdir $(wildcard *.eps figures/*.eps)))
 TIKZPDFPICTURES=$(patsubst %.tikz,$(BUILDDIR)/%.pdf,$(notdir $(wildcard *.tikz figures/*.tikz)))
@@ -64,7 +71,7 @@ clean-all: $(MDSOURCES:%=clean-%)
 builddir:
 	@echo $(BUILDDIR)/
 
-.SECONDARY: $(PDFPDFPICTURES) $(EPSPNGPICTURES) $(EPSPDFPICTURES) $(TIKZPDFPICTURES) $(MDSOURCES:%=%.tex) $(MDSOURCES:%=%.markdown)
+.SECONDARY: $(PDFPDFPICTURES) $(BITMAPPICTURES) $(EPSPNGPICTURES) $(EPSPDFPICTURES) $(TIKZPDFPICTURES) $(MDSOURCES:%=%.tex) $(MDSOURCES:%=%.markdown)
 
 # No idea why MAKEFLAGS need to be reset, but otherwise the ondemand build below fails
 %.markdown: %.Rmd
@@ -75,7 +82,7 @@ builddir:
 	sed "/^%% /d" $*.markdown > $(BUILDDIR)/$*.markdown
 	pandoc -s $$(grep -h '^%% ' $*.markdown | sed 's/^%% /--/') $(BUILDDIR)/$*.markdown -o $*.tex
 
-pdflatex-%: %.tex $(PDFPDFPICTURES) $(EPSPDFPICTURES) $(TIKZPDFPICTURES) $(BUILDDIR)/parsed-references.bib
+pdflatex-%: %.tex $(PDFPDFPICTURES) $(BITMAPPICTURES) $(EPSPDFPICTURES) $(TIKZPDFPICTURES) $(BUILDDIR)/parsed-references.bib
 	mkdir -p $(BUILDDIR)
 	-$(LATEXCMD) $*.tex
 	-for i in "$(BUILDDIR)/$*"*.aux; do $(BIBTEXCMD) "$$i"; done
@@ -139,6 +146,12 @@ $(BUILDDIR)/%.pdf: figures/%.eps
 
 $(BUILDDIR)/%.pdf: %.eps
 	$(EPSTOPDFCMD)
+
+$(BUILDDIR)/%.png: figures/%.png
+	$(BITMAPCMD)
+
+$(BUILDDIR)/%.jpg: figures/%.jpg
+	$(BITMAPCMD)
 
 $(BUILDDIR)/%-png.png: figures/%.eps
 	$(EPSTOPNGCMD)
