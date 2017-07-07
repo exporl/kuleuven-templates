@@ -1,0 +1,149 @@
+\usepackage[size=custom,width=\posterwidth,height=\posterheight]{templates/beamerposter}
+
+\pdfstringdefDisableCommands{\renewcommand{\sout}{}}
+\graphicspath{{figures/}}
+% Fix sort order in case the same file exists with multiple extensions
+\DeclareGraphicsExtensions{.pdf,.png,.jpeg,.jpg,.eps}
+\frenchspacing
+
+% beamer
+\mode<presentation>
+
+% derived dimensions (logo size, margins, ...)
+\newbox{\layoutbox}
+\deflen{logowidth}{\headerheight}
+\deflen{logoheight}{\logowidth*\ratio{236px}{661px}}
+\deflen{margin}{\marginfactor\logoheight*\ratio{1px}{2px}}
+\deflen{keyheight}{0.9\headerheight}
+\deflen{keywidth}{\keyheight*\ratio{269px}{576px}}
+\deflen{colwidth}{\paperwidth*\ratio{1px}{\ncol px}-\margin-\margin*\ratio{1px}{\ncol px}}
+
+% colors
+\setbeamercolor{background canvas}{bg=kulbg}
+
+\setbeamercolor{headline}{fg=white,bg=kulbg}
+\setbeamercolor{whitespace}{fg=white,bg=white}
+
+\setbeamercolor{footline}{fg=white,bg=kulbg}
+\setbeamerfont{footline}{size=\normalsize}
+
+\setbeamercolor*{normal text}{fg=kullight}
+
+\setbeamercolor*{block body}{bg=kullight,fg=kuldark}
+\setbeamercolor*{block title}{bg=kullight,fg=kuldark}
+\setbeamercolor*{block title example}{bg=kullight,fg=kuldark}
+\setbeamercolor*{block body example}{bg=kullight,fg=kuldark}
+
+\setbeamercolor{structure}{fg=kuldark} % e.g. figure caption
+
+\setbeamertemplate{navigation symbols}{} % no navigation on a poster
+
+\setbeamertemplate{headline}{%
+  \begin{beamercolorbox}[ht=0.9\logoheight,wd=\paperwidth]{whitespace}%
+
+  \end{beamercolorbox}
+    \vskip-0.4\logoheight
+    \leftskip0.5\logoheight
+    \begin{beamercolorbox}[ht=\logoheight,wd=\logowidth]{whitespace}%
+    	\includegraphics[height=\logoheight]{templates/kuleuven}  
+    \end{beamercolorbox}
+    
+    \leftskip0ex
+    \begin{beamercolorbox}[wd=\paperwidth]{headline}%
+      \begin{columns}[T,totalwidth=\paperwidth]
+        \begin{column}{0.9\logoheight} \end{column} % margin
+        
+        \begin{column}{\paperwidth-1.4\logoheight-\keywidth}
+          \vskip0.5\logoheight
+          {\usebeamerfont{title in headline}\postertitle \\[\titlemargin]}
+          {\usebeamerfont{author in headline}\posterauthors \\[\authormargin]}
+          {\usebeamerfont{institute in headline}\posterinstitute }
+        \end{column}
+        
+        \begin{column}{\keywidth}
+          \vskip-0.3\logoheight
+          \raggedleft\includegraphics[height=\keyheight]{templates/key}
+        \end{column}
+        \begin{column}{0.5\logoheight} \end{column} % margin
+      \end{columns}
+    \end{beamercolorbox}
+}
+
+\setbeamertemplate{footline}{
+  \begin{beamercolorbox}[ht=1.5\margin,leftskip=1.6\margin,rightskip=1.6\margin]{footline}%
+    \url{\posterurl} \hfill \posterlonginstitute \hfill \texttt{\posteremail}
+    \vskip 0.5\margin
+  \end{beamercolorbox}
+}
+
+\setbeamertemplate{block begin}{%
+\begin{beamercolorbox}[rounded=false,shadow=false]{block body}%
+  \begin{beamercolorbox}[ht=0.5\logoheight,dp=0.9ex,rounded=false,shadow=false]{block title}%
+     \begin{adjustwidth}{0.3\logoheight}{0.3\logoheight} 
+	     \usebeamerfont*{block title}\insertblocktitle
+     \end{adjustwidth}
+  \end{beamercolorbox}%
+  
+  \begin{beamercolorbox}[ht=6pt,rounded=false,shadow=false]{block title}%
+    \leftskip0.1\logoheight \rule{\textwidth-0.2\logoheight}{6pt}
+  \end{beamercolorbox}%
+    
+  \usebeamerfont{block body}%
+  \begin{beamercolorbox}[rounded=false,shadow=false,leftskip=0cm,vmode,rightskip=0cm]{block body}%
+  \begin{adjustwidth}{0.3\logoheight}{0.3\logoheight}
+    \parskip1em
+}
+
+\setbeamertemplate{block end}{
+	\vskip0.1em 
+	\end{adjustwidth}
+	\end{beamercolorbox}
+\end{beamercolorbox}
+	  \vskip\margin
+}
+
+\setbeamertemplate{block example begin}{%
+  \usebeamerfont{block body}%
+  \begin{beamercolorbox}[rounded=false,shadow=false,leftskip=0cm,vmode,rightskip=0cm]{block body example}%
+  \begin{adjustwidth}{0.3\logoheight}{0.3\logoheight}
+    \parskip1em
+}
+
+\setbeamertemplate{block example end}{
+	\vskip0.1em 
+	\end{adjustwidth}
+	\end{beamercolorbox}
+	  \vskip\margin
+}
+
+\setbeamertemplate{structure text begin}{\vskip.4em}
+
+\setbeamertemplate{itemize/enumerate body begin}{
+\begin{minipage}{\dimexpr\textwidth-0.3\logoheight}
+\begin{adjustwidth}{0px}{0.3\logoheight} 
+}
+
+\setbeamertemplate{itemize/enumerate body end}{
+\end{adjustwidth}
+\end{minipage}
+}
+
+\setbeamertemplate{itemize items}[square]
+
+\setbeamertemplate{bibliography item}{\hskip\dimexpr0.5em+0.8cm\relax}
+
+\setbeamertemplate{caption}{%
+	\usebeamercolor[fg]{caption name}%
+	\usebeamerfont*{caption name}%
+	\insertcaptionname~\insertcaptionnumber:~%
+	\insertcaption\par
+}
+
+\newenvironment{vfillcolumn}[1]{%
+\begin{column}{#1}
+\minipage[c][\textheight][s]{#1}
+\vskip \margin
+}{%
+\endminipage
+\end{column}
+}
