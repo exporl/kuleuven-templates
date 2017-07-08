@@ -18,7 +18,21 @@
 \deflen{keywidth}{\keyheight*\ratio{269px}{576px}}
 \deflen{colwidth}{\paperwidth*\ratio{1px}{\ncol px}-\margin-\margin*\ratio{1px}{\ncol px}}
 
-% colors
+\deflen{padding}{\marginfactor\logoheight*\ratio{1px}{3px}}
+
+% some useful commands
+\newcommand{\blocksubtitle}[1]{ \structure{ \textbf{#1} } \\}
+\newcommand{\blockhrule}{ \vskip -1.3cm \rule{\textwidth-2\padding}{1pt} \vskip -0.8cm}
+\newenvironment{vfillcolumn}[1]{%
+\begin{column}{#1}
+\minipage[c][\textheight][s]{#1}
+\vskip \margin
+}{%
+\endminipage
+\end{column}
+}
+
+% beamer colors
 \setbeamercolor{background canvas}{bg=kulbg}
 
 \setbeamercolor{headline}{fg=white,bg=kulbg}
@@ -40,6 +54,8 @@
 
 \setbeamercolor{}{fg=kuldark} % e.g. figure caption
 
+
+% beamer templates
 \setbeamertemplate{navigation symbols}{} % no navigation on a poster
 
 \setbeamertemplate{headline}{%
@@ -74,27 +90,27 @@
 }
 
 \setbeamertemplate{footline}{
-  \begin{beamercolorbox}[ht=1.5\margin,leftskip=1.6\margin,rightskip=1.6\margin]{footline}%
+  \begin{beamercolorbox}[ht=0.6\logoheight,leftskip=1.6\margin,rightskip=1.6\margin]{footline}%
     \url{\posterurl} \hfill \posterlonginstitute \hfill \texttt{\posteremail}
-    \vskip 0.5\margin
+    \vskip 0.25\logoheight
   \end{beamercolorbox}
 }
 
 \setbeamertemplate{block begin}{%
 \begin{beamercolorbox}[rounded=false,shadow=false]{block body}%
   \begin{beamercolorbox}[ht=0.5\logoheight,dp=0.9ex,rounded=false,shadow=false]{block title}%
-     \begin{adjustwidth}{0.3\logoheight}{0.3\logoheight} 
+     \begin{adjustwidth}{\padding}{\padding} 
 	     \usebeamerfont*{block title}\insertblocktitle
      \end{adjustwidth}
   \end{beamercolorbox}%
   
   \begin{beamercolorbox}[ht=6pt,rounded=false,shadow=false]{block title}%
-    \leftskip0.1\logoheight \rule{\textwidth-0.2\logoheight}{6pt}
+    \leftskip0.3\padding \rule{\textwidth-0.6\padding}{6pt}
   \end{beamercolorbox}%
     
   \usebeamerfont{block body}%
   \begin{beamercolorbox}[rounded=false,shadow=false,leftskip=0cm,vmode,rightskip=0cm]{block body}%
-  \begin{adjustwidth}{0.3\logoheight}{0.3\logoheight}
+  \begin{adjustwidth}{\padding}{\padding}
     \parskip1em
 }
 
@@ -109,7 +125,7 @@
 \setbeamertemplate{block example begin}{%
   \usebeamerfont{block body}%
   \begin{beamercolorbox}[rounded=false,shadow=false,leftskip=0cm,vmode,rightskip=0cm]{block body example}%
-  \begin{adjustwidth}{0.3\logoheight}{0.3\logoheight}
+  \begin{adjustwidth}{\padding}{\padding}
     \parskip1em
 }
 
@@ -141,13 +157,4 @@
 	\usebeamerfont*{caption name}%
 	\insertcaptionname~\insertcaptionnumber:~%
 	\insertcaption\par
-}
-
-\newenvironment{vfillcolumn}[1]{%
-\begin{column}{#1}
-\minipage[c][\textheight][s]{#1}
-\vskip \margin
-}{%
-\endminipage
-\end{column}
 }

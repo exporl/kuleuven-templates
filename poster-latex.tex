@@ -27,14 +27,16 @@
 \input{templates/definitions.tex}
 
 % POSTER DIMENSIONS
+% header
 \newcommand\posterwidth{100} % [cm]
 \newcommand\posterheight{100} % [cm]
 \deflen{headerheight}{15cm}
-\newcommand\ncol{2} % for margins
-\newcommand\marginfactor{0.75} % for larger/smaller margin (default: 1, 0 means no margins between blocks)
-
 \deflen{titlemargin}{1.5cm} % margin under title
 \deflen{authormargin}{1cm} % margin under authors
+
+% blocks
+\newcommand\ncol{2} % for margins
+\newcommand\marginfactor{1} % for larger/smaller margin (default: 1, 0 means no margins between blocks)
 
 % font sizes: large, Large, LARGE, huge, Huge, veryHuge, VeryHuge, VERYHuge
 \setbeamerfont{title in headline}{size=\VERYHuge,series=\bfseries}
@@ -44,9 +46,11 @@
 \setbeamerfont{block title}{size=\huge,series=\bfseries}
 \setbeamerfont{block body}{size=\large}
 
-\setbeamerfont{structure}{size=\large}
+\setbeamerfont{structure}{size=\LARGE} % subtitles
 \setbeamerfont*{item}{parent=normal text}
 \setbeamerfont{caption}{size=\large}
+
+\setbeamerfont{itemize/enumerate subbody}{size=\large} %to set the body size
 
 % POSTER INFO
 \newcommand\postertitle{Title}
@@ -65,9 +69,13 @@
 \begin{columns}
 \begin{vfillcolumn}{\colwidth}
 \begin{block}{First block}
-Lorem ipsum dolor sit amet, consectetur adipiscing elit. Proin pharetra facilisis nisi ac lacinia. Quisque eu dui at orci pulvinar eleifend. Etiam tempus magna eu nulla fringilla cursus. Nunc augue leo, porta eget fermentum ultricies, varius quis ex. Aliquam consequat odio sed nulla fringilla, sed porta nunc rhoncus. Maecenas et sem orci. In a est vitae orci sodales laoreet. Mauris ultricies, sapien at porta semper, purus dui fermentum libero, in gravida risus justo eu felis. In nec pretium nisi. Pellentesque sed nisl sed ligula varius pharetra et id felis. In a maximus elit. Sed non consectetur sem, ac ornare libero. Aliquam ut tellus efficitur, fringilla felis id, euismod nisl.
+Lorem ipsum dolor sit amet, consectetur adipiscing elit. Proin pharetra facilisis nisi ac lacinia. Quisque eu dui at orci pulvinar eleifend. Etiam tempus magna eu nulla fringilla cursus. Nunc augue leo, porta eget fermentum ultricies, varius quis ex. Aliquam consequat odio sed nulla fringilla, sed porta nunc rhoncus. Maecenas et sem orci.
+
+\blocksubtitle{A subtitle}
+In a est vitae orci sodales laoreet. Mauris ultricies, sapien at porta semper, purus dui fermentum libero, in gravida risus justo eu felis. In nec pretium nisi. Pellentesque sed nisl sed ligula varius pharetra et id felis. In a maximus elit. Sed non consectetur sem, ac ornare libero. Aliquam ut tellus efficitur, fringilla felis id, euismod nisl.
 \end{block}
 
+\vfill
 \begin{block}{Enumerate and itemize block}
 \begin{itemize}
 \item Lorem ipsum dolor sit amet, consectetur adipiscing elit. Proin pharetra facilisis nisi ac lacinia. Quisque eu dui at orci pulvinar eleifend. 
@@ -96,14 +104,35 @@ Lorem ipsum dolor sit amet, consectetur adipiscing elit. Proin pharetra facilisi
 Lorem ipsum dolor sit amet, consectetur adipiscing elit. Proin pharetra facilisis nisi ac lacinia. Quisque eu dui at orci pulvinar eleifend. Etiam tempus magna eu nulla fringilla cursus. Nunc augue leo, porta eget fermentum ultricies, varius quis ex. Aliquam consequat odio sed nulla fringilla, sed porta nunc rhoncus. Maecenas et sem orci. In a est vitae orci sodales laoreet. Mauris ultricies, sapien at porta semper, purus dui fermentum libero, in gravida risus justo eu felis. In nec pretium nisi. Pellentesque sed nisl sed ligula varius pharetra et id felis. In a maximus elit. Sed non consectetur sem, ac ornare libero. Aliquam ut tellus efficitur, fringilla felis id, euismod nisl.
 \end{block}
 
+\vfill
+\begin{block}{Another block}
+Lorem ipsum dolor sit amet, consectetur adipiscing elit. Proin pharetra facilisis nisi ac lacinia. Quisque eu dui at orci pulvinar eleifend. Etiam tempus magna eu nulla fringilla cursus. Nunc augue leo, porta eget fermentum ultricies, varius quis ex. Aliquam consequat odio sed nulla fringilla, sed porta nunc rhoncus. 
+\end{block}
+
 \end{vfillcolumn}
 
 \begin{vfillcolumn}{\colwidth}
 
 \begin{exampleblock}{This title is not shown}
 Block without title \citep{einstein1905elektrodynamik}.
+
+\blocksubtitle{But it has a subtitle}
+And a horizontal rule.
+\blockhrule
+Maecenas et sem orci. In a est vitae orci sodales laoreet. Mauris ultricies, sapien at porta semper, purus dui fermentum libero, in gravida risus justo eu felis. In nec pretium nisi. Pellentesque sed nisl sed ligula varius pharetra et id felis. In a maximus elit. Sed non consectetur sem, ac ornare libero. Aliquam ut tellus efficitur, fringilla felis id, euismod nisl.
 \end{exampleblock} 
-	
+
+\vfill 
+\begin{block}{Picture block}
+\begin{figure}
+	\centering
+    \includegraphics[width=0.5\textwidth]{presentation-examplefig}
+	\caption{A picture.}
+\end{figure}
+
+\end{block}
+
+\vfill 
 \begin{block}{Picture block}
 \begin{figure}
 	\centering
@@ -114,19 +143,45 @@ Block without title \citep{einstein1905elektrodynamik}.
 \end{block}
 
 \vfill
+
+\begin{minipage}{0.75\colwidth}
+
 \begin{exampleblock}{}
 % ACKNOWLEDGMENTS
-Thank you all! \\
-\rule{\textwidth-0.6\logoheight}{1pt}
+\vskip 3cm
+Thank you all!
+
+\vskip 3cm
+
+\blockhrule
 
 % REFERENCES
-\vskip -6pt
+\vskip 3cm
 \bibliographystyle{ieeetr}
 \bibliography{references}
+
+\vskip 3cm
+\end{exampleblock}
+
+\end{minipage}
+
+\begin{exampleblock}{}
+\vskip -3cm
 \end{exampleblock}
 
 \end{vfillcolumn}
 \end{columns}
 
+\vskip -16cm
+      \begin{columns}[T,totalwidth=\paperwidth]
+        \begin{column}{\paperwidth-0.25\colwidth-\margin} \end{column} % margin
+        
+        \begin{column}{0.25\colwidth}
+          \centering
+          \Large \textbf{DOWNLOAD \\ POSTER} \vskip 2cm
+          \includegraphics[width=0.2\colwidth]{qrcode}
+        \end{column}
+        \begin{column}{\margin} \end{column} % margin
+      \end{columns}
 \end{frame}
 \end{document}
