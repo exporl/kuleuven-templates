@@ -23,7 +23,7 @@
 \usepackage[notquote]{hanging}
 \usepackage[normalem]{ulem}
 \usepackage{changepage}
-\usepackage[square]{natbib}
+\usepackage[numbers,square]{natbib}
 \input{templates/definitions.tex}
 
 % POSTER DIMENSIONS
@@ -37,6 +37,7 @@
 % blocks
 \newcommand\ncol{2} % for margins
 \newcommand\marginfactor{1} % for larger/smaller margin (default: 1, 0 means no margins between blocks)
+\newcommand\paddingfactor{1} % for larger/smaller padding (default: 1, 0 means no padding within)
 
 % font sizes: large, Large, LARGE, huge, Huge, veryHuge, VeryHuge, VERYHuge
 \setbeamerfont{title in headline}{size=\VERYHuge,series=\bfseries}
@@ -147,6 +148,9 @@ Maecenas et sem orci. In a est vitae orci sodales laoreet. Mauris ultricies, sap
 \begin{minipage}{0.75\colwidth}
 
 \begin{exampleblock}{}
+
+\begin{adjustwidth}{-0.15\logoheight}{-0.15\logoheight}
+\renewcommand{\blockhrule}{ \vskip -1.3cm \rule{\textwidth-2\padding + 0.3\logoheight}{1pt} \vskip -0.8cm}
 % ACKNOWLEDGMENTS
 \vskip 3cm
 Thank you all!
@@ -157,10 +161,11 @@ Thank you all!
 
 % REFERENCES
 \vskip 3cm
-\bibliographystyle{ieeetr}
+\bibliographystyle{IEEEtranN}
 \bibliography{references}
 
 \vskip 3cm
+\end{adjustwidth}
 \end{exampleblock}
 
 \end{minipage}
