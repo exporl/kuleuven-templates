@@ -19,6 +19,9 @@ before_install:
 - sudo apt-get install -t vivid -qq
   pandoc
   python-pandocfilters
+  ghostscript
+- sudo apt-get install -t vivid -qq --allow-downgrades
+  gcc-4.9-base=4.9.2-10ubuntu13
 - sudo apt-get install -t vivid -qq --no-install-recommends
   texlive-latex-base
   texlive-latex-recommended
