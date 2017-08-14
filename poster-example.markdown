@@ -6,7 +6,7 @@ institute: Institute, Dept., University
 longinstitute: Institute, Department, University, Country
 web: 'university.edu'
 biblio-files: parsed-references.bib
-posteroptions: width=90,height=116.3,scale=1.2 #,grid
+posteroptions: width=90,height=116.3,scale=1 #,grid
 headerheight: 13cm
 # large, Large, LARGE, huge, Huge, veryHuge, VeryHuge, VERYHuge
 titlefont: size=\veryHuge,series=\bfseries

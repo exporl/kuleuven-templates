@@ -88,13 +88,13 @@ $endif$
 \setbeamerfont{institute in headline}{$if(institutefont)$$institutefont$$else$size=\huge$endif$}
 
 \setbeamerfont{block title}{size=\huge,series=\bfseries}
-\setbeamerfont{block body}{size=\large}
+\setbeamerfont{block body}{$if(bodyfont)$$bodyfont$$else$size=\normalsize$endif$}
 
 \setbeamerfont{structure}{size=\LARGE} % subtitles
 \setbeamerfont*{item}{parent=normal text}
-\setbeamerfont{caption}{size=\large}
+\setbeamerfont{caption}{$if(bodyfont)$$bodyfont$$else$size=\normalsize$endif$}
 
-\setbeamerfont{itemize/enumerate subbody}{size=\large} %to set the body size
+\setbeamerfont{itemize/enumerate subbody}{$if(bodyfont)$$bodyfont$$else$size=\normalsize$endif$} %to set the body size
 
 % POSTER INFO
 $if(title)$
