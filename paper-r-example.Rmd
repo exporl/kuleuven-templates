@@ -5,9 +5,9 @@ biblio-files: parsed-references.bib
 classoptions: DIV=14,twocolumn,fontsize=9pt
 biboptions: doi=true
 toc: true
-toc-depth: 2
+toc-depth: '2'
 numbersections: true
-numbersectionlevel: 2
+numbersectionlevel: '2'
 knit: (function(input, encoding, make = TRUE) { source('templates/makefile-renderer.R', local = TRUE) })
 ---
 
