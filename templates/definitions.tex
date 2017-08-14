@@ -15,15 +15,19 @@
 \DeclareUnicodeCharacter{2206}{\ensuremath{\Delta}}
 \fi
 
-\definecolor{kuldefault}{HTML}{00407a}
-\definecolor{kulbright}{HTML}{52bdec}
-\definecolor{kulleft}{HTML}{1d8db0}
-\definecolor{kulright}{HTML}{116e8a}
+\makeatletter
+\@ifpackageloaded{xcolor}{%
+    \definecolor{kuldefault}{HTML}{00407a}%
+    \definecolor{kulbright}{HTML}{52bdec}%
+    \definecolor{kulleft}{HTML}{1d8db0}%
+    \definecolor{kulright}{HTML}{116e8a}%
+    \definecolor{kulyellow}{HTML}{BC8F00}%
+    \definecolor{kulorange}{HTML}{BC6E00}%
+    \definecolor{kulgreen}{HTML}{007F4F}%
+    \definecolor{kulred}{HTML}{FF4422}%
+}{}
+\makeatother
 
-\definecolor{kulyellow}{HTML}{BC8F00}
-\definecolor{kulorange}{HTML}{BC6E00}
-\definecolor{kulgreen}{HTML}{007F4F}
-\definecolor{kulred}{HTML}{FF4422}
 
 \newcommand{\m}[1]{\todo[noline,bordercolor=orange!20,backgroundcolor=orange!20]{#1}}
 

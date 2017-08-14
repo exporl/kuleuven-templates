@@ -6,9 +6,9 @@ biblio-files: parsed-references.bib
 classoptions: DIV=12,parskip=half,fontsize=12pt
 biboptions: doi=true
 toc: true
-toc-depth: 2
+toc-depth: '2'
 numbersections: true
-numbersectionlevel: 2
+numbersectionlevel: '2'
 ---
 
 %% smart
