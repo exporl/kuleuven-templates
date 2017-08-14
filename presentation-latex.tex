@@ -44,22 +44,13 @@
 
 %\hypersetup{pdfpagemode=FullScreen}
 
-\definecolor{kuldefault}{HTML}{00407a}
-\definecolor{kulbright}{HTML}{52bdec}
-\definecolor{kulleft}{HTML}{1d8db0}
-\definecolor{kulright}{HTML}{116e8a}
-
-\definecolor{kulyellow}{HTML}{BC8F00}
-\definecolor{kulorange}{HTML}{BC6E00}
-\definecolor{kulgreen}{HTML}{007F4F}
-\definecolor{kulred}{HTML}{FF4422}
-
 \setbeamercolor{structure}{fg=kulbright}
 \setbeamercolor{title}{fg=white}
 \setbeamercolor{footline}{parent=title}
 \setbeamercolor{normal text}{fg=kuldefault}
 \setbeamercolor{item}{parent=normal text}
 \setbeamercolor{section in toc}{parent=normal text}
+\setbeamercolor{footline extra}{fg=white}
 \setbeamerfont{title}{size=\Large}
 \setbeamerfont{tiny structure}{series=\bfseries}
 \setbeamerfont{caption}{}
@@ -107,6 +98,23 @@
     \end{tikzpicture}
 }
 
+
+
+% add a macro that saves its argument
+\newcommand{\footlineextra}[1]{\gdef\insertfootlineextra{#1}}
+\newbox\footlineextrabox
+
+
+% add a beamer template that sets the saved argument in a box.
+% The * means that the beamer font and color "footline extra" are automatically added.
+\defbeamertemplate*{footline extra}{default}{
+    %\begin{beamercolorbox}[ht=2.25ex,dp=1ex,leftskip=\Gm@lmargin]{footline extra}
+    \begin{beamercolorbox}[ht=0.37cm,dp=0.25cm,wd=0.4\paperwidth,left,leftskip=2ex]{footline extra}
+    \insertfootlineextra
+    %\par\vspace{2.5pt}
+    \end{beamercolorbox}
+}
+
 \defbeamertemplate{background canvas}{plain}{}
 
 \defbeamertemplate{footline}{large}
@@ -120,7 +128,21 @@
     \end{beamercolorbox}%
     \vskip-0.92cm%
     \parbox[t][0.92cm]{\paperwidth}{\hskip10.33cm\includegraphics[width=2.10cm]{templates/kuleuven}}\par%
+
+    % set the box with the extra footline material but make it add no vertical space
+    \setbox\footlineextrabox=\vbox{\usebeamertemplate*{footline extra}}
+    \vskip -\ht\footlineextrabox
+    \vskip -\dp\footlineextrabox
+    \box\footlineextrabox%
 }
+
+% patch \begin{frame} to reset the footline extra material
+\makeatletter
+\let\beamer@original@frame=\frame
+\def\frame{\gdef\insertfootlineextra{}\beamer@original@frame}
+\footlineextra{}
+\makeatother
+
 
 \defbeamertemplate{footline}{nopagenumber}
 {%

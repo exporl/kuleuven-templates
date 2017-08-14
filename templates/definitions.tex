@@ -15,20 +15,23 @@
 \DeclareUnicodeCharacter{2206}{\ensuremath{\Delta}}
 \fi
 
-\definecolor{kuldefault}{HTML}{00407a}
-\definecolor{kulbright}{HTML}{52bdec}
-\definecolor{kulleft}{HTML}{1d8db0}
-\definecolor{kulright}{HTML}{116e8a}
-
-\definecolor{kuldark}{HTML}{123C75}   % heading background
-\definecolor{kullight}{HTML}{f0f7fa} % block background
-%\definecolor{kulbg}{cmyk}{.65,0,0,.35} % background fill
-\definecolor{kulbg}{RGB}{29,141,176} % background fill
-
-\definecolor{kulyellow}{HTML}{BC8F00}
-\definecolor{kulorange}{HTML}{BC6E00}
-\definecolor{kulgreen}{HTML}{007F4F}
-\definecolor{kulred}{HTML}{FF4422}
+\makeatletter
+\@ifpackageloaded{xcolor}{%
+    \definecolor{kuldefault}{HTML}{00407a}%
+    \definecolor{kulbright}{HTML}{52bdec}%
+    \definecolor{kulleft}{HTML}{1d8db0}%
+    \definecolor{kulright}{HTML}{116e8a}%
+    
+    \definecolor{kuldark}{HTML}{123C75}   % heading background
+    \definecolor{kullight}{HTML}{f0f7fa} % block background
+    \definecolor{kulbg}{RGB}{29,141,176} % background fill
+    
+    \definecolor{kulyellow}{HTML}{BC8F00}%
+    \definecolor{kulorange}{HTML}{BC6E00}%
+    \definecolor{kulgreen}{HTML}{007F4F}%
+    \definecolor{kulred}{HTML}{FF4422}%
+}{}
+\makeatother
 
 \newcommand{\m}[1]{\todo[noline,bordercolor=orange!20,backgroundcolor=orange!20]{#1}}
 
