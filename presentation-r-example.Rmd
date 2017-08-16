@@ -112,8 +112,7 @@ Default lists:
 
 [column]
 
-![<1|handout:0><2>{f}](presentation-examplefig-electrodes)
-![<1|handout:0><2>{f}](presentation-examplefig-electrodes-ref)
+![<1|handout:0><2>{f}](presentation-examplefig-electrodes,presentation-examplefig-electrodes-ref)
 
 [column]
 

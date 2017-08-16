@@ -73,7 +73,7 @@ class ImageWalker:
 
     def filter(self, k, v, f, m):
         self._watcher.update(k, v, f, m)
-        if k == 'Image' and v[1][1] == 'fig:':
+        if k == 'Image' and ((len(v) > 2 and v[2][1] == 'fig:') or (len(v) == 2 and v[1][1] == 'fig:')):
             return Image(v, f, m).render(self._watcher, True)
         if k == 'Para' and all(vv['t'] in ['Image', 'Space'] for vv in v):
             images = [Image(vv['c'], f, m) for vv in v if vv['t'] == 'Image']
@@ -94,7 +94,7 @@ class Image:
         self._filenames = []
 
         self._parse_caption(self._rawcaption)
-        self._parse_filenames(v[1][0].replace('%20', ' '))
+        self._parse_filenames(v[1][0])
 
         self._anims = self._spread(self._captionanims, self._anims)
         self._options = self._spread(self._captionoptions, self._options)
@@ -174,6 +174,7 @@ class Image:
         return [l]
 
     def _parse_filenames(self, v):
+        v = v.replace('%7B', '{').replace('%7D', '}').replace('%20', ' ')
         pos = 0
         l = len(v)
         while pos < l:
