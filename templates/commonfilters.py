@@ -147,9 +147,9 @@ class Image:
 
     def _mangleoptions(self, o):
         [o, slide] = re.subn(r'(^|,)s($|,)', '', o)
-        o = re.sub(r'(^|,)h($|,)', r'\1width=\\textwidth\2', o)
+        o = re.sub(r'(^|,)h($|,)', r'\1width=\\linewidth\2', o)
         o = re.sub(r'(^|,)v($|,)', r'\1height=0.72\\textheight\2', o)
-        o = re.sub(r'(^|,)f($|,)', r'\1width=\\textwidth,height=0.72\\textheight,keepaspectratio\2', o)
+        o = re.sub(r'(^|,)f($|,)', r'\1width=\\linewidth,height=0.72\\textheight,keepaspectratio\2', o)
         return [o, slide > 0]
 
     def _parse_caption(self, v):
@@ -216,4 +216,3 @@ class Image:
         while pos < l and v[pos] != ',':
             pos = pos + 1
         return [pos, v[startpos:pos]]
-
