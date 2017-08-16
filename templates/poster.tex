@@ -1,6 +1,6 @@
 % KU Leuven latex poster template
 %
-% © 2015 Michael Hofmann
+% © 2017 Benjamin Dieudonné
 %
 % This work is licensed under the Creative Commons Attribution 3.0 Unported License.
 % To view a copy of this license, visit
@@ -19,6 +19,7 @@ $if(posteroptions)$
 $endif$
 ]{templates/beamerposter}
 
+% PACKAGES
 \usepackage[utf8]{inputenc}
 \usepackage[T1]{fontenc}
 \usepackage{amsmath}
@@ -31,6 +32,7 @@ $endif$
 \usepackage[symbol]{footmisc}
 \usepackage[notquote]{hanging}
 \usepackage[normalem]{ulem}
+\usepackage{changepage}
 
 \pdfstringdefDisableCommands{\renewcommand{\sout}{}}
 \graphicspath{{figures/}}
@@ -73,146 +75,28 @@ $if(biblio-files)$
 \addbibresource{$biblio-files$}
 $endif$
 
-% beamer
-\mode<presentation>
 
-\newbox{\layoutbox}
-\newlength{\headerheight}
-\setlength\headerheight{$if(headerheight)$$headerheight$$else$15cm$endif$}
-\newlength{\logowidth}
-\setlength\logowidth{\headerheight*\ratio{236px}{661px}}
+% blocks
+\newcommand\ncol{2} % for margins
+\newcommand\marginfactor{1} % for larger/smaller margin (default: 1, 0 means no margins between blocks)
+\newcommand\paddingfactor{1} % for larger/smaller padding (default: 1, 0 means no padding within)
 
-\definecolor{kuldark}{HTML}{123C75}   % heading background
-\definecolor{kulbgleft}{HTML}{CBE1EC} % background fill gradient left
-\definecolor{kulbgright}{HTML}{C5D9E4} % background fill gradient right
-\definecolor{kulheaderleft}{HTML}{158DB0} % header fill gradient left
-\definecolor{kulheaderright}{HTML}{03708D} % header fill gradient right
+% font sizes: large, Large, LARGE, huge, Huge, veryHuge, VeryHuge, VERYHuge
 
-% headline colors and fonts
-\setbeamercolor{headline}{fg=white}
-% large, Large, LARGE, huge, Huge, veryHuge, VeryHuge, VERYHuge
-\setbeamerfont{title in headline}{$if(titlefont)$$titlefont$$else$size=\veryHuge,series=\bfseries$endif$}
-\setbeamerfont{author in headline}{$if(authorfont)$$authorfont$$else$size=\Huge$endif$}
-\setbeamerfont{institute in headline}{$if(institutefont)$$institutefont$$else$size=\LARGE$endif$}
+\setbeamerfont{title in headline}{$if(titlefont)$$titlefont$$else$size=\VERYHuge,series=\bfseries$endif$}
+\setbeamerfont{author in headline}{$if(authorfont)$$authorfont$$else$size=\veryHuge$endif$}
+\setbeamerfont{institute in headline}{$if(institutefont)$$institutefont$$else$size=\huge$endif$}
 
-% footline colors and fonts
-\setbeamercolor{footline}{fg=white}
-\setbeamerfont{footline}{size=\normalsize}
+\setbeamerfont{block title}{size=\huge,series=\bfseries}
+\setbeamerfont{block body}{$if(bodyfont)$$bodyfont$$else$size=\normalsize$endif$}
 
-% body colors, and fonts
-\setbeamercolor*{normal text}{fg=black}
-
-% block environment
-\setbeamercolor*{block body}{bg=white,fg=black}
-\setbeamercolor*{block title}{fg=white,bg=kuldark}
-\setbeamerfont{block title}{size=\large,series=\bfseries}
-
-\setbeamercolor{structure}{fg=kuldark}
-\setbeamerfont{structure}{size=\large}
+\setbeamerfont{structure}{size=\LARGE} % subtitles
 \setbeamerfont*{item}{parent=normal text}
-\setbeamerfont{caption}{$captionfont$}
+\setbeamerfont{caption}{$if(bodyfont)$$bodyfont$$else$size=\normalsize$endif$}
 
-\setbeamertemplate{background canvas}{%
-  \pgfdeclarehorizontalshading{backgroundshading}{\the\paperheight}{color(0cm)=(kulbgleft); color(\the\paperwidth)=(kulbgright)}%
-  \setbox\layoutbox=\hbox{\pgfuseshading{backgroundshading}}%
-  \setbox\layoutbox=\hbox{\lower\paperheight\hbox{\box\layoutbox}}%
-  \wd\layoutbox=0pt\ht\layoutbox=0pt\dp\layoutbox=0pt%
-  \box\layoutbox%
-  \leavevmode
-  \begin{beamercolorbox}[ht=1ex,wd=\paperwidth]{headline}%
-    \begin{columns}[T,totalwidth=\paperwidth]
-      \begin{column}{\paperwidth}
-        \vskip\paperheight
-        \vskip-50cm
-        \includegraphics[height=50cm]{templates/keypart}
-      \end{column}
-    \end{columns}
-  \end{beamercolorbox}
-}
+\setbeamerfont{itemize/enumerate subbody}{$if(bodyfont)$$bodyfont$$else$size=\normalsize$endif$} %to set the body size
 
-% no navigation on a poster
-\setbeamertemplate{navigation symbols}{}
-
-\setbeamertemplate{headline}{%
-  \pgfdeclarehorizontalshading{headlineshading}{\headerheight}{color(0cm)=(kulheaderleft); color(.3*\the\paperwidth)=(kulheaderleft); color(\the\paperwidth)=(kulheaderright)}%
-  \setbox\layoutbox=\hbox{\pgfuseshading{headlineshading}}%
-  \setbox\layoutbox=\hbox{\lower\headerheight\hbox{\box\layoutbox}}%
-  \wd\layoutbox=0pt\ht\layoutbox=0pt\dp\layoutbox=0pt%
-  \box\layoutbox%
-  \leavevmode
-  \begin{beamercolorbox}[ht=1ex,wd=\paperwidth]{headline}%
-    \begin{columns}[T,totalwidth=\paperwidth]
-      \begin{column}{2cm}
-      \end{column}
-      \begin{column}{\paperwidth-4cm-\logowidth}
-        % Change the size and the line skips to fit in the title bar
-        \vskip2cm
-        {\usebeamerfont{title in headline}\inserttitle\\[.5ex]}
-        {\usebeamerfont{author in headline}\insertauthor\\[1ex]}
-        {\usebeamerfont{institute in headline}\insertinstitute}
-      \end{column}
-      \begin{column}{2cm}
-      \end{column}
-      \begin{column}{\logowidth}
-        \raggedleft\includegraphics[width=\headerheight,angle=-90]{templates/kuleuven}
-      \end{column}
-    \end{columns}
-  \end{beamercolorbox}
-  \vskip-1em
-  \vskip-1cm
-}
-
-\setbeamertemplate{footline}{
-  \pgfdeclarehorizontalshading{headlineshading}{4ex}{color(0cm)=(kulheaderleft); color(.3*\the\paperwidth)=(kulheaderright); color(\the\paperwidth)=(kulheaderright)}%
-  \setbox\layoutbox=\hbox{\pgfuseshading{headlineshading}}%
-  \setbox\layoutbox=\hbox{\lower4ex\hbox{\box\layoutbox}}%
-  \wd\layoutbox=0pt\ht\layoutbox=0pt\dp\layoutbox=0pt%
-  \box\layoutbox%
-  \leavevmode%
-  \begin{beamercolorbox}[ht=4ex,leftskip=1cm,rightskip=1cm]{footline}%
-    \url{$web$} \hfill $longinstitute$ \hfill \texttt{$email$}
-    \vskip.8ex
-  \end{beamercolorbox}
-}
-
-\setbeamertemplate{block begin}{%
-  \vskip1cm%
-  \begin{beamercolorbox}[ht=2.7ex,dp=0.9ex,rounded=false,shadow=false,leftskip=1cm]{block title}%
-    \usebeamerfont*{block title}\insertblocktitle
-  \end{beamercolorbox}%
-  {\ifbeamercolorempty[bg]{block body}{}{\nointerlineskip\vskip-0.5pt}}%
-  \usebeamerfont{block body}%
-  \pgfsetfillopacity{.7}
-  \advance\linewidth by -2cm
-  \begin{beamercolorbox}[rounded=false,shadow=false,leftskip=0cm,sep=1cm,vmode,rightskip=0cm]{block body}%
-    \ifbeamercolorempty[bg]{block body}{\vskip-.25ex}{\vskip-.75ex}\vbox{}%
-    \parskip.4em
-    \pgfsetfillopacity{1}
-}
-
-\setbeamertemplate{block end}{\end{beamercolorbox}}
-
-\setbeamertemplate{structure text begin}{\vskip.4em}
-
-\setbeamertemplate{itemize/enumerate body begin}{\begin{minipage}{\dimexpr\textwidth-2cm\relax}\vskip.4em}
-
-\setbeamertemplate{itemize/enumerate body end}{\end{minipage}}
-
-\setbeamertemplate{itemize items}[triangle]
-
-\setbeamertemplate{bibliography item}{\hskip\dimexpr0.5em+0.8cm\relax}
-
-\setbeamertemplate{caption}{%
-  \parbox{\dimexpr\textwidth-2cm\relax}{%
-  {%
-    \usebeamercolor[fg]{caption name}%
-    \usebeamerfont*{caption name}%
-    \insertcaptionname~\insertcaptionnumber:%
-  }
-  \insertcaption\par
-  }
-}
-
+% POSTER INFO
 $if(title)$
 \title{$title$}
 $endif$
@@ -220,6 +104,179 @@ $if(author)$
 \author{$for(author)$$author$$sep$ \and $endfor$}
 $endif$
 \institute{$institute$}
+
+\newcommand\posterurl{$web$}
+\newcommand\posterlonginstitute{$longinstitute$}
+\newcommand\posteremail{$email$}
+
+
+
+\pdfstringdefDisableCommands{\renewcommand{\sout}{}}
+\graphicspath{{figures/}}
+% Fix sort order in case the same file exists with multiple extensions
+\DeclareGraphicsExtensions{.pdf,.png,.jpeg,.jpg,.eps}
+\frenchspacing
+
+% beamer
+\mode<presentation>
+
+% POSTER DIMENSIONS
+% header
+\newlength{\headerheight}
+\setlength\headerheight{$if(headerheight)$$headerheight$$else$15cm$endif$}
+\deflen{titlemargin}{1.5cm} % margin under title
+\deflen{authormargin}{1cm} % margin under authors
+
+
+% derived dimensions (logo size, margins, ...)
+\newbox{\layoutbox}
+\deflen{logowidth}{\headerheight}
+\deflen{logoheight}{\logowidth*\ratio{236px}{661px}}
+\deflen{margin}{\marginfactor\logoheight*\ratio{1px}{2px}}
+\deflen{keyheight}{0.9\headerheight}
+\deflen{keywidth}{\keyheight*\ratio{269px}{576px}}
+\deflen{colwidth}{\paperwidth*\ratio{1px}{\ncol px}-\margin-\margin*\ratio{1px}{\ncol px}}
+
+\deflen{padding}{\paddingfactor\logoheight*\ratio{1px}{3px}}
+
+% some useful commands
+\newcommand{\blocksubtitle}[1]{ \structure{ \textbf{#1} } \\}
+\newcommand{\blockhrule}{ \vskip -1.3cm \rule{\textwidth-2\padding}{1pt} \vskip -0.8cm}
+\newenvironment{vfillcolumn}[1]{%
+\begin{column}{#1}
+\minipage[c][\textheight][s]{#1}
+\vskip \margin
+}{%
+\endminipage
+\end{column}
+}
+
+% beamer colors
+\setbeamercolor{background canvas}{bg=kulbg}
+
+\setbeamercolor{headline}{fg=white,bg=kulbg}
+\setbeamercolor{whitespace}{fg=white,bg=white}
+
+\setbeamercolor{footline}{fg=white,bg=kulbg}
+\setbeamerfont{footline}{size=\normalsize}
+
+\setbeamercolor*{normal text}{fg=kullight}
+
+\setbeamercolor*{block body}{bg=kullight,fg=kuldark}
+\setbeamercolor*{block title}{bg=kullight,fg=kuldark}
+\setbeamercolor*{block title example}{bg=kullight,fg=kuldark}
+\setbeamercolor*{block body example}{bg=kullight,fg=kuldark}
+
+\setbeamercolor{structure}{fg=kuldark}
+\setbeamercolor*{item}{fg=kuldark}
+\setbeamercolor{caption}{fg=kuldark}
+
+\setbeamercolor{}{fg=kuldark} % e.g. figure caption
+
+
+% beamer templates
+\setbeamertemplate{navigation symbols}{} % no navigation on a poster
+
+\setbeamertemplate{headline}{%
+  \begin{beamercolorbox}[ht=0.9\logoheight,wd=\paperwidth]{whitespace}%
+
+  \end{beamercolorbox}
+    \vskip-0.4\logoheight
+    \leftskip0.5\logoheight
+    \begin{beamercolorbox}[ht=\logoheight,wd=\logowidth]{whitespace}%
+    	\includegraphics[height=\logoheight]{templates/kuleuven}
+    \end{beamercolorbox}
+
+    \leftskip0ex
+    \begin{beamercolorbox}[wd=\paperwidth]{headline}%
+      \begin{columns}[T,totalwidth=\paperwidth]
+        \begin{column}{0.9\logoheight} \end{column} % margin
+
+        \begin{column}{\paperwidth-1.4\logoheight-\keywidth}
+          \vskip0.5\logoheight
+          {\usebeamerfont{title in headline}\inserttitle \\[\titlemargin]}
+          {\usebeamerfont{author in headline}\insertauthor \\[\authormargin]}
+          {\usebeamerfont{institute in headline}\insertinstitute }
+        \end{column}
+
+        \begin{column}{\keywidth}
+          \vskip-0.3\logoheight
+          \raggedleft\includegraphics[height=\keyheight]{templates/key}
+        \end{column}
+        \begin{column}{0.5\logoheight} \end{column} % margin
+      \end{columns}
+    \end{beamercolorbox}
+}
+
+\setbeamertemplate{footline}{
+  \begin{beamercolorbox}[ht=0.6\logoheight,leftskip=1.6\margin,rightskip=1.6\margin]{footline}%
+    \url{\posterurl} \hfill \posterlonginstitute \hfill \texttt{\posteremail}
+    \vskip 0.25\logoheight
+  \end{beamercolorbox}
+}
+
+\setbeamertemplate{block begin}{%
+\begin{beamercolorbox}[rounded=false,shadow=false]{block body}%
+  \begin{beamercolorbox}[ht=0.5\logoheight,dp=0.9ex,rounded=false,shadow=false]{block title}%
+     \begin{adjustwidth}{\padding}{\padding}
+	     \usebeamerfont*{block title}\insertblocktitle
+     \end{adjustwidth}
+  \end{beamercolorbox}%
+
+  \begin{beamercolorbox}[ht=6pt,rounded=false,shadow=false]{block title}%
+    \leftskip0.3\padding \rule{\textwidth-0.6\padding}{6pt}
+  \end{beamercolorbox}%
+
+  \usebeamerfont{block body}%
+  \begin{beamercolorbox}[rounded=false,shadow=false,leftskip=0cm,vmode,rightskip=0cm]{block body}%
+  \begin{adjustwidth}{\padding}{\padding}
+    \parskip1em
+}
+
+\setbeamertemplate{block end}{
+	\vskip0.1em
+	\end{adjustwidth}
+	\end{beamercolorbox}
+\end{beamercolorbox}
+	  \vskip\margin
+}
+
+\setbeamertemplate{block example begin}{%
+  \usebeamerfont{block body}%
+  \begin{beamercolorbox}[rounded=false,shadow=false,leftskip=0cm,vmode,rightskip=0cm]{block body example}%
+  \begin{adjustwidth}{\padding}{\padding}
+    \parskip1em
+}
+
+\setbeamertemplate{block example end}{
+	\vskip0.1em
+	\end{adjustwidth}
+	\end{beamercolorbox}
+	  \vskip\margin
+}
+
+%\setbeamertemplate{structure text begin}{\vskip.4em}
+
+\setbeamertemplate{itemize/enumerate body begin}{
+\begin{minipage}{\dimexpr\textwidth-0.3\logoheight}
+\begin{adjustwidth}{0px}{0.3\logoheight}
+}
+
+\setbeamertemplate{itemize/enumerate body end}{
+\end{adjustwidth}
+\end{minipage}
+}
+
+\setbeamertemplate{itemize items}[square]
+
+\setbeamertemplate{bibliography item}{\hskip\dimexpr0.5em+0.8cm\relax}
+
+\setbeamertemplate{caption}{%
+	\usebeamercolor[fg]{caption name}%
+	\usebeamerfont*{caption name}%
+	\insertcaptionname~\insertcaptionnumber:~%
+	\insertcaption\par
+}
 
 $for(header-includes)$
 $header-includes$
@@ -242,3 +299,5 @@ $include-after$
 $endfor$
 
 \end{document}
+
+%\begin{vfillcolumn}{\colwidth}
