@@ -75,6 +75,8 @@ def structure_para(v, f, m):
             return afterframe('\\emptyfooter')
         elif content == 'smallfooter':
             return afterframe('\\smallfooter')
+        elif content == 'nofooter':
+                return afterframe('\\nofooter')
         elif content == 'nosupertitle':
             return afterframe('\\nosupertitle')
         elif content == 'sectiontitle':

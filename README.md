@@ -134,7 +134,7 @@ To be able to create backup versions of posters (A4) and presentations (Powerpoi
 For the plain Markdown templates:
 
     sudo apt-get install pandoc python-pandocfilters
-    
+
 If you use ubuntu 14.04 or older, you need to install the python-pandocfilters package manually from a next release (http://packages.ubuntu.com/search?keywords=python-pandocfilters), e.g.:
 
     wget http://de.archive.ubuntu.com/ubuntu/pool/universe/p/python-pandocfilters/python-pandocfilters_1.2.2-1_all.deb
@@ -255,7 +255,7 @@ An older version of the templates can be found on [ShareLaTeX](https://www.share
 
 Various new Markdown commands (mostly of the form `[command=param]`) are
 provided by the Pandoc filters found in `templates/*-filters.py`.
-Most of them need to be put in their own paragraph only consisting of the 
+Most of them need to be put in their own paragraph only consisting of the
 command itself.
 
 ### Markdown commands for papers/presentations/posters
@@ -316,6 +316,7 @@ The following commands need to be at the end of a frame.
 - `[largefooter]`: large footer with KU Leuven logo (default)
 - `[emptyfooter]`: large footer with KU Leuven logo, but no page number
 - `[smallfooter]`: transparent footer with just a page number
+- `[nofooter]`: empty footer (no page number)
 - `[nosupertitle]`: show only the slide title (default)
 - `[sectiontitle]`: show the slide title and current section
 - `[subsectiontitle]`: show the slide title and current section + subsection
