@@ -236,7 +236,7 @@ $endif$
 {%
     \vskip.3cm% make room for the logo
     \begin{beamercolorbox}[ht=0.37cm,dp=0.25cm,center,ignorebg]{normal text}%
-    \mdseries\insertframenumber%
+    \mdseries\insertframenumber$if(show-total-number-of-slides)$~/ \inserttotalframenumber$endif$%
     \end{beamercolorbox}%
 }
 
@@ -297,6 +297,7 @@ $endif$
 \newcommand{\largefooter}{\setbeamertemplate{footline}[large]}
 \newcommand{\emptyfooter}{\setbeamertemplate{footline}[nopagenumber]}
 \newcommand{\smallfooter}{\setbeamertemplate{footline}[small]}
+\newcommand{\nofooter}{\setbeamertemplate{footline}[nofooter]}
 
 \newcommand{\sectiontoc}{\AtBeginSection[]{{
     \nosupertitle
