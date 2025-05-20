@@ -33,6 +33,18 @@ $endif$
 \usepackage[normalem]{ulem}
 %\usepackage{lua-visual-debug}
 
+\usepackage{adjustbox}
+\usepackage{ marvosym }
+\usetikzlibrary{positioning, calc, arrows, fit, shapes.geometric}
+
+\tikzset{
+  invisible/.style={opacity=0},
+  visible on/.style={alt={#1{}{invisible}}},
+  alt/.code args={<#1>#2#3}{%
+    \alt<#1>{\pgfkeysalso{#2}}{\pgfkeysalso{#3}} % \pgfkeysalso doesn't change the path
+  },
+}
+
 \pdfstringdefDisableCommands{\renewcommand{\sout}{}}
 \graphicspath{{figures/}}
 % Fix sort order in case the same file exists with multiple extensions
@@ -55,6 +67,7 @@ $if(biblatex)$
     sortcites=false,                                 % do not sort multiple citations
     doi=false,
     url=false,
+    date=year						% No month in citation
 $if(biboptions)$
     ,$biboptions$
 $endif$
@@ -119,10 +132,22 @@ $endif$
 
 %\hypersetup{pdfpagemode=FullScreen}
 
-\setbeamercolor{structure}{fg=kulbright}
+\definecolor{kuldefault}{HTML}{00407a}
+\definecolor{kulbright}{HTML}{52bdec}
+\definecolor{kulleft}{HTML}{1d8db0}
+\definecolor{kulright}{HTML}{116e8a}
+
+\definecolor{kulyellow}{HTML}{BC8F00}
+\definecolor{kulorange}{HTML}{BC6E00}
+\definecolor{kulgreen}{HTML}{007F4F}
+\definecolor{kulred}{HTML}{FF4422}
+
+\definecolor{kulcolor}{HTML}{24417a}
+
+\setbeamercolor{structure}{fg=kulcolor}
 \setbeamercolor{title}{fg=white}
 \setbeamercolor{footline}{parent=title}
-\setbeamercolor{normal text}{fg=kuldefault}
+\setbeamercolor{normal text}{fg=black}
 \setbeamercolor{item}{parent=normal text}
 \setbeamercolor{section in toc}{parent=normal text}
 \setbeamercolor{footline extra}{fg=white}
@@ -143,21 +168,22 @@ $endif$
 \setlength\leftmarginii{1em}
 \setlength\leftmarginiii{1em}
 
-\defbeamertemplate{background canvas}{title}
-{%
-    \pgfdeclarehorizontalshading{bgshading}{8.70cm}{color(0cm)=(kulleft); color(\the\paperwidth)=(kulright)}%
-    \vbox to 8.70cm{%
-        \pgfuseshading{bgshading}\hspace*{-1.6cm}%
-    }%
-    \hskip-\paperwidth%
-    \hskip1.6cm%
-    \vbox to \paperheight{%
-        \vskip0.5cm\hskip0.5cm\includegraphics[width=2.83cm]{templates/kuleuven}%
-        \vskip0.99cm\hskip0.76cm\includegraphics[width=2.84cm]{templates/key}%
-        \vskip-0.57cm\hskip11.61cm\includegraphics[width=0.58cm]{templates/sedes}\hspace*{-1cm}%
-        \vfill
-    }%
-}
+% \defbeamertemplate{background canvas}{title}
+% {%
+%     \pgfdeclarehorizontalshading{bgshading}{8.70cm}{color(0cm)=(kulleft); color(\the\paperwidth)=(kulright)}%
+%     \vbox to 8.70cm{%
+%         \pgfuseshading{bgshading}\hspace*{-1.6cm}%
+%     }%
+%     \hskip-\paperwidth%
+%     \hskip1.6cm%
+%     \vbox to \paperheight{%
+%         \vskip0.5cm\hskip0.5cm\includegraphics[width=2.83cm]{templates/kuleuven}%
+%         \vskip0.99cm\hskip0.76cm\includegraphics[width=2.84cm]{templates/key}%
+%         \vskip-0.57cm\hskip11.61cm\includegraphics[width=0.58cm]{templates/sedes}\hspace*{-1cm}%
+%         \vfill
+%     }%
+% }
+
 
 \defbeamertemplate{background canvas}{grid}
 {%
@@ -240,51 +266,70 @@ $endif$
     \end{beamercolorbox}%
 }
 
+\defbeamertemplate{footline}{nofooter}
+{%
+}
+
+\defbeamertemplate{footline}{referencefooter}
+{%
+\vskip.3cm% make room for the logo
+\begin{beamercolorbox}[ht=0.37cm,dp=0.25cm,left,leftskip=2ex,ignorebg]{normal text}%
+\insertfootlineextra
+\end{beamercolorbox}%
+}
+
 \setbeamertemplate{footline}[large]
 
 \setbeamertemplate{frametitle}
 {%
     \nointerlineskip%
     \vskip.28cm%
-    {\usebeamercolor[fg]{framesubtitle}\usebeamerfont{framesubtitle}\insertsupertitle\strut\par}%
+    {\usebeamercolor[fg]{framesubtitle}\usebeamerfont{framesubtitle}\insertsupertitle\hfill\tiny\insertframenumber$if(show-total-number-of-slides)$~/ \inserttotalframenumber$endif$\strut\par}%
     \vskip-.2cm%
     {\usebeamercolor[fg]{frametitle}\usebeamerfont{frametitle}\insertframetitle\strut\par}%
     \vskip-.3cm%
 }
 
 \setbeamertemplate{title page}
-{
-    \vbox{}%
-    \vskip2.8cm%
-    \vbox to 6.5cm{%
-        \hskip2.8cm%
-        \begin{minipage}{7.9cm}
-            \begin{beamercolorbox}{title}
-                \usebeamerfont{title}%
-                \inserttitle\par%
-                \ifx\insertsubtitle\undefined%
-                \else%
-                    \vskip0.25em%
-                    {\usebeamerfont{subtitle}\usebeamercolor[fg]{subtitle}\insertsubtitle\par}%
-                \fi%
-            \end{beamercolorbox}%
-            \vskip1em\par
-            \begin{beamercolorbox}{author}
-                \usebeamerfont{author}\usebeamercolor[fg]{subtitle}%
-                \insertauthor
-            \end{beamercolorbox}
-            \begin{beamercolorbox}{institute}
-                \usebeamerfont{institute}\usebeamercolor[fg]{subtitle}%
-                \insertinstitute
-                \end{beamercolorbox}
-            \begin{beamercolorbox}{date}
-                \usebeamerfont{date}\usebeamercolor[fg]{subtitle}%
-                \insertdate
-            \end{beamercolorbox}%
-        \end{minipage}%
-        \vfill
-    }
-}
+	{
+
+		\begin{tikzpicture}[remember picture,overlay]
+		% blue background mono fill
+		\fill [color=kulbg]
+			(current page.south east)   rectangle   ([shift={(0,-0.0945\paperheight)}]current page.north west);
+
+		% KUL logo
+		\node [anchor=north west,xshift=0.0525\paperheight,yshift=-.0525\paperheight,inner sep=0pt]
+			at (current page.north west)
+			{\includegraphics[height=.105\paperheight]{templates/kuleuven}};
+
+		% Sedes
+		\node [anchor=south east,inner sep=0pt]
+			at (current page.south east)
+			{\includegraphics[height=.8\paperheight]{templates/sedesblue} };
+
+		% subtitle
+		\node [white, text width=.7\paperwidth, text depth=0pt,
+			anchor=north west, xshift=.082\paperheight, yshift=.5\paperheight,
+			font=\fontsize{11}{12}\bfseries] (subtitle)
+		 	at (current page.south west)
+			 	{\insertsubtitle};
+		% title
+		\node [white, text width=.7\paperwidth, minimum height=.12\paperheight,
+			node distance=3pt, above=of subtitle.north west,anchor=south west,
+			font=\fontsize{18}{19}\bfseries]
+			{\inserttitle};
+
+		% authors, institure, date   kul-dark
+		\node [white, text width=.7\paperwidth, text depth=0pt,
+			anchor=north west, xshift=.082\paperheight, yshift=.35\paperheight,
+			font=\fontsize{10}{11}]
+			at (current page.south west)
+			{\insertauthor \\ \vspace{3pt} \insertinstitute \\ \vspace{3pt} \insertdate };
+
+		\end{tikzpicture}
+	}
+
 
 \mode<all>
 
@@ -298,10 +343,11 @@ $endif$
 \newcommand{\emptyfooter}{\setbeamertemplate{footline}[nopagenumber]}
 \newcommand{\smallfooter}{\setbeamertemplate{footline}[small]}
 \newcommand{\nofooter}{\setbeamertemplate{footline}[nofooter]}
+\newcommand{\referencefooter}{\setbeamertemplate{footline}[referencefooter]}
 
 \newcommand{\sectiontoc}{\AtBeginSection[]{{
     \nosupertitle
-    \emptyfooter
+%    \emptyfooter
     \begin{frame}[noframenumbering]{Outline}
         $if(multicolstoc)$
         \begin{multicols}{2}
@@ -311,12 +357,12 @@ $endif$
         \end{multicols}
         $endif$
     \end{frame}
-    \largefooter
+%    \largefooter
 }}}
 
 \newcommand{\subsectiontoc}{\AtBeginSubsection[]{{
     \nosupertitle
-    \emptyfooter
+%    \emptyfooter
     \begin{frame}[noframenumbering]{Outline}
         $if(multicolstoc)$
         \begin{multicols}{2}
@@ -326,7 +372,7 @@ $endif$
         \end{multicols}
         $endif$
    \end{frame}
-    \largefooter
+%    \largefooter
 }}}
 
 \newcommand{\notoc}{\AtBeginSection[]{}\AtBeginSubsection[]{}}
@@ -437,8 +483,10 @@ $if(toc)$
     \end{multicols}
     $endif$
 \end{frame}
-\largefooter
+\referencefooter
 $endif$
+
+\referencefooter
 
 $body$
 

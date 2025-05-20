@@ -79,6 +79,31 @@ class ImageWalker:
             images = [Image(vv['c'], f, m) for vv in v if vv['t'] == 'Image']
             if len(images) > 0 and images[0].merge(images[1:]):
                 return images[0].render(self._watcher, False)
+        # NEW: Handle Pandoc 3.1+ Figure block
+        
+        if k == 'Figure':
+            # Extract caption and content
+            _, caption, content = v
+
+            # Flatten content blocks to find images
+            image_blocks = []
+            for block in content:
+                if block['t'] == 'Plain':
+                    image_blocks.extend([Image(img['c'], f, m) for img in block['c'] if img['t'] == 'Image'])
+            if image_blocks:
+                if image_blocks[0].merge(image_blocks[1:]):
+                    # Override caption if present
+                    if caption[1]:
+                        raw_caption = latexstringify(caption[1][0]['c'])
+                        # Remove all {...} and <...> blocks
+                        cleaned_caption = re.sub(r'(\{[^}]*\}|\<[^\>]*\>)', '', raw_caption).strip()
+                    else:
+                        cleaned_caption = ''
+                    image_blocks[0]._caption = cleaned_caption
+
+                    return image_blocks[0].render(self._watcher, False)
+
+
 
 class Image:
     def __init__(self, v, f, m):
@@ -118,7 +143,7 @@ class Image:
                 result.extend([li('\\caption{'), li(self._caption), li('}\n')])
                 result.append(li('\\end{%s}' % self._figtype))
             if i + 1 == len(self._filenames) and len(self._caption) == 0 and not inline:
-                result.append(li('\par}'))
+                result.append(li('\\par}'))
         if inline:
             if betweenframes:
                 return pf.Str('Unable to return paragraph when in inline mode')

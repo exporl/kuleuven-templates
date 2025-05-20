@@ -1,4 +1,4 @@
-#!/usr/bin/python
+#!/usr/bin/python3
 import pandocfilters as pf
 import json
 import sys
@@ -77,6 +77,8 @@ def structure_para(v, f, m):
             return afterframe('\\smallfooter')
         elif content == 'nofooter':
                 return afterframe('\\nofooter')
+        elif content == 'referencefooter':
+            return afterframe('\\referencefooter')
         elif content == 'nosupertitle':
             return afterframe('\\nosupertitle')
         elif content == 'sectiontitle':
@@ -100,7 +102,7 @@ def structure_para(v, f, m):
                 columns[-1].column(result)
             return result
         elif content.startswith('includeslides='):
-            return afterframe('\includepdf[pages=-,fitpaper=false,frame=true,pagecommand={},scale=1]{%s}' % 
+            return afterframe('\\includepdf[pages=-,fitpaper=false,frame=true,pagecommand={},scale=1]{%s}' % 
 content[14:] )
 
 def structure_header(v, f, m):
@@ -124,11 +126,13 @@ def filter_structure(k, v, f, m):
         return structure_header(v, f, m)
 
 if __name__ == '__main__':
-    doc = json.loads(sys.stdin.read())
-    if len(sys.argv) > 1:
-        format = sys.argv[1]
-    else:
-        format = ''
-    doc = pf.walk(doc, filter_structure, format, doc[0]['unMeta'])
-    doc = pf.walk(doc, ImageWalker().filter, format, doc[0]['unMeta'])
-    json.dump(doc, sys.stdout)
+#    doc = json.loads(sys.stdin.read())
+#    if len(sys.argv) > 1:
+#        format = sys.argv[1]
+#    else:
+#        format = ''
+#    doc = pf.walk(doc, filter_structure, format, doc[0]['unMeta'])
+#    doc = pf.walk(doc, ImageWalker().filter, format, doc[0]['unMeta'])
+#    json.dump(doc, sys.stdout)
+    
+    pf.toJSONFilters([filter_structure, ImageWalker().filter])
